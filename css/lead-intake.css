@@ -121,3 +121,26 @@
 @media (max-width: 480px) {
   .lead-panel { width: 100%; }
 }
+
+.lead-panel__option[aria-pressed="true"] {
+  border-color: var(--loop-indigo);
+  background: rgba(91, 110, 245, 0.12);
+}
+
+.lead-panel__continue {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--loop-indigo), var(--loop-violet));
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.lead-panel__continue:hover {
+  opacity: 0.9;
+}

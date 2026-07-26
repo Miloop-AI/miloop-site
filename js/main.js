@@ -214,6 +214,11 @@
     try { localStorage.setItem("miloop-lang", lang); } catch (e) { /* ignore */ }
   }
 
+  /* Exposed so other independently-loaded scripts (the lead-intake panel)
+     can trigger the same language change and stay in sync, instead of
+     keeping a separate copy of this logic. */
+  window.miloopSetLanguage = applyLang;
+
   document.addEventListener("DOMContentLoaded", function () {
     var initial = "en";
     try {
