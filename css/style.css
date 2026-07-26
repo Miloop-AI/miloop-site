@@ -219,6 +219,7 @@ section + section { border-top: 1px solid var(--border-soft); }
    ========================================================================== */
 .hero {
   padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: var(--space-5);
@@ -277,6 +278,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   stroke: var(--border-strong);
   stroke-width: 2;
 }
+.loop-node-icon { stroke: var(--ink); }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
