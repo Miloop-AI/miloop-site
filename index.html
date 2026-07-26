@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/lead-intake.css">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -201,5 +202,31 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
+
+<aside class="lead-panel" id="lead-panel" role="dialog" aria-modal="true" aria-labelledby="lead-panel-title" aria-hidden="true">
+  <header class="lead-panel__header">
+    <div class="lead-panel__mark" aria-hidden="true"><img src="assets/icons/miloop-mark-panel.png" alt=""></div>
+    <h2 id="lead-panel-title" class="lead-panel__title">Start a conversation</h2>
+    <button type="button" class="lead-panel__close" id="lead-panel-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="6" y1="18" x2="18" y2="6"></line>
+      </svg>
+    </button>
+  </header>
+
+  <div class="lead-panel__body" id="lead-panel-body">
+    <p class="lead-panel__prompt">Choose a language to continue.</p>
+    <div class="lead-panel__lang-options">
+      <button type="button" class="lead-panel__option" data-lang="en">English</button>
+      <button type="button" class="lead-panel__option" data-lang="zh-Hans">简体中文</button>
+      <button type="button" class="lead-panel__option" data-lang="zh-Hant">繁體中文</button>
+    </div>
+  </div>
+</aside>
+
+<script src="js/lead-intake.js"></script>
 </body>
 </html>

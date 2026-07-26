@@ -1,0 +1,123 @@
+.lead-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 11, 20, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 90;
+}
+
+.lead-panel-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lead-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 420px;
+  max-width: 100%;
+  background: var(--bg-panel);
+  color: var(--ink);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+}
+
+.lead-panel.is-open {
+  transform: translateX(0);
+}
+
+.lead-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(141, 139, 168, 0.15);
+}
+
+.lead-panel__mark {
+  width: 24px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lead-panel__mark img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lead-panel__title {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--ink);
+}
+
+.lead-panel__close {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.lead-panel__close:hover {
+  color: var(--ink);
+  background: rgba(141, 139, 168, 0.1);
+}
+
+.lead-panel__body {
+  flex: 1;
+  padding: 28px 24px;
+  overflow-y: auto;
+}
+
+.lead-panel__prompt {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin: 0 0 16px;
+}
+
+.lead-panel__lang-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lead-panel__option {
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(141, 139, 168, 0.2);
+  background: rgba(233, 231, 245, 0.03);
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.lead-panel__option:hover,
+.lead-panel__option:focus-visible {
+  border-color: var(--loop-indigo);
+  background: rgba(91, 110, 245, 0.08);
+  outline: none;
+}
+
+@media (max-width: 480px) {
+  .lead-panel { width: 100%; }
+}
