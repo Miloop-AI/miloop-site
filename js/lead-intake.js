@@ -6,16 +6,17 @@
    ========================================================================== */
 
 (function () {
-  var startButtons = document.querySelectorAll(".js-start-conversation");
   var overlay = document.getElementById("lead-panel-overlay");
   var panel = document.getElementById("lead-panel");
   var closeButton = document.getElementById("lead-panel-close");
   var langOptions = document.querySelectorAll(".lead-panel__option");
   var continueButton = document.getElementById("lead-lang-continue");
-  var lastTrigger = null;
-  var selectedLang = "en";
+  var triggerButtons = document.querySelectorAll(".js-start-conversation");
 
-  if (!overlay || !panel || !closeButton || !startButtons.length) return;
+  var selectedLang = "en";
+  var lastFocusedTrigger = null;
+
+  if (!overlay || !panel || !closeButton || !triggerButtons.length) return;
 
   function applyStoredLanguage() {
     var stored = "en";
@@ -28,7 +29,7 @@
   }
 
   function openPanel(event) {
-    lastTrigger = event ? event.currentTarget : null;
+    lastFocusedTrigger = event ? event.currentTarget : null;
     applyStoredLanguage();
     overlay.classList.add("is-open");
     panel.classList.add("is-open");
@@ -44,12 +45,13 @@
     overlay.setAttribute("aria-hidden", "true");
     panel.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-    (lastTrigger || startButtons[0]).focus();
+    if (lastFocusedTrigger) lastFocusedTrigger.focus();
   }
 
-  startButtons.forEach(function (btn) {
-    btn.addEventListener("click", openPanel);
+  triggerButtons.forEach(function (button) {
+    button.addEventListener("click", openPanel);
   });
+
   closeButton.addEventListener("click", closePanel);
   overlay.addEventListener("click", closePanel);
 
@@ -65,10 +67,9 @@
       langOptions.forEach(function (option) {
         option.setAttribute("aria-pressed", String(option === button));
       });
-      /* Keep the main site (nav dropdown, page copy) in sync with a
-         language choice made inside the panel, rather than tracking a
-         second, disconnected language state. */
-      if (window.miloopSetLanguage) window.miloopSetLanguage(selectedLang);
+      if (typeof window.miloopSetLanguage === "function") {
+        window.miloopSetLanguage(selectedLang);
+      }
     });
   });
 
