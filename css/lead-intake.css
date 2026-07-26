@@ -81,6 +81,18 @@
   background: rgba(141, 139, 168, 0.1);
 }
 
+.lead-panel__progress {
+  height: 3px;
+  background: rgba(141, 139, 168, 0.15);
+}
+
+.lead-panel__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(135deg, var(--loop-indigo), var(--loop-violet));
+  transition: width 0.25s ease;
+}
+
 .lead-panel__body {
   flex: 1;
   padding: 28px 24px;
@@ -93,7 +105,7 @@
   margin: 0 0 16px;
 }
 
-.lead-panel__lang-options {
+.lead-panel__options {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -118,18 +130,80 @@
   outline: none;
 }
 
-@media (max-width: 480px) {
-  .lead-panel { width: 100%; }
-}
-
 .lead-panel__option[aria-pressed="true"] {
   border-color: var(--loop-indigo);
   background: rgba(91, 110, 245, 0.12);
 }
 
-.lead-panel__continue {
-  margin-top: 20px;
+.lead-panel__field {
+  margin-bottom: 16px;
+}
+
+.lead-panel__field label,
+.lead-panel__field-label {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-bottom: 6px;
+}
+
+.lead-panel__field input,
+.lead-panel__field textarea {
   width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(141, 139, 168, 0.25);
+  background: rgba(233, 231, 245, 0.03);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.lead-panel__field input:focus,
+.lead-panel__field textarea:focus {
+  outline: none;
+  border-color: var(--loop-indigo);
+}
+
+.lead-panel__field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Hidden from real visitors, left in the tab flow of nobody, but still
+   present in the DOM so automated form fillers tend to populate it. */
+.lead-panel__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.lead-panel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.lead-panel__back {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.lead-panel__back:hover {
+  color: var(--ink);
+}
+
+.lead-panel__continue {
+  margin-top: 0;
   padding: 14px 16px;
   border: none;
   border-radius: 8px;
@@ -143,4 +217,54 @@
 
 .lead-panel__continue:hover {
   opacity: 0.9;
+}
+
+.lead-panel__continue:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lead-panel__review-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lead-panel__review-list li {
+  font-size: 13px;
+  color: var(--ink-dim);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lead-panel__review-list li span:last-child {
+  color: var(--ink);
+  text-align: right;
+}
+
+.lead-panel__error {
+  font-size: 13px;
+  color: #f08a8a;
+  margin-top: 10px;
+}
+
+.lead-panel__confirmation {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.lead-panel__confirmation-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--signal-mint);
+  margin: 0 auto 16px;
+}
+
+@media (max-width: 480px) {
+  .lead-panel { width: 100%; }
 }
