@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miloop AI</title>
+<meta name="description" content="Miloop AI designs, builds, and evaluates production AI systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+</head>
+<body id="top">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B6EF5"/>
+      <stop offset="100%" stop-color="#A66CF0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="#top" class="wordmark">
+      <img class="wordmark-full" src="assets/icons/miloop-wordmark-nav.png" alt="Miloop AI">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-switch-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="lang-switch-current">EN</span>
+          <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-switch-menu" role="listbox">
+          <li><button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hans" role="option" aria-selected="false">简体中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hant" role="option" aria-selected="false">繁體中文</button></li>
+        </ul>
+      </div>
+      <button type="button" id="start-conversation-btn" class="btn btn-primary js-start-conversation" data-i18n="hero.cta.contact">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Applied AI Engineering Practice</p>
+      <h1>
+        <span data-i18n="hero.heading.pre">Every system ships with a </span><em data-i18n="hero.heading.em">second opinion</em><span data-i18n="hero.heading.post"> built in.</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">Not because the AI might be wrong. Because eventually, it will be. Miloop AI designs and builds production systems, content automation, knowledge assistants, voice agents, where an independent check catches that moment before your customers do.</p>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 400" width="100%">
+        <circle class="loop-track" cx="200" cy="200" r="150"/>
+        <circle class="loop-glow" cx="200" cy="200" r="150" transform="rotate(-90 200 200)"/>
+
+        <g class="loop-node" transform="translate(200,50)">
+          <circle class="node-dot loop-node-pulse" r="20" style="animation-delay:0s"/>
+          <text class="loop-stage-label active" text-anchor="middle" y="-32" data-i18n="loop.diagnose">Diagnose</text>
+        </g>
+        <g class="loop-node" transform="translate(330,275)">
+          <circle class="node-dot loop-node-pulse" r="20" style="animation-delay:1.5s"/>
+          <text class="loop-stage-label" text-anchor="middle" y="44" data-i18n="loop.build">Build</text>
+        </g>
+        <g class="loop-node" transform="translate(70,275)">
+          <circle class="node-dot loop-node-pulse" r="20" style="animation-delay:3s"/>
+          <text class="loop-stage-label" text-anchor="middle" y="44" data-i18n="loop.support">Verify &amp; Support</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="container">
+      <p class="eyebrow" data-i18n="services.eyebrow">What we do</p>
+      <h2 class="section-title" data-i18n="services.title">From first audit to ongoing support.</h2>
+
+      <div class="service-interactive reveal">
+        <div class="service-menu" role="tablist">
+          <button class="service-menu-item active" type="button" data-target="panel-s1" role="tab" aria-selected="true">
+            <span class="service-menu-num">01</span>
+            <span class="service-menu-title" data-i18n="s1.title">AI Readiness Assessment</span>
+          </button>
+          <button class="service-menu-item" type="button" data-target="panel-s2" role="tab" aria-selected="false">
+            <span class="service-menu-num">02</span>
+            <span class="service-menu-title" data-i18n="s2.title">Workflow &amp; Content Automation</span>
+          </button>
+          <button class="service-menu-item" type="button" data-target="panel-s3" role="tab" aria-selected="false">
+            <span class="service-menu-num">03</span>
+            <span class="service-menu-title" data-i18n="s3.title">Generative AI &amp; Knowledge Systems</span>
+          </button>
+          <button class="service-menu-item" type="button" data-target="panel-s4" role="tab" aria-selected="false">
+            <span class="service-menu-num">04</span>
+            <span class="service-menu-title" data-i18n="s4.title">Agentic Systems &amp; Integration</span>
+          </button>
+          <button class="service-menu-item" type="button" data-target="panel-s5" role="tab" aria-selected="false">
+            <span class="service-menu-num">05</span>
+            <span class="service-menu-title" data-i18n="s5.title">Evaluation, Deployment &amp; Ongoing Support</span>
+          </button>
+        </div>
+
+        <div class="service-panel">
+          <div class="service-panel-item active" id="panel-s1">
+            <h3 data-i18n="s1.title">AI Readiness Assessment</h3>
+            <p data-i18n-html="s1.body">Not sure where AI can actually move the needle in your business? We audit your current workflows and any AI systems already in place, surfacing hallucination risk, wasted spend, and the highest-leverage place to start. You walk away with <strong>a clear roadmap, not a slide deck full of buzzwords</strong>.</p>
+          </div>
+          <div class="service-panel-item" id="panel-s2">
+            <h3 data-i18n="s2.title">Workflow &amp; Content Automation</h3>
+            <p data-i18n-html="s2.body">We turn multi-step manual processes (classification, translation, drafting, fact-checking, publishing) into pipelines that run in <strong>minutes instead of hours</strong>. Built on production infrastructure, not fragile scripts, so it keeps running long after the handoff.</p>
+          </div>
+          <div class="service-panel-item" id="panel-s3">
+            <h3 data-i18n="s3.title">Generative AI &amp; Knowledge Systems</h3>
+            <p data-i18n-html="s3.body">From retrieval-augmented systems that let your team query internal documents with grounded, sourced answers, to lightweight fine-tuned models that write in your brand's exact voice. <strong>Generative AI that's accurate first, impressive second.</strong></p>
+          </div>
+          <div class="service-panel-item" id="panel-s4">
+            <h3 data-i18n="s4.title">Agentic Systems &amp; Integration</h3>
+            <p data-i18n-html="s4.body"><strong>AI that doesn't just talk. It acts.</strong> Multi-agent systems and tool integrations (via MCP) that let AI query your databases, operate your internal tools, and handle multi-step tasks end-to-end, including voice-based assistants for hands-free, conversational use cases.</p>
+          </div>
+          <div class="service-panel-item" id="panel-s5">
+            <h3 data-i18n="s5.title">Evaluation, Deployment &amp; Ongoing Support</h3>
+            <p data-i18n-html="s5.body">Every system ships with its own quality bar: cross-model evaluation frameworks that catch hallucinations before your users do. Once live, we handle the cloud infrastructure and ongoing maintenance, so <strong>reliability doesn't become your problem</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTS / WORK (merged) ================= -->
+  <section id="results">
+    <div class="container">
+      <p class="eyebrow" data-i18n="results.eyebrow">Proof in production</p>
+      <h2 class="section-title" data-i18n="results.title">Systems Miloop AI has designed, built, and shipped.</h2>
+
+      <div class="result-grid">
+        <article class="result-card reveal">
+          <div class="result-visual"><img src="assets/img/news-publisher.jpg" alt=""></div>
+          <div class="result-body">
+            <span class="result-tag" data-i18n="result1.tag">Content Automation</span>
+            <h3 data-i18n="result1.title">A Bilingual News Publisher</h3>
+            <p data-i18n-html="result1.body">A multi-model content pipeline cut per-article production time from <strong>hours to under 10 minutes</strong>, and reduced overall content cycle time by <strong>40%</strong>.</p>
+          </div>
+        </article>
+
+        <article class="result-card reveal">
+          <div class="result-visual"><img src="assets/img/peinin-voice.jpg" alt=""></div>
+          <div class="result-body">
+            <span class="result-tag" data-i18n="result2.tag">Voice AI</span>
+            <h3 data-i18n="result2.title">PéiNín Foundation</h3>
+            <p data-i18n-html="result2.body">A bilingual voice companion, <strong>among the first AI companion apps</strong> built specifically for Chinese American seniors in the U.S.</p>
+            <span class="result-status" data-i18n="result2.status">Pre-launching 2026</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal">
+          <div class="result-visual"><img src="assets/img/model-finetune.jpg" alt=""></div>
+          <div class="result-body">
+            <span class="result-tag" data-i18n="result3.tag">Model Fine-Tuning</span>
+            <h3 data-i18n="result3.title">Brand-Voice Model Fine-Tune</h3>
+            <p data-i18n-html="result3.body">A generic model writes generically. This one was trained on real editorial writing for <strong>$0.70</strong> on a single consumer GPU, instead of the far higher cost of building a custom model from scratch.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT TEASER ================= -->
+  <section id="about-teaser">
+    <div class="container reveal">
+      <div class="teaser-panel">
+        <p class="eyebrow" data-i18n="teaser.eyebrow">About Miloop AI</p>
+        <p class="teaser-statement" data-i18n="teaser.statement">Most AI demos work. Few AI systems survive contact with a real deadline, a real client, or a real edge case. Miloop AI builds the kind that do, with evaluation built into every pipeline from day one, not bolted on after something breaks.</p>
+        <div class="teaser-actions">
+          <a href="about.html" class="btn btn-ghost" data-i18n="teaser.cta.about">Learn About Us</a>
+          <button type="button" id="start-conversation-btn-teaser" class="btn btn-primary js-start-conversation" data-i18n="hero.cta.contact">Start a conversation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <svg class="footer-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#E9E7F5" stroke-width="2"/>
+  </svg>
+  <div class="container" style="display:flex; justify-content:space-between; width:100%; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+    <span>&copy; <span data-year>2026</span> <span data-i18n="footer.rights">Miloop AI, LLC. All rights reserved.</span></span>
+    <span style="font-family:var(--font-mono); font-size:0.78rem;">San Jose, CA</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
