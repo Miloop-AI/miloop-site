@@ -338,22 +338,49 @@
     /* --- Interactive services panel --- */
     var serviceMenuItems = document.querySelectorAll(".service-menu-item");
     if (serviceMenuItems.length) {
-      serviceMenuItems.forEach(function (btn) {
+      var AUTO_ADVANCE_DELAY = 7000;
+      var MANUAL_DWELL_DELAY = 10000;
+      var serviceTimer = null;
+      var currentServiceIndex = 0;
+
+      serviceMenuItems.forEach(function (btn, index) {
+        if (btn.classList.contains("active")) currentServiceIndex = index;
+      });
+
+      function activateService(index) {
+        var btn = serviceMenuItems[index];
+        if (!btn) return;
+        var targetId = btn.getAttribute("data-target");
+        serviceMenuItems.forEach(function (b) {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        document.querySelectorAll(".service-panel-item").forEach(function (p) {
+          p.classList.remove("active");
+        });
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        var target = document.getElementById(targetId);
+        if (target) target.classList.add("active");
+        currentServiceIndex = index;
+      }
+
+      function scheduleNextAdvance(delay) {
+        if (serviceTimer) clearTimeout(serviceTimer);
+        serviceTimer = setTimeout(function () {
+          activateService((currentServiceIndex + 1) % serviceMenuItems.length);
+          scheduleNextAdvance(AUTO_ADVANCE_DELAY);
+        }, delay);
+      }
+
+      serviceMenuItems.forEach(function (btn, index) {
         btn.addEventListener("click", function () {
-          var targetId = btn.getAttribute("data-target");
-          serviceMenuItems.forEach(function (b) {
-            b.classList.remove("active");
-            b.setAttribute("aria-selected", "false");
-          });
-          document.querySelectorAll(".service-panel-item").forEach(function (p) {
-            p.classList.remove("active");
-          });
-          btn.classList.add("active");
-          btn.setAttribute("aria-selected", "true");
-          var target = document.getElementById(targetId);
-          if (target) target.classList.add("active");
+          activateService(index);
+          scheduleNextAdvance(MANUAL_DWELL_DELAY);
         });
       });
+
+      scheduleNextAdvance(AUTO_ADVANCE_DELAY);
     }
 
     var yearEl = document.querySelector("[data-year]");
