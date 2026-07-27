@@ -5,18 +5,14 @@ const titleEl = document.getElementById("lead-panel-title");
 const bodyEl = document.getElementById("lead-panel-body");
 const progressFillEl = document.getElementById("lead-progress-fill");
 const triggerButtons = document.querySelectorAll(".js-start-conversation");
+const exitConfirmEl = document.getElementById("lead-exit-confirm");
+const exitMessageEl = document.getElementById("lead-exit-message");
+const exitCancelBtn = document.getElementById("lead-exit-cancel");
+const exitLeaveBtn = document.getElementById("lead-exit-leave");
 
-const STORED_TO_DATA_LANG = {
-  en: "en",
-  "zh-Hans": "zh-Hans",
-  "zh-Hant": "zh-Hant",
-};
-
-const LANGUAGE_NAMES = {
-  en: "English",
-  "zh-Hans": "简体中文",
-  "zh-Hant": "繁體中文",
-};
+const STORED_TO_DATA_LANG = { en: "en", "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant" };
+const LANGUAGE_NAMES = { en: "English", "zh-Hans": "简体中文", "zh-Hant": "繁體中文" };
+const ASSISTANT_MAX_TURNS = 5;
 
 const COPY = {
   en: {
@@ -27,27 +23,40 @@ const COPY = {
     back: "Back",
     submit: "Submit",
     sending: "Sending...",
+    otherLabel: "Other (please specify)",
+    otherPlaceholder: "Please specify...",
     questions: {
       problemType: {
-        title: "What are you looking to solve?",
+        title: "What do you need help with?",
         options: [
-          { value: "automation", label: "Automating a manual or repetitive process" },
-          { value: "agent", label: "Building an AI agent or assistant" },
-          { value: "integration", label: "Adding AI into an existing product" },
-          { value: "exploring", label: "Not sure yet, exploring options" },
+          { value: "assessment", label: "AI Readiness Assessment" },
+          { value: "automation", label: "Workflow & Content Automation" },
+          { value: "generative", label: "Generative AI & Knowledge Systems" },
+          { value: "agentic", label: "Agentic Systems & Integration" },
+          { value: "evaluation", label: "Evaluation, Deployment & Ongoing Support" },
         ],
+        assistant: {
+          trigger: "Not sure? Talk to our assistant instead",
+          placeholder: "Type your message...",
+          send: "Send",
+          thinking: "Thinking...",
+          disclaimer: "Please don't share sensitive information, such as phone numbers or unannounced business plans.",
+          poweredBy: "Powered by Google Gemini",
+          done: "We've noted your needs, thanks for explaining.",
+          error: "Something went wrong. Please select from the options above instead.",
+        },
       },
       segment: {
-        title: "Which best describes you?",
+        title: "What's the size of your organization?",
         options: [
           { value: "solo", label: "Just me" },
           { value: "small", label: "Small business, roughly 2 to 50 people" },
           { value: "enterprise", label: "Larger company or enterprise" },
         ],
       },
-      budget: { title: "What's the budget range for this?" },
+      budget: { title: "What's your budget range for this?" },
       timeline: {
-        title: "What's the timeline?",
+        title: "What's your target timeline for this?",
         options: [
           { value: "asap", label: "ASAP, within a few weeks" },
           { value: "1-3-months", label: "1 to 3 months" },
@@ -62,7 +71,6 @@ const COPY = {
           { value: "referral", label: "Referral" },
           { value: "search", label: "Search or found the site directly" },
           { value: "github", label: "GitHub or portfolio" },
-          { value: "other", label: "Other" },
         ],
       },
     },
@@ -70,16 +78,19 @@ const COPY = {
       solo: [
         { value: "under-5k", label: "Under $5k" },
         { value: "5k-15k", label: "$5k to $15k" },
+        { value: "over-15k", label: "$15k+" },
         { value: "not-sure", label: "Not sure yet" },
         { value: "prefer-not-to-say", label: "Prefer not to say" },
       ],
       small: [
+        { value: "under-10k", label: "Under $10k" },
         { value: "10k-30k", label: "$10k to $30k" },
         { value: "30k-75k", label: "$30k to $75k" },
         { value: "75k-plus", label: "$75k+" },
         { value: "prefer-not-to-say", label: "Prefer not to say" },
       ],
       enterprise: [
+        { value: "under-50k", label: "Under $50k" },
         { value: "50k-150k", label: "$50k to $150k" },
         { value: "150k-plus", label: "$150k+" },
         { value: "depends", label: "Depends on scope" },
@@ -111,6 +122,11 @@ const COPY = {
       title: "Thanks, that's everything we need.",
       subtitle: "We'll review this and follow up within 1 to 2 business days.",
     },
+    exitConfirm: {
+      message: "Are you sure you want to leave? Your answers won't be saved.",
+      cancel: "Cancel",
+      leave: "Leave",
+    },
     error: "Something went wrong. Please try again, or email info@miloop.ai directly.",
   },
 
@@ -122,18 +138,31 @@ const COPY = {
     back: "上一步",
     submit: "提交",
     sending: "发送中…",
+    otherLabel: "其他（请说明）",
+    otherPlaceholder: "请简单说明…",
     questions: {
       problemType: {
-        title: "您想解决什么问题？",
+        title: "您需要哪方面的帮助？",
         options: [
-          { value: "automation", label: "自动化重复性或手动流程" },
-          { value: "agent", label: "构建AI智能体或助手" },
-          { value: "integration", label: "为现有产品加入AI功能" },
-          { value: "exploring", label: "还不确定，想先了解一下" },
+          { value: "assessment", label: "AI就绪度评估" },
+          { value: "automation", label: "工作流与内容自动化" },
+          { value: "generative", label: "生成式AI与知识系统" },
+          { value: "agentic", label: "Agent系统与集成" },
+          { value: "evaluation", label: "评估、部署与持续支持" },
         ],
+        assistant: {
+          trigger: "还不确定？跟我们的助理聊聊",
+          placeholder: "请输入您的讯息…",
+          send: "发送",
+          thinking: "思考中…",
+          disclaimer: "请不要提供电话号码、尚未公开的商业计划等敏感信息。",
+          poweredBy: "技术支持：Google Gemini",
+          done: "我们已经记住您的需求，感谢您的说明。",
+          error: "出现问题，请改用上方选项。",
+        },
       },
       segment: {
-        title: "以下哪项最符合您的情况？",
+        title: "您的机构规模是？",
         options: [
           { value: "solo", label: "个人" },
           { value: "small", label: "小型企业，约2至50人" },
@@ -142,7 +171,7 @@ const COPY = {
       },
       budget: { title: "这个项目的预算范围是？" },
       timeline: {
-        title: "预计的时间安排是？",
+        title: "您希望的目标时间安排是？",
         options: [
           { value: "asap", label: "尽快，几周内" },
           { value: "1-3-months", label: "1至3个月" },
@@ -157,7 +186,6 @@ const COPY = {
           { value: "referral", label: "他人推荐" },
           { value: "search", label: "搜索或直接找到网站" },
           { value: "github", label: "GitHub或作品集" },
-          { value: "other", label: "其他" },
         ],
       },
     },
@@ -165,16 +193,19 @@ const COPY = {
       solo: [
         { value: "under-5k", label: "5千美元以下" },
         { value: "5k-15k", label: "5千至1万5千美元" },
+        { value: "over-15k", label: "1万5千美元以上" },
         { value: "not-sure", label: "还不确定" },
         { value: "prefer-not-to-say", label: "暂不透露" },
       ],
       small: [
+        { value: "under-10k", label: "1万美元以下" },
         { value: "10k-30k", label: "1万至3万美元" },
         { value: "30k-75k", label: "3万至7万5千美元" },
         { value: "75k-plus", label: "7万5千美元以上" },
         { value: "prefer-not-to-say", label: "暂不透露" },
       ],
       enterprise: [
+        { value: "under-50k", label: "5万美元以下" },
         { value: "50k-150k", label: "5万至15万美元" },
         { value: "150k-plus", label: "15万美元以上" },
         { value: "depends", label: "视项目范围而定" },
@@ -206,6 +237,11 @@ const COPY = {
       title: "感谢您，我们已收到所有信息。",
       subtitle: "我们会尽快查看，并在1至2个工作日内与您联系。",
     },
+    exitConfirm: {
+      message: "确定要离开吗？您填写的内容不会被保留。",
+      cancel: "取消",
+      leave: "离开",
+    },
     error: "出现问题，请重试，或直接发送邮件至info@miloop.ai。",
   },
 
@@ -217,18 +253,31 @@ const COPY = {
     back: "上一步",
     submit: "送出",
     sending: "傳送中…",
+    otherLabel: "其他（請說明）",
+    otherPlaceholder: "請簡單說明…",
     questions: {
       problemType: {
-        title: "您想解決什麼問題？",
+        title: "您需要哪方面的協助？",
         options: [
-          { value: "automation", label: "自動化重複性或手動流程" },
-          { value: "agent", label: "打造AI智慧代理人或助理" },
-          { value: "integration", label: "為現有產品加入AI功能" },
-          { value: "exploring", label: "還不確定，想先了解一下" },
+          { value: "assessment", label: "AI就緒度評估" },
+          { value: "automation", label: "工作流與內容自動化" },
+          { value: "generative", label: "生成式AI與知識系統" },
+          { value: "agentic", label: "Agent系統與集成" },
+          { value: "evaluation", label: "評估、部署與持續支持" },
         ],
+        assistant: {
+          trigger: "還不確定？跟我們的助理聊聊",
+          placeholder: "請輸入您的訊息…",
+          send: "傳送",
+          thinking: "思考中…",
+          disclaimer: "請不要提供電話號碼、尚未公開的商業計畫等敏感資訊。",
+          poweredBy: "技術支援：Google Gemini",
+          done: "我們已經記住您的需求，感謝您的說明。",
+          error: "發生問題，請改用上方選項。",
+        },
       },
       segment: {
-        title: "以下哪項最符合您的情況？",
+        title: "您的機構規模是？",
         options: [
           { value: "solo", label: "個人" },
           { value: "small", label: "小型企業，約2至50人" },
@@ -237,7 +286,7 @@ const COPY = {
       },
       budget: { title: "這個專案的預算範圍是？" },
       timeline: {
-        title: "預計的時間安排是？",
+        title: "您希望的目標時間安排是？",
         options: [
           { value: "asap", label: "盡快，幾週內" },
           { value: "1-3-months", label: "1至3個月" },
@@ -252,7 +301,6 @@ const COPY = {
           { value: "referral", label: "他人推薦" },
           { value: "search", label: "搜尋或直接找到網站" },
           { value: "github", label: "GitHub或作品集" },
-          { value: "other", label: "其他" },
         ],
       },
     },
@@ -260,16 +308,19 @@ const COPY = {
       solo: [
         { value: "under-5k", label: "5千美元以下" },
         { value: "5k-15k", label: "5千至1萬5千美元" },
+        { value: "over-15k", label: "1萬5千美元以上" },
         { value: "not-sure", label: "還不確定" },
         { value: "prefer-not-to-say", label: "暫不透露" },
       ],
       small: [
+        { value: "under-10k", label: "1萬美元以下" },
         { value: "10k-30k", label: "1萬至3萬美元" },
         { value: "30k-75k", label: "3萬至7萬5千美元" },
         { value: "75k-plus", label: "7萬5千美元以上" },
         { value: "prefer-not-to-say", label: "暫不透露" },
       ],
       enterprise: [
+        { value: "under-50k", label: "5萬美元以下" },
         { value: "50k-150k", label: "5萬至15萬美元" },
         { value: "150k-plus", label: "15萬美元以上" },
         { value: "depends", label: "視專案範圍而定" },
@@ -300,6 +351,11 @@ const COPY = {
     confirmation: {
       title: "謝謝您，我們已收到所有資訊。",
       subtitle: "我們會盡快確認，並在1至2個工作日內與您聯繫。",
+    },
+    exitConfirm: {
+      message: "確定要離開嗎？您填寫的內容不會被保留。",
+      cancel: "取消",
+      leave: "離開",
     },
     error: "發生問題，請重試，或直接寄送郵件至info@miloop.ai。",
   },
@@ -336,7 +392,26 @@ function openPanel(event) {
   render();
 }
 
+function attemptClose() {
+  if (exitConfirmEl.classList.contains("is-open")) return;
+  const hasProgress = state.step > 0;
+  if (!hasProgress) {
+    closePanel();
+    return;
+  }
+  const t = currentCopy();
+  exitMessageEl.textContent = t.exitConfirm.message;
+  exitCancelBtn.textContent = t.exitConfirm.cancel;
+  exitLeaveBtn.textContent = t.exitConfirm.leave;
+  exitConfirmEl.classList.add("is-open");
+}
+
+function cancelExit() {
+  exitConfirmEl.classList.remove("is-open");
+}
+
 function closePanel() {
+  exitConfirmEl.classList.remove("is-open");
   overlay.classList.remove("is-open");
   panel.classList.remove("is-open");
   overlay.setAttribute("aria-hidden", "true");
@@ -346,11 +421,18 @@ function closePanel() {
 }
 
 triggerButtons.forEach((button) => button.addEventListener("click", openPanel));
-closeButton.addEventListener("click", closePanel);
-overlay.addEventListener("click", closePanel);
+closeButton.addEventListener("click", attemptClose);
+overlay.addEventListener("click", attemptClose);
+exitCancelBtn.addEventListener("click", cancelExit);
+exitLeaveBtn.addEventListener("click", closePanel);
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && panel.classList.contains("is-open")) closePanel();
+  if (event.key !== "Escape") return;
+  if (exitConfirmEl.classList.contains("is-open")) {
+    cancelExit();
+  } else if (panel.classList.contains("is-open")) {
+    attemptClose();
+  }
 });
 
 function updateProgress() {
@@ -383,11 +465,11 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function optionButtonsHtml(options, selectedValue) {
+function optionButtonsHtml(options, selectedValue, extraClass) {
   return options
     .map(
       (option) => `
-        <button type="button" class="lead-panel__option" data-value="${option.value}" aria-pressed="${option.value === selectedValue}">
+        <button type="button" class="lead-panel__option${extraClass ? " " + extraClass : ""}" data-value="${option.value}" aria-pressed="${option.value === selectedValue}">
           ${escapeHtml(option.label)}
         </button>
       `
@@ -407,7 +489,8 @@ function render() {
   updateChrome(t);
   updateProgress();
   if (state.step === 0) renderLanguageStep(t);
-  else if (state.step >= 1 && state.step <= QUESTION_KEYS.length) renderQuestionStep(t, QUESTION_KEYS[state.step - 1]);
+  else if (state.step === 1) renderProblemTypeStep(t);
+  else if (state.step >= 2 && state.step <= QUESTION_KEYS.length) renderSingleSelectStep(t, QUESTION_KEYS[state.step - 1]);
   else if (state.step === CONTACT_STEP_INDEX) renderContactStep(t);
   else if (state.step === NOTE_STEP_INDEX) renderNoteStep(t);
   else if (state.step === REVIEW_STEP_INDEX) renderReviewStep(t);
@@ -439,30 +522,269 @@ function renderLanguageStep(t) {
   bodyEl.querySelector('[data-role="continue"]').addEventListener("click", goNext);
 }
 
-function renderQuestionStep(t, key) {
-  const options = getQuestionOptions(t, key, state.answers);
-  const selectedValue = state.answers[key];
+/* ==========================================================================
+   Step 1: problem type. Multi-select checkboxes, an "other" free-text
+   option, and an optional virtual assistant chat, all counted as a single
+   step on the progress bar regardless of how the visitor answers it.
+   ========================================================================== */
+function renderProblemTypeStep(t) {
+  const q = t.questions.problemType;
+  const answers = state.answers;
+  const selected = new Set(answers.problemType || []);
+  const otherActive = !!answers.problemTypeOtherActive;
+  const assistantDone = !!answers.assistantDone;
+  const transcript = answers.assistantTranscript || [];
+
+  const optionsHtml = q.options
+    .map(
+      (option) => `
+        <button type="button" class="lead-panel__option lead-panel__option--checkbox" data-value="${option.value}" aria-pressed="${selected.has(option.value)}">
+          ${escapeHtml(option.label)}
+        </button>
+      `
+    )
+    .join("");
 
   bodyEl.innerHTML = `
-    <p class="lead-panel__prompt">${escapeHtml(t.questions[key].title)}</p>
-    <div class="lead-panel__options">${optionButtonsHtml(options, selectedValue)}</div>
+    <p class="lead-panel__prompt">${escapeHtml(q.title)}</p>
+    <div class="lead-panel__options" id="lead-problem-options">
+      ${optionsHtml}
+      <button type="button" class="lead-panel__option lead-panel__option--checkbox" data-value="__other" aria-pressed="${otherActive}">
+        ${escapeHtml(t.otherLabel)}
+      </button>
+    </div>
+    <div class="lead-panel__other-field" id="lead-problem-other-field" ${otherActive ? "" : "hidden"}>
+      <input type="text" id="lead-problem-other-input" placeholder="${escapeHtml(t.otherPlaceholder)}" value="${escapeHtml(answers.problemTypeOther || "")}" />
+    </div>
+    ${
+      assistantDone
+        ? ""
+        : `<button type="button" class="lead-panel__assistant-trigger" id="lead-assistant-trigger" ${answers.assistantStarted ? "hidden" : ""}>${escapeHtml(q.assistant.trigger)}</button>`
+    }
+    <div class="lead-panel__assistant" id="lead-assistant" ${answers.assistantStarted ? "" : "hidden"}>
+      <div class="lead-panel__assistant-messages" id="lead-assistant-messages"></div>
+      <div class="lead-panel__assistant-input-row" id="lead-assistant-input-row" ${assistantDone ? "hidden" : ""}>
+        <input type="text" id="lead-assistant-input" placeholder="${escapeHtml(q.assistant.placeholder)}" />
+        <button type="button" id="lead-assistant-send">${escapeHtml(q.assistant.send)}</button>
+      </div>
+      <p class="lead-panel__assistant-note">${escapeHtml(q.assistant.disclaimer)}<br>${escapeHtml(q.assistant.poweredBy)}</p>
+    </div>
     <div class="lead-panel__nav">
       <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
-      <button type="button" class="lead-panel__continue" data-role="continue" ${selectedValue ? "" : "disabled"}>${escapeHtml(t.continue)}</button>
+      <button type="button" class="lead-panel__continue" data-role="continue" id="lead-problem-continue">${escapeHtml(t.continue)}</button>
     </div>
   `;
 
-  bodyEl.querySelectorAll("[data-value]").forEach((button) => {
+  const continueBtn = document.getElementById("lead-problem-continue");
+  const otherField = document.getElementById("lead-problem-other-field");
+  const otherInput = document.getElementById("lead-problem-other-input");
+
+  function updateContinueState() {
+    const hasChecked = (state.answers.problemType || []).length > 0;
+    const hasOther = state.answers.problemTypeOtherActive && (otherInput.value || "").trim().length > 0;
+    const hasAssistant = !!state.answers.assistantDone;
+    continueBtn.disabled = !(hasChecked || hasOther || hasAssistant);
+  }
+
+  document.querySelectorAll('#lead-problem-options [data-value]').forEach((button) => {
     button.addEventListener("click", () => {
-      state.answers[key] = button.dataset.value;
-      if (key === "segment") delete state.answers.budget;
-      render();
+      const value = button.dataset.value;
+      if (value === "__other") {
+        state.answers.problemTypeOtherActive = !state.answers.problemTypeOtherActive;
+        button.setAttribute("aria-pressed", String(state.answers.problemTypeOtherActive));
+        otherField.hidden = !state.answers.problemTypeOtherActive;
+        if (!state.answers.problemTypeOtherActive) {
+          state.answers.problemTypeOther = "";
+          otherInput.value = "";
+        } else {
+          otherInput.focus();
+        }
+        updateContinueState();
+        return;
+      }
+      const set = new Set(state.answers.problemType || []);
+      if (set.has(value)) set.delete(value);
+      else set.add(value);
+      state.answers.problemType = Array.from(set);
+      button.setAttribute("aria-pressed", String(set.has(value)));
+      updateContinueState();
     });
   });
 
+  otherInput.addEventListener("input", () => {
+    state.answers.problemTypeOther = otherInput.value;
+    updateContinueState();
+  });
+
+  initAssistantChat(t, updateContinueState);
+  updateContinueState();
+
   bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
-  const continueButton = bodyEl.querySelector('[data-role="continue"]');
-  if (continueButton) continueButton.addEventListener("click", goNext);
+  continueBtn.addEventListener("click", goNext);
+}
+
+function initAssistantChat(t, updateContinueState) {
+  const trigger = document.getElementById("lead-assistant-trigger");
+  const assistantBox = document.getElementById("lead-assistant");
+  const messagesEl = document.getElementById("lead-assistant-messages");
+  const inputRow = document.getElementById("lead-assistant-input-row");
+  const inputEl = document.getElementById("lead-assistant-input");
+  const sendBtn = document.getElementById("lead-assistant-send");
+  const q = t.questions.problemType;
+
+  function renderMessages() {
+    const transcript = state.answers.assistantTranscript || [];
+    messagesEl.innerHTML = transcript
+      .map(
+        (m) =>
+          `<div class="lead-panel__assistant-msg lead-panel__assistant-msg--${m.role === "user" ? "user" : "assistant"}">${escapeHtml(m.content)}</div>`
+      )
+      .join("");
+    if (state.answers.assistantDone) {
+      messagesEl.innerHTML += `<div class="lead-panel__assistant-done">${escapeHtml(q.assistant.done)}</div>`;
+    }
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  if (trigger) {
+    trigger.addEventListener("click", () => {
+      state.answers.assistantStarted = true;
+      assistantBox.hidden = false;
+      trigger.hidden = true;
+      renderMessages();
+      inputEl.focus();
+    });
+  }
+
+  if (state.answers.assistantStarted) {
+    renderMessages();
+  }
+
+  if (!inputEl || !sendBtn) return;
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || state.answers.assistantDone) return;
+
+    const transcript = state.answers.assistantTranscript || [];
+    transcript.push({ role: "user", content: text.slice(0, 500) });
+    state.answers.assistantTranscript = transcript;
+    inputEl.value = "";
+    renderMessages();
+    messagesEl.insertAdjacentHTML(
+      "beforeend",
+      `<div class="lead-panel__assistant-msg lead-panel__assistant-msg--pending" id="lead-assistant-pending">${escapeHtml(q.assistant.thinking)}</div>`
+    );
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    sendBtn.disabled = true;
+    inputEl.disabled = true;
+
+    const userTurns = transcript.filter((m) => m.role === "user").length;
+
+    try {
+      const response = await fetch("/api/lead-classify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: transcript, lang: state.answers.lang }),
+      });
+      if (!response.ok) throw new Error("request failed");
+      const data = await response.json();
+      const pending = document.getElementById("lead-assistant-pending");
+      if (pending) pending.remove();
+
+      transcript.push({ role: "assistant", content: data.reply || "" });
+      state.answers.assistantTranscript = transcript;
+
+      if (data.done || userTurns >= ASSISTANT_MAX_TURNS) {
+        state.answers.assistantDone = true;
+        const merged = new Set([...(state.answers.problemType || []), ...(data.categories || [])]);
+        state.answers.problemType = Array.from(merged);
+        document.querySelectorAll('#lead-problem-options [data-value]').forEach((btn) => {
+          if (merged.has(btn.dataset.value)) btn.setAttribute("aria-pressed", "true");
+        });
+        inputRow.hidden = true;
+      }
+
+      renderMessages();
+      updateContinueState();
+    } catch (error) {
+      const pending = document.getElementById("lead-assistant-pending");
+      if (pending) pending.remove();
+      const transcript2 = state.answers.assistantTranscript || [];
+      transcript2.push({ role: "assistant", content: q.assistant.error });
+      state.answers.assistantTranscript = transcript2;
+      renderMessages();
+    } finally {
+      sendBtn.disabled = false;
+      if (!state.answers.assistantDone) {
+        inputEl.disabled = false;
+        inputEl.focus();
+      }
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  inputEl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") sendMessage();
+  });
+}
+
+/* ==========================================================================
+   Steps 2 to 5: single-select questions. Selecting a normal option
+   advances immediately. Selecting "other" reveals a text field with its
+   own confirm step, since it needs a moment for typing first.
+   ========================================================================== */
+function renderSingleSelectStep(t, key) {
+  const options = getQuestionOptions(t, key, state.answers);
+  const selectedValue = state.answers[key];
+  const otherActive = state.answers[key + "Other"] !== undefined;
+
+  bodyEl.innerHTML = `
+    <p class="lead-panel__prompt">${escapeHtml(t.questions[key].title)}</p>
+    <div class="lead-panel__options" id="lead-single-options">
+      ${optionButtonsHtml(options, selectedValue)}
+      <button type="button" class="lead-panel__option" data-value="__other" aria-pressed="${otherActive}">
+        ${escapeHtml(t.otherLabel)}
+      </button>
+    </div>
+    <div class="lead-panel__other-field" id="lead-single-other-field" ${otherActive ? "" : "hidden"}>
+      <input type="text" id="lead-single-other-input" placeholder="${escapeHtml(t.otherPlaceholder)}" value="${escapeHtml(state.answers[key + "Other"] || "")}" />
+      <button type="button" class="lead-panel__other-confirm" id="lead-single-other-confirm">${escapeHtml(t.continue)}</button>
+    </div>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <span></span>
+    </div>
+  `;
+
+  const otherField = document.getElementById("lead-single-other-field");
+  const otherInput = document.getElementById("lead-single-other-input");
+
+  document.querySelectorAll('#lead-single-options [data-value]').forEach((button) => {
+    button.addEventListener("click", () => {
+      const value = button.dataset.value;
+      if (value === "__other") {
+        otherField.hidden = false;
+        otherInput.focus();
+        return;
+      }
+      state.answers[key] = value;
+      delete state.answers[key + "Other"];
+      if (key === "segment") delete state.answers.budget;
+      goNext();
+    });
+  });
+
+  document.getElementById("lead-single-other-confirm").addEventListener("click", () => {
+    const text = otherInput.value.trim();
+    if (!text) return;
+    state.answers[key] = "other";
+    state.answers[key + "Other"] = text;
+    if (key === "segment") delete state.answers.budget;
+    goNext();
+  });
+
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
 }
 
 function renderContactStep(t) {
@@ -584,9 +906,24 @@ function renderNoteStep(t) {
 function findLabel(t, key, answers, notAnswered) {
   const value = answers[key];
   if (!value) return notAnswered;
+  if (value === "other" && answers[key + "Other"]) {
+    return `${t.otherLabel}: ${answers[key + "Other"]}`;
+  }
   const options = getQuestionOptions(t, key, answers);
   const match = options.find((option) => option.value === value);
   return match ? match.label : value;
+}
+
+function problemTypeLabel(t, answers, notAnswered) {
+  const q = t.questions.problemType;
+  const labels = (answers.problemType || []).map((value) => {
+    const match = q.options.find((option) => option.value === value);
+    return match ? match.label : value;
+  });
+  if (answers.problemTypeOtherActive && answers.problemTypeOther) {
+    labels.push(`${t.otherLabel}: ${answers.problemTypeOther}`);
+  }
+  return labels.length ? labels.join(", ") : notAnswered;
 }
 
 function renderReviewStep(t) {
@@ -595,7 +932,8 @@ function renderReviewStep(t) {
 
   const rows = [
     [r.language, LANGUAGE_NAMES[answers.lang] || answers.lang],
-    ...QUESTION_KEYS.map((key) => [t.questions[key].title, findLabel(t, key, answers, r.notAnswered)]),
+    [t.questions.problemType.title, problemTypeLabel(t, answers, r.notAnswered)],
+    ...QUESTION_KEYS.filter((k) => k !== "problemType").map((key) => [t.questions[key].title, findLabel(t, key, answers, r.notAnswered)]),
     [r.name, answers.name],
     [r.email, answers.email],
     [r.company, answers.company || r.notProvided],

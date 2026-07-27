@@ -142,11 +142,16 @@ function isRateLimited(ip) {
 function formatSummary(payload) {
   const fields = [
     ["Language", payload.lang],
-    ["Problem type", payload.problemType],
+    ["Problem type", Array.isArray(payload.problemType) ? payload.problemType.join(", ") : payload.problemType],
+    ["Problem type (other)", payload.problemTypeOtherActive ? payload.problemTypeOther : null],
     ["Segment", payload.segment],
+    ["Segment (other)", payload.segmentOther],
     ["Budget", payload.budget],
+    ["Budget (other)", payload.budgetOther],
     ["Timeline", payload.timeline],
+    ["Timeline (other)", payload.timelineOther],
     ["Source", payload.source],
+    ["Source (other)", payload.sourceOther],
     ["Name", payload.name],
     ["Email", payload.email],
     ["Company", payload.company],
@@ -155,8 +160,18 @@ function formatSummary(payload) {
     ["Note", payload.note],
   ];
 
-  return fields
+  const lines = fields
     .filter(([, value]) => value)
-    .map(([label, value]) => `${label}: ${value}`)
-    .join("\n");
+    .map(([label, value]) => `${label}: ${value}`);
+
+  if (Array.isArray(payload.assistantTranscript) && payload.assistantTranscript.length > 0) {
+    lines.push("");
+    lines.push("--- Virtual assistant transcript (for review, categories above already reflect the assistant's output) ---");
+    payload.assistantTranscript.forEach((message) => {
+      const speaker = message.role === "user" ? "Visitor" : "Assistant";
+      lines.push(`${speaker}: ${message.content}`);
+    });
+  }
+
+  return lines.join("\n");
 }
