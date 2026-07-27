@@ -14,7 +14,7 @@ const CONFIRMATION_COPY = {
   en: {
     subject: "Thanks for reaching out to Miloop AI",
     body: (name) =>
-      `Hi ${name},\n\nThanks for telling us about your project. We've received your message and will follow up within 1 to 2 business days.\n\nIf anything changes in the meantime, just reply to this email.\n\nMiloop AI`,
+      `Hi ${name},\n\nThank you for reaching out to Miloop AI. We've received the details you shared and will review them shortly.\n\nYou can expect to hear from us within 1 to 2 business days. If anything about your project changes before then, simply reply to this email.\n\nMiloop AI`,
   },
   "zh-Hans": {
     subject: "感谢您联系Miloop AI",

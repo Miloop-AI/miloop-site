@@ -19,6 +19,7 @@ const COPY = {
     panelTitle: "Start a conversation",
     closeLabel: "Close",
     chooseLanguage: "Choose a language to continue",
+    languageHelp: "Don't see what you're looking for? Email us anytime at info@miloop.ai.",
     continue: "Continue",
     back: "Back",
     submit: "Submit",
@@ -40,7 +41,7 @@ const COPY = {
           placeholder: "Type your message...",
           send: "Send",
           thinking: "Thinking...",
-          disclaimer: "Please don't share sensitive information, such as phone numbers or unannounced business plans.",
+          disclaimer: "Please don't share sensitive information, such as credit card numbers, phone numbers, or unannounced business plans.",
           poweredBy: "Powered by Google Gemini",
           done: "We've noted your needs, thanks for explaining.",
           error: "Something went wrong. Please select from the options above instead.",
@@ -49,7 +50,7 @@ const COPY = {
       segment: {
         title: "What's the size of your organization?",
         options: [
-          { value: "solo", label: "Just me" },
+          { value: "solo", label: "Independent / solo practitioner" },
           { value: "small", label: "Small business, roughly 2 to 50 people" },
           { value: "enterprise", label: "Larger company or enterprise" },
         ],
@@ -134,6 +135,7 @@ const COPY = {
     panelTitle: "开始对话",
     closeLabel: "关闭",
     chooseLanguage: "请选择语言以继续",
+    languageHelp: "没有找到您需要的选项？欢迎随时发邮件至info@miloop.ai。",
     continue: "继续",
     back: "上一步",
     submit: "提交",
@@ -155,7 +157,7 @@ const COPY = {
           placeholder: "请输入您的讯息…",
           send: "发送",
           thinking: "思考中…",
-          disclaimer: "请不要提供电话号码、尚未公开的商业计划等敏感信息。",
+          disclaimer: "请不要提供敏感信息，例如信用卡号、电话号码或尚未公开的商业计划。",
           poweredBy: "技术支持：Google Gemini",
           done: "我们已经记住您的需求，感谢您的说明。",
           error: "出现问题，请改用上方选项。",
@@ -164,7 +166,7 @@ const COPY = {
       segment: {
         title: "您的机构规模是？",
         options: [
-          { value: "solo", label: "个人" },
+          { value: "solo", label: "独立执业者" },
           { value: "small", label: "小型企业，约2至50人" },
           { value: "enterprise", label: "大型企业" },
         ],
@@ -249,6 +251,7 @@ const COPY = {
     panelTitle: "開始對話",
     closeLabel: "關閉",
     chooseLanguage: "請選擇語言以繼續",
+    languageHelp: "沒有找到您需要的選項？歡迎隨時寄信至info@miloop.ai。",
     continue: "繼續",
     back: "上一步",
     submit: "送出",
@@ -270,7 +273,7 @@ const COPY = {
           placeholder: "請輸入您的訊息…",
           send: "傳送",
           thinking: "思考中…",
-          disclaimer: "請不要提供電話號碼、尚未公開的商業計畫等敏感資訊。",
+          disclaimer: "請不要提供敏感資訊，例如信用卡號、電話號碼或尚未公開的商業計畫。",
           poweredBy: "技術支援：Google Gemini",
           done: "我們已經記住您的需求，感謝您的說明。",
           error: "發生問題，請改用上方選項。",
@@ -279,7 +282,7 @@ const COPY = {
       segment: {
         title: "您的機構規模是？",
         options: [
-          { value: "solo", label: "個人" },
+          { value: "solo", label: "獨立執業者" },
           { value: "small", label: "小型企業，約2至50人" },
           { value: "enterprise", label: "大型企業" },
         ],
@@ -436,8 +439,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 function updateProgress() {
-  const shownStep = Math.min(state.step, TOTAL_STEPS);
-  progressFillEl.style.width = `${(shownStep / TOTAL_STEPS) * 100}%`;
+  const position = Math.min(Math.max(state.step, 0), QUESTION_KEYS.length);
+  progressFillEl.style.width = `${(position / QUESTION_KEYS.length) * 100}%`;
 }
 
 function updateChrome(t) {
@@ -503,6 +506,7 @@ function renderLanguageStep(t) {
   bodyEl.innerHTML = `
     <p class="lead-panel__prompt">${escapeHtml(t.chooseLanguage)}</p>
     <div class="lead-panel__options">${optionButtonsHtml(options, state.answers.lang)}</div>
+    <p class="lead-panel__language-help">${escapeHtml(t.languageHelp)}</p>
     <div class="lead-panel__nav">
       <span></span>
       <button type="button" class="lead-panel__continue" data-role="continue">${escapeHtml(t.continue)}</button>
@@ -567,7 +571,9 @@ function renderProblemTypeStep(t) {
         <input type="text" id="lead-assistant-input" placeholder="${escapeHtml(q.assistant.placeholder)}" />
         <button type="button" id="lead-assistant-send">${escapeHtml(q.assistant.send)}</button>
       </div>
-      <p class="lead-panel__assistant-note">${escapeHtml(q.assistant.disclaimer)}<br>${escapeHtml(q.assistant.poweredBy)}</p>
+      ${assistantDone ? `<button type="button" class="lead-panel__continue lead-panel__assistant-continue" id="lead-assistant-continue">${escapeHtml(t.continue)}</button>` : ""}
+      <p class="lead-panel__assistant-disclaimer">${escapeHtml(q.assistant.disclaimer)}</p>
+      <p class="lead-panel__assistant-poweredby">${escapeHtml(q.assistant.poweredBy)}</p>
     </div>
     <div class="lead-panel__nav">
       <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
@@ -618,6 +624,11 @@ function renderProblemTypeStep(t) {
 
   initAssistantChat(t, updateContinueState);
   updateContinueState();
+
+  const existingAssistantContinue = document.getElementById("lead-assistant-continue");
+  if (existingAssistantContinue) {
+    existingAssistantContinue.addEventListener("click", goNext);
+  }
 
   bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
   continueBtn.addEventListener("click", goNext);
@@ -703,6 +714,15 @@ function initAssistantChat(t, updateContinueState) {
           if (merged.has(btn.dataset.value)) btn.setAttribute("aria-pressed", "true");
         });
         inputRow.hidden = true;
+        if (!document.getElementById("lead-assistant-continue")) {
+          const continueBtn = document.createElement("button");
+          continueBtn.type = "button";
+          continueBtn.className = "lead-panel__continue lead-panel__assistant-continue";
+          continueBtn.id = "lead-assistant-continue";
+          continueBtn.textContent = t.continue;
+          continueBtn.addEventListener("click", goNext);
+          inputRow.insertAdjacentElement("afterend", continueBtn);
+        }
       }
 
       renderMessages();

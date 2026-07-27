@@ -412,10 +412,27 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
-.lead-panel__assistant-note {
+.lead-panel__assistant-disclaimer {
   font-size: 11px;
   color: var(--ink-faint);
-  padding: 8px 10px 10px;
+  padding: 8px 10px 2px;
+  line-height: 1.5;
+  border-top: 1px solid rgba(141, 139, 168, 0.15);
+}
+.lead-panel__assistant-poweredby {
+  font-size: 10px;
+  color: rgba(141, 139, 168, 0.6);
+  padding: 0 10px 10px;
+  text-align: right;
+}
+.lead-panel__assistant-continue {
+  width: calc(100% - 20px);
+  margin: 10px 10px 0;
+}
+.lead-panel__language-help {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--ink-faint);
   line-height: 1.5;
 }
 .lead-panel__assistant-done {
