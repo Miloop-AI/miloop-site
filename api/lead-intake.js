@@ -14,17 +14,17 @@ const CONFIRMATION_COPY = {
   en: {
     subject: "Thanks for reaching out to Miloop AI",
     body: (name) =>
-      `Hi ${name},\n\nThank you for reaching out to Miloop AI. We've received the details you shared and will review them shortly.\n\nYou can expect to hear from us within 1 to 2 business days. If anything about your project changes before then, simply reply to this email.\n\nMiloop AI`,
+      `Hi ${name},\n\nThank you for reaching out to Miloop AI. We've received the details you shared and will review them shortly.\n\nYou can expect to hear from us within 1 to 2 business days. Should any details about your project change before then, please reply to this email to let us know.\n\nMiloop AI`,
   },
   "zh-Hans": {
     subject: "感谢您联系Miloop AI",
     body: (name) =>
-      `您好，${name}：\n\n感谢您告诉我们您的项目情况。我们已经收到您的信息，会在1至2个工作日内与您联系。\n\n如果这段时间有任何变化，直接回复这封邮件就可以。\n\nMiloop AI`,
+      `您好，${name}：\n\n感谢您联系Miloop AI。我们已收到您提供的详细信息，将尽快进行审阅。\n\n您可以预期在1至2个工作日内收到我们的回复。如项目详情在此期间有所变动，请回复本邮件告知我们。\n\nMiloop AI`,
   },
   "zh-Hant": {
     subject: "感謝您聯繫Miloop AI",
     body: (name) =>
-      `您好，${name}：\n\n感謝您告訴我們您的專案情況。我們已經收到您的資訊，會在1至2個工作日內與您聯繫。\n\n如果這段時間有任何變化，直接回覆這封郵件就可以。\n\nMiloop AI`,
+      `您好，${name}：\n\n感謝您聯繫Miloop AI。我們已收到您提供的詳細資訊，將盡快進行審閱。\n\n您可以預期在1至2個工作日內收到我們的回覆。如專案詳情在此期間有所變動，請回覆本郵件告知我們。\n\nMiloop AI`,
   },
 };
 
