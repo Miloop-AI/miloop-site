@@ -121,7 +121,7 @@ const COPY = {
     },
     confirmation: {
       title: "Thanks, that's everything we need.",
-      subtitle: "We'll review this and follow up within 1 to 2 business days.",
+      subtitle: "We'll review this and follow up within 1 to 2 business days. Feel free to email info@miloop.ai directly in the meantime.",
     },
     exitConfirm: {
       message: "Are you sure you want to leave? Your answers won't be saved.",
@@ -237,7 +237,7 @@ const COPY = {
     },
     confirmation: {
       title: "感谢您，我们已收到所有信息。",
-      subtitle: "我们会尽快查看，并在1至2个工作日内与您联系。",
+      subtitle: "我们会尽快查看，并在1至2个工作日内与您联系。如需更快得到回复，也可以直接发邮件至info@miloop.ai。",
     },
     exitConfirm: {
       message: "确定要离开吗？您填写的内容不会被保留。",
@@ -353,7 +353,7 @@ const COPY = {
     },
     confirmation: {
       title: "謝謝您，我們已收到所有資訊。",
-      subtitle: "我們會盡快確認，並在1至2個工作日內與您聯繫。",
+      subtitle: "我們會盡快確認，並在1至2個工作日內與您聯繫。如需更快得到回覆，也可以直接寄信至info@miloop.ai。",
     },
     exitConfirm: {
       message: "確定要離開嗎？您填寫的內容不會被保留。",

@@ -85,9 +85,16 @@ export default async function handler(req, res) {
     // info@miloop.ai above, that is the part that must not fail. If this
     // second send errors, log it and still report success to the visitor,
     // rather than surfacing a failure for something that already worked.
-    sendConfirmationEmail(payload).catch((error) => {
+    // Awaited on purpose, even though failure here should not fail the
+    // overall request. In a serverless environment, the function's
+    // execution can be frozen shortly after the response is sent, so a
+    // fire-and-forget call here risked being cut off mid-request before
+    // it actually reached Resend.
+    try {
+      await sendConfirmationEmail(payload);
+    } catch (error) {
       console.error("Confirmation email failed", error);
-    });
+    }
 
     res.status(200).json({ ok: true });
   } catch (error) {
