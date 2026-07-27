@@ -48,10 +48,8 @@ How to handle the conversation:
 - If a message is imprecise but gives a real signal (for example, mentions cutting cost, saving time, or wanting AI to do something), interpret it charitably toward the closest matching category or categories. Only ask a follow-up if you genuinely need more to decide, not to double-check something you are already reasonably confident about.
 - Reserve the outside-scope conclusion (categories: []) for cases where the visitor has clearly and specifically described a need with no reasonable connection to any of the five categories (for example, hardware design, or something with no AI or software component at all). A short or vague message is never, by itself, a reason to conclude the need is outside scope.
 
-Respond with ONLY strict JSON, no other text, no markdown fences, no code blocks, matching exactly this shape:
+You must respond with a single JSON object and nothing else, matching exactly this shape:
 {"done": boolean, "categories": string[], "reply": string}
-
-All property names and string values must use standard double quotes. Do not wrap the JSON in backticks or any other formatting.
 
 Rules:
 - If you are confident which categories match, usually after 1 to 3 exchanges, set done to true, list every matching category key in categories, and make reply a short, reassuring closing line letting the visitor know their needs have been noted. Do not restate your guess back to them for confirmation and do not ask if you got it right.
@@ -106,7 +104,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const result = await callGemini(messages, lang);
+    const result = await callClaude(messages, lang);
     res.status(200).json(result);
   } catch (error) {
     console.error("lead-classify failed", error);
@@ -114,57 +112,61 @@ export default async function handler(req, res) {
   }
 }
 
-async function callGemini(messages, lang) {
+// Claude's extended thinking is opt-in, off by default. Since we never
+// set a "thinking" field below, no reasoning tokens are spent, and the
+// full max_tokens budget goes toward the visible reply. No equivalent of
+// Gemini's forced thinking-token workaround is needed here.
+async function callClaude(messages, lang) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   const languageHint = LANGUAGE_HINT[lang] || LANGUAGE_HINT.en;
 
   try {
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=" +
-        process.env.GEMINI_API_KEY,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT + "\n\n" + languageHint }] },
-          contents: messages.map((m) => ({
-            role: m.role === "assistant" ? "model" : "user",
-            parts: [{ text: m.content }],
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "Content-Type": "application/json",
+      },
+      signal: controller.signal,
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 400,
+        system: SYSTEM_PROMPT + "\n\n" + languageHint,
+        messages: [
+          ...messages.map((m) => ({
+            role: m.role === "assistant" ? "assistant" : "user",
+            content: m.content,
           })),
-          generationConfig: {
-            responseMimeType: "application/json",
-            maxOutputTokens: 600,
-            temperature: 0.3,
-          },
-        }),
-      }
-    );
+          // Prefilling the assistant turn with "{" forces Claude to
+          // continue directly into JSON, skipping any preamble or
+          // markdown fences, rather than just asking nicely for them
+          // to be absent.
+          { role: "assistant", content: "{" },
+        ],
+      }),
+    });
 
     if (!response.ok) {
-      throw new Error(`Gemini API error (${response.status}): ${await response.text()}`);
+      throw new Error(`Claude API error (${response.status}): ${await response.text()}`);
     }
 
     const data = await response.json();
-    const text = data.candidates && data.candidates[0] && data.candidates[0].content &&
-      data.candidates[0].content.parts && data.candidates[0].content.parts[0] &&
-      data.candidates[0].content.parts[0].text;
+    const continuation = data.content && data.content[0] && data.content[0].text;
+    if (typeof continuation !== "string") throw new Error("Empty response from Claude");
 
-    if (!text) throw new Error("Empty response from Gemini");
-
-    return parseModelReply(text, lang);
+    return parseModelReply("{" + continuation, lang);
   } finally {
     clearTimeout(timeout);
   }
 }
 
-// The model is asked for strict JSON, but is not 100% reliable about it
-// (occasionally wraps the JSON in markdown fences, uses unquoted keys, or
-// gets cut off mid-string if it runs long). Rather than surface a visible
-// error to the visitor for what is a formatting hiccup, clean up what we
-// can and fall back to a generic clarifying question, logging the raw
-// text so it can be reviewed later.
+// Even with the prefill trick, don't assume the rest of the object is
+// always perfectly well-formed. Clean up what's easy to clean up, and
+// fall back to a generic clarifying question rather than surface a
+// visible error for what is a formatting hiccup, logging the raw text
+// so it can be reviewed later.
 function parseModelReply(rawText, lang) {
   let cleaned = rawText.trim();
   if (cleaned.startsWith("```")) {
