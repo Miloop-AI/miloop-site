@@ -336,13 +336,13 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .service-panel-item.active {
   display: block;
-  animation: servicePanelIn 0.35s ease;
+  animation: servicePanelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (prefers-reduced-motion: reduce) {
   .service-panel-item.active { animation: none; }
 }
 @keyframes servicePanelIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .service-panel-item h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }

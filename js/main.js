@@ -18,8 +18,8 @@
   /* ---------- i18n dictionary ---------- */
   var dict = {
     "en": {
-      "meta.title": "Miloop AI: Production AI systems, verified before they ship",
-      "meta.description": "Miloop AI designs, builds, and evaluates production AI systems: content automation, RAG, voice assistants, agent integration, and the evaluation loops that keep them reliable.",
+      "meta.title": "Miloop AI: Applied AI Engineering Consultancy",
+      "meta.description": "Miloop AI designs and ships production AI systems, from content automation to voice agents, each with an independent evaluation layer built in from day one.",
       "hero.eyebrow": "Applied AI Engineering Practice",
       "hero.heading.pre": "AI systems engineered to ",
       "hero.heading.em": "verify themselves",
@@ -98,8 +98,8 @@
       "footer.privacy": "Privacy Policy"
     },
     "zh-Hans": {
-      "meta.title": "Miloop AI：生产级AI系统，上线前先经过验证",
-      "meta.description": "Miloop AI设计、构建并评估生产级AI系统：内容自动化、RAG检索增强、语音助理、Agent集成，以及让这些系统保持可靠的评估闭环。",
+      "meta.title": "Miloop AI：应用型AI工程咨询",
+      "meta.description": "Miloop AI设计并交付可用于生产环境的AI系统，从内容自动化到语音助理，每一套系统从第一天起就配有独立的评估层。",
       "hero.eyebrow": "应用型AI工程实践",
       "hero.heading.pre": "AI系统，设计之初就具备",
       "hero.heading.em": "自我核验",
@@ -178,8 +178,8 @@
       "privacy.contact.body": "如对本政策有任何疑问，欢迎发邮件至info@miloop.ai。"
     },
     "zh-Hant": {
-      "meta.title": "Miloop AI：生產級AI系統，上線前先經過驗證",
-      "meta.description": "Miloop AI設計、構建並評估生產級AI系統：內容自動化、RAG檢索增強、語音助理、Agent集成，以及讓這些系統保持可靠的評估閉環。",
+      "meta.title": "Miloop AI：應用型AI工程顧問",
+      "meta.description": "Miloop AI設計並交付可用於生產環境的AI系統，從內容自動化到語音助理，每一套系統從第一天起就配有獨立的評估層。",
       "hero.eyebrow": "應用型AI工程實踐",
       "hero.heading.pre": "AI系統，設計之初就具備",
       "hero.heading.em": "自我核驗",
@@ -338,7 +338,7 @@
     /* --- Interactive services panel --- */
     var serviceMenuItems = document.querySelectorAll(".service-menu-item");
     if (serviceMenuItems.length) {
-      var AUTO_ADVANCE_DELAY = 7000;
+      var AUTO_ADVANCE_DELAY = 6000;
       var MANUAL_DWELL_DELAY = 10000;
       var serviceTimer = null;
       var currentServiceIndex = 0;
