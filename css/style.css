@@ -429,6 +429,148 @@ section + section { border-top: 1px solid var(--border-soft); }
   .result-grid { grid-template-columns: 1fr; }
 }
 
+/* --- Live demos ---
+   Same card anatomy and weight as .result-card above: the difference is that
+   these lead somewhere you can use, so the quote slot becomes a button. */
+.live-demo { margin-top: var(--space-5); }
+
+.live-demo-title {
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.35;
+  max-width: 36ch;
+}
+
+.live-demo-grid {
+  margin-top: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.live-demo-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.live-demo-card:hover { border-color: var(--loop-indigo); transform: translateY(-2px); }
+
+.live-demo-visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-panel-raised);
+}
+.live-demo-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Much lighter than .result-visual's scrim. That one blends a photograph into
+   the card body; this one only has to keep a bright screenshot from clashing
+   with the text below, so the screenshot itself stays readable. */
+.live-demo-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 11, 20, 0.10) 0%, rgba(10, 11, 20, 0.14) 60%, rgba(20, 22, 37, 0.42) 100%);
+  pointer-events: none;
+}
+
+.live-demo-badge {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 1; /* above the scrim */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(10, 11, 20, 0.72);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal-mint);
+}
+.live-demo-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal-mint);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .live-demo-badge::before { animation: node-pulse 2.4s ease-in-out infinite; }
+}
+
+.live-demo-body { padding: var(--space-3); display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.live-demo-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--loop-violet);
+}
+/* h4 sits outside the reset's h1-h3 selector, so its UA margin is cleared. */
+.live-demo-name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+/* Absorbs the slack so the button lands at the card's foot, level with the
+   quote block on the static cards however long the taglines run. */
+.live-demo-tagline {
+  flex: 1;
+  color: var(--ink-dim);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+.live-demo-actions {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* A lone card would otherwise leave two thirds of the row empty and read as
+   unfinished, so on its own it turns into one wide card with the screenshot
+   beside the copy. Adding a second card reverts both rules automatically,
+   with no edit here. */
+.live-demo-grid:has(> :only-child) { grid-template-columns: 1fr; }
+.live-demo-grid:has(> :only-child) .live-demo-card { flex-direction: row; }
+.live-demo-grid:has(> :only-child) .live-demo-visual {
+  flex: 1 1 50%;
+  /* Height comes from the row, not the ratio, so the image fills whichever
+     of the two columns turns out taller. */
+  aspect-ratio: auto;
+  min-height: 280px;
+}
+.live-demo-grid:has(> :only-child) .live-demo-body {
+  flex: 1 1 50%;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+@media (max-width: 820px) {
+  .live-demo-grid { grid-template-columns: 1fr; }
+  /* Side by side stops working before the cards do, so the wide single-card
+     layout folds back to the stacked one here. */
+  .live-demo-grid:has(> :only-child) .live-demo-card { flex-direction: column; }
+  .live-demo-grid:has(> :only-child) .live-demo-visual { aspect-ratio: 16 / 10; min-height: 0; }
+  .live-demo-grid:has(> :only-child) .live-demo-body { padding: var(--space-3); }
+}
+
 /* ==========================================================================
    About teaser
    ========================================================================== */

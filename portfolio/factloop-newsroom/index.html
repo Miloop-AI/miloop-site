@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FactLoop Newsroom | Miloop AI</title>
+<meta name="description" content="A multi-agent newsroom that turns a keyword in any language into a fact-checked, source-backed article, and refuses to publish what it cannot verify. Try it live.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.miloop.ai/portfolio/factloop-newsroom/">
+<meta property="og:title" content="FactLoop Newsroom | Miloop AI">
+<meta property="og:description" content="A multi-agent newsroom that turns a keyword in any language into a fact-checked, source-backed article, and refuses to publish what it cannot verify. Try it live.">
+<meta property="og:image" content="https://www.miloop.ai/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FactLoop Newsroom | Miloop AI">
+<meta name="twitter:description" content="A multi-agent newsroom that turns a keyword in any language into a fact-checked, source-backed article, and refuses to publish what it cannot verify. Try it live.">
+<meta name="twitter:image" content="https://www.miloop.ai/assets/img/og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/lead-intake.css">
+<link rel="stylesheet" href="../../css/factloop-demo.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+</head>
+<body id="top">
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="../../index.html" class="wordmark">
+      <img class="wordmark-full" src="../../assets/icons/miloop-wordmark-nav.png" alt="Miloop AI">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-switch-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="lang-switch-current">EN</span>
+          <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-switch-menu" role="listbox">
+          <li><button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hans" role="option" aria-selected="false">简体中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hant" role="option" aria-selected="false">繁體中文</button></li>
+        </ul>
+      </div>
+      <button type="button" id="start-conversation-btn" class="btn btn-primary js-start-conversation" data-i18n="hero.cta.contact">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="factloop-hero container reveal">
+    <a href="../../index.html" class="back-link" data-fl-i18n="fl.back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3L4.5 7l4 4"/></svg>
+      Back to home
+    </a>
+    <p class="eyebrow" data-fl-i18n="fl.hero.eyebrow">Portfolio</p>
+    <h1 class="factloop-h1">
+      <span data-fl-i18n="fl.hero.title.pre">A newsroom that </span><em data-fl-i18n="fl.hero.title.em">checks its own work</em><span data-fl-i18n="fl.hero.title.post">.</span>
+    </h1>
+    <p class="factloop-lede" data-fl-i18n="fl.hero.lede">FactLoop Newsroom takes a topic in any language and returns a news article written in that same language, built only from sources it can point you to. When it cannot verify what it just wrote, it publishes nothing. You can run it yourself further down this page.</p>
+
+    <dl class="factloop-spec">
+      <div class="factloop-spec-item">
+        <dt class="factloop-spec-label" data-fl-i18n="fl.spec.role">Role</dt>
+        <dd class="factloop-spec-value" data-fl-i18n="fl.spec.role.value">Design, build, and deployment</dd>
+      </div>
+      <div class="factloop-spec-item">
+        <dt class="factloop-spec-label" data-fl-i18n="fl.spec.stack">Built with</dt>
+        <dd class="factloop-spec-value" data-fl-i18n="fl.spec.stack.value">LangGraph, FastAPI, MCP, five models across three providers</dd>
+      </div>
+      <div class="factloop-spec-item">
+        <dt class="factloop-spec-label" data-fl-i18n="fl.spec.langs">Languages</dt>
+        <dd class="factloop-spec-value" data-fl-i18n="fl.spec.langs.value">Whatever language you ask in</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ================= THE PROBLEM ================= -->
+  <section id="problem">
+    <div class="container reveal">
+      <p class="eyebrow" data-fl-i18n="fl.problem.eyebrow">The problem</p>
+      <h2 class="section-title" data-fl-i18n="fl.problem.title">AI writes quickly. That was never the hard part.</h2>
+      <p class="factloop-prose" data-fl-i18n="fl.problem.body">Point a language model at a news topic and it will hand you clean copy in seconds. Some of it will be true. The rest will read exactly the same. For anyone publishing on a deadline, that is not a time saving, it is a liability handed to whoever reads it last. So the question worth solving is not how to make AI write faster. It is how to know, before anything goes out, which sentences are actually held up by something real.</p>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section id="how-it-works">
+    <div class="container">
+      <p class="eyebrow reveal" data-fl-i18n="fl.how.eyebrow">How it works</p>
+      <h2 class="section-title reveal" data-fl-i18n="fl.how.title">Five stages, and one of them is allowed to say no.</h2>
+      <p class="section-lede reveal" data-fl-i18n="fl.how.lede">Each stage does one job and hands the result on. The system is arranged so that the stage doing the writing never gets the last word.</p>
+
+      <ol class="factloop-stages">
+        <li class="factloop-stage reveal">
+          <span class="factloop-stage-num">01</span>
+          <h3 class="factloop-stage-name" data-fl-i18n="fl.stage1.name">Gather</h3>
+          <p class="factloop-stage-body" data-fl-i18n="fl.stage1.body">Searches recent news only, starting with the last two days and reaching back up to a week when it needs more to work with. Every fact it keeps stays attached to the article it came from.</p>
+        </li>
+        <li class="factloop-stage reveal">
+          <span class="factloop-stage-num">02</span>
+          <h3 class="factloop-stage-name" data-fl-i18n="fl.stage2.name">Carry over</h3>
+          <p class="factloop-stage-body" data-fl-i18n="fl.stage2.body">When the sources are not in the language you asked in, the facts are carried across so the writing can be done natively. The originals are kept, untouched.</p>
+        </li>
+        <li class="factloop-stage reveal">
+          <span class="factloop-stage-num">03</span>
+          <h3 class="factloop-stage-name" data-fl-i18n="fl.stage3.name">Write</h3>
+          <p class="factloop-stage-body" data-fl-i18n="fl.stage3.body">Drafts the article from the collected facts and nothing else. No outside knowledge, no filling in the gaps with something that sounds right.</p>
+        </li>
+        <li class="factloop-stage reveal">
+          <span class="factloop-stage-num">04</span>
+          <h3 class="factloop-stage-name" data-fl-i18n="fl.stage4.name">Verify</h3>
+          <p class="factloop-stage-body" data-fl-i18n="fl.stage4.body">Reads the draft back against the original sources, claim by claim. Anything the sources do not support goes back to the writing stage.</p>
+        </li>
+        <li class="factloop-stage reveal">
+          <span class="factloop-stage-num">05</span>
+          <h3 class="factloop-stage-name" data-fl-i18n="fl.stage5.name">Publish</h3>
+          <p class="factloop-stage-body" data-fl-i18n="fl.stage5.body">Shapes the finished piece so search engines and AI assistants can read it properly, without introducing anything new.</p>
+        </li>
+      </ol>
+
+      <p class="factloop-loopback reveal" data-fl-i18n="fl.stage.retry">The writing stage gets two attempts to fix whatever verification flagged. If the third draft still cannot be supported, the run stops and nothing is published. You may well see this happen in the demo below.</p>
+    </div>
+  </section>
+
+  <!-- ================= DESIGN DECISIONS ================= -->
+  <section id="decisions">
+    <div class="container">
+      <p class="eyebrow reveal" data-fl-i18n="fl.principle.eyebrow">Design decisions</p>
+      <h2 class="section-title reveal" data-fl-i18n="fl.principle.title">Three choices that make the difference.</h2>
+
+      <div class="factloop-principles">
+        <article class="factloop-principle reveal">
+          <h3 data-fl-i18n="fl.principle1.title">The step that collects facts has no AI in it</h3>
+          <p data-fl-i18n="fl.principle1.body">Every other stage uses a model. This one deliberately does not. A model sitting between the search results and the record of facts could summarise, smooth over, or quietly drop a detail, and every check after that would be measuring the article against a record that was already wrong.</p>
+        </article>
+        <article class="factloop-principle reveal">
+          <h3 data-fl-i18n="fl.principle2.title">Translation never touches the evidence</h3>
+          <p data-fl-i18n="fl.principle2.body">When the sources are in a different language from the one you asked in, verification still compares the finished article against the originals rather than the translated version. A slip in translation cannot disguise an invented fact, and it cannot be mistaken for one either.</p>
+        </article>
+        <article class="factloop-principle reveal">
+          <h3 data-fl-i18n="fl.principle3.title">Publishing nothing is a valid outcome</h3>
+          <p data-fl-i18n="fl.principle3.body">Most systems treat a failed check as an obstacle to route around. Here it is the product working as designed. A run that stops and tells you exactly which claims it could not stand behind is worth more than one that prints them quietly and leaves you to find out later.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE DEMO ================= -->
+  <section id="demo">
+    <div class="container">
+      <p class="eyebrow reveal" data-fl-i18n="fl.demo.eyebrow">Try it</p>
+      <h2 class="section-title reveal" data-fl-i18n="fl.demo.title">Run the newsroom.</h2>
+      <p class="section-lede reveal" data-fl-i18n="fl.demo.lede">Type a topic in any language. You will get back an article in that same language with every source listed and linked, or an honest account of why there is not one.</p>
+
+      <div class="factloop-demo reveal">
+        <form class="factloop-demo__form" id="factloop-form" novalidate>
+          <label class="factloop-demo__label" for="factloop-keyword" data-fl-i18n="fl.demo.label">Topic</label>
+          <div class="factloop-demo__row">
+            <input
+              class="factloop-demo__input"
+              type="text"
+              id="factloop-keyword"
+              name="keyword"
+              maxlength="200"
+              autocomplete="off"
+              placeholder="e.g. coastal tidal energy"
+              data-fl-i18n-placeholder="fl.demo.placeholder">
+            <button class="factloop-demo__submit" type="submit" id="factloop-submit" data-fl-i18n="fl.demo.submit" disabled>Run the newsroom</button>
+          </div>
+          <p class="factloop-demo__hint" data-fl-i18n="fl.demo.hint">Be specific. A focused phrase finds better sources than one broad word.</p>
+          <p class="factloop-demo__note" data-fl-i18n="fl.demo.note">This demo runs live news search and several AI models on every request, so it is usage limited. Please try a couple of topics rather than a dozen.</p>
+        </form>
+
+        <div class="factloop-demo__status" id="factloop-status" role="status" aria-live="polite" hidden></div>
+        <div class="factloop-demo__result" id="factloop-result" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <svg class="footer-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#E9E7F5" stroke-width="2"/>
+  </svg>
+  <div class="container footer-row">
+    <span>&copy; <span data-year>2026</span> <span data-i18n="footer.rights">Miloop AI, LLC. All rights reserved.</span></span>
+    <a href="../../privacy.html" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
+    <span class="footer-location">San Jose, CA</span>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+
+<div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
+
+<aside class="lead-panel" id="lead-panel" role="dialog" aria-modal="true" aria-labelledby="lead-panel-title" aria-hidden="true">
+  <header class="lead-panel__header">
+    <div class="lead-panel__mark" aria-hidden="true"><img src="../../assets/icons/miloop-mark-panel.png" alt=""></div>
+    <h2 id="lead-panel-title" class="lead-panel__title">Start a conversation</h2>
+    <button type="button" class="lead-panel__close" id="lead-panel-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="6" y1="18" x2="18" y2="6"></line>
+      </svg>
+    </button>
+  </header>
+
+  <div class="lead-panel__progress" aria-hidden="true">
+    <div class="lead-panel__progress-fill" id="lead-progress-fill"></div>
+  </div>
+
+  <div class="lead-panel__body" id="lead-panel-body"></div>
+
+  <div class="lead-panel__exit-confirm" id="lead-exit-confirm">
+    <p id="lead-exit-message">Are you sure you want to leave? Your answers won't be saved.</p>
+    <div class="lead-panel__exit-confirm-actions">
+      <button type="button" class="lead-panel__exit-cancel" id="lead-exit-cancel">Cancel</button>
+      <button type="button" class="lead-panel__exit-leave" id="lead-exit-leave">Leave</button>
+    </div>
+  </div>
+</aside>
+
+<script src="../../js/lead-intake.js"></script>
+<script src="../../js/factloop-demo.js"></script>
+</body>
+</html>
