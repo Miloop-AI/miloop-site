@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driftboard RAG Eval | Miloop AI</title>
+<meta name="description" content="An evaluation framework for retrieval-augmented generation, stress-tested against a fictional knowledge base to find out what happens when the system does not know the answer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.miloop.ai/portfolio/driftboard-rag-eval/">
+<meta property="og:title" content="Driftboard RAG Eval | Miloop AI">
+<meta property="og:description" content="An evaluation framework for retrieval-augmented generation, stress-tested against a fictional knowledge base to find out what happens when the system does not know the answer.">
+<meta property="og:image" content="https://www.miloop.ai/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Driftboard RAG Eval | Miloop AI">
+<meta name="twitter:description" content="An evaluation framework for retrieval-augmented generation, stress-tested against a fictional knowledge base to find out what happens when the system does not know the answer.">
+<meta name="twitter:image" content="https://www.miloop.ai/assets/img/og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/lead-intake.css">
+<link rel="stylesheet" href="../../css/driftboard-eval.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+</head>
+<body id="top">
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="../../index.html" class="wordmark">
+      <img class="wordmark-full" src="../../assets/icons/miloop-wordmark-nav.png" alt="Miloop AI">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-switch-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="lang-switch-current">EN</span>
+          <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-switch-menu" role="listbox">
+          <li><button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hans" role="option" aria-selected="false">简体中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hant" role="option" aria-selected="false">繁體中文</button></li>
+        </ul>
+      </div>
+      <button type="button" id="start-conversation-btn" class="btn btn-primary js-start-conversation" data-i18n="hero.cta.contact">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="driftboard-hero container reveal">
+    <a href="../../index.html" class="back-link" data-db-i18n="db.back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3L4.5 7l4 4"/></svg>
+      Back to home
+    </a>
+    <p class="eyebrow" data-db-i18n="db.hero.eyebrow">Portfolio</p>
+    <h1 class="driftboard-h1">
+      <span data-db-i18n="db.hero.title.pre">RAG systems get graded on </span><em data-db-i18n="db.hero.title.em">the wrong question</em><span data-db-i18n="db.hero.title.post">.</span>
+    </h1>
+    <p class="driftboard-lede" data-db-i18n="db.hero.lede">Most retrieval-augmented generation demos answer one question: does the system respond well when the knowledge base has the answer. That is the easy case. The dangerous failure is what happens when it does not, when someone asks something the documentation never covered and the model has to choose between saying it does not know and inventing something plausible.</p>
+    <p class="driftboard-lede" data-db-i18n="db.hero.lede2">This project builds a small RAG system over a fictional SaaS product, then stress-tests exactly that failure with a purpose-built probe set and an independent, cross-family judge, to check whether the system is telling the truth about what it knows.</p>
+
+    <dl class="driftboard-spec">
+      <div class="driftboard-spec-item">
+        <dt class="driftboard-spec-label" data-db-i18n="db.spec.role">Role</dt>
+        <dd class="driftboard-spec-value" data-db-i18n="db.spec.role.value">Evaluation design and implementation</dd>
+      </div>
+      <div class="driftboard-spec-item">
+        <dt class="driftboard-spec-label" data-db-i18n="db.spec.kb">Knowledge base</dt>
+        <dd class="driftboard-spec-value" data-db-i18n="db.spec.kb.value">Nine markdown documents, about fifteen pages</dd>
+      </div>
+      <div class="driftboard-spec-item">
+        <dt class="driftboard-spec-label" data-db-i18n="db.spec.probes">Probe set</dt>
+        <dd class="driftboard-spec-value" data-db-i18n="db.spec.probes.value">Category-split probes, plus a disjoint held-out set</dd>
+      </div>
+    </dl>
+
+    <aside class="driftboard-notice">
+      <p class="driftboard-notice-label" data-db-i18n="db.notice.label">Fictional scenario</p>
+      <p class="driftboard-notice-body" data-db-i18n="db.notice.body">This is a standalone technical demonstration. Driftboard is a fictional project management tool invented for this project. It is not a real company, and nothing described on this page relates to any real product, client, or production system.</p>
+    </aside>
+  </section>
+
+  <!-- ================= THE SETUP ================= -->
+  <section id="setup">
+    <div class="container reveal">
+      <p class="eyebrow" data-db-i18n="db.setup.eyebrow">The setup</p>
+      <h2 class="section-title" data-db-i18n="db.setup.title">What is actually being tested.</h2>
+      <p class="driftboard-prose" data-db-i18n="db.setup.body1">The knowledge base is nine markdown files covering a fictional SaaS product's pricing, permissions, integrations, API limits, data policy, and billing rules, about fifteen pages in total. Each document is chunked by heading, embedded with Voyage AI, and retrieved by cosine similarity against the query. At this size no vector database is needed. Claude Haiku 4.5 writes the answer from whatever comes back.</p>
+      <p class="driftboard-prose" data-db-i18n="db.setup.body2">The RAG pipeline itself is standard. What this project is about is the probe bank built to fail it on purpose, and the evaluation layer built to catch those failures without trusting itself blindly.</p>
+
+      <p class="driftboard-table-caption" data-db-i18n="db.probes.caption">Probe categories</p>
+      <div class="driftboard-table-wrap">
+        <table class="driftboard-table">
+          <thead>
+            <tr>
+              <th data-db-i18n="db.probes.h1">Probe category</th>
+              <th data-db-i18n="db.probes.h2">What it tests</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-db-i18n="db.probe1.name">Answerable</td>
+              <td data-db-i18n="db.probe1.body">The knowledge base has a direct answer. The baseline case.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.probe2.name">Soft unanswerable</td>
+              <td data-db-i18n="db.probe2.body">The knowledge base addresses the question explicitly and the answer is negative, for example that EU hosting is not offered. A grounded answer, even though it is a no.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.probe3.name">True gap</td>
+              <td data-db-i18n="db.probe3.body">The knowledge base never addresses the topic at all. Saying so is the only correct answer here.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.probe4.name">Rephrase pairs</td>
+              <td data-db-i18n="db.probe4.body">The same question asked two different ways, checking that the system agrees with itself.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="driftboard-callout" data-db-i18n="db.probes.note">Soft unanswerable and true gap look alike on the surface. Both produce a no or a not-covered response, but they test different things. Conflating them turned out to be the single biggest source of noise in this project's own evaluation design, which is covered further down.</p>
+    </div>
+  </section>
+
+  <!-- ================= THE JUDGE ================= -->
+  <section id="judge">
+    <div class="container reveal">
+      <p class="eyebrow" data-db-i18n="db.judge.eyebrow">The judge</p>
+      <h2 class="section-title" data-db-i18n="db.judge.title">Finding a hallucination means knowing what the model actually saw.</h2>
+      <p class="driftboard-prose" data-db-i18n="db.judge.body">A judge that grades an answer against general knowledge of the product is really testing whether the answer happens to be true, which is a different question from whether it is grounded. This judge sees only what the generation model saw on that specific call: the question, the retrieved excerpts, and the answer. No gold label, no category, no hint. It picks one of six outcomes, enforced by a JSON schema so that an invalid label is structurally impossible.</p>
+
+      <p class="driftboard-table-caption" data-db-i18n="db.labels.caption">Judge labels</p>
+      <div class="driftboard-table-wrap">
+        <table class="driftboard-table">
+          <thead>
+            <tr>
+              <th data-db-i18n="db.labels.h1">Label</th>
+              <th data-db-i18n="db.labels.h2">What it means</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-db-i18n="db.label1.name">Grounded, correct</td>
+              <td data-db-i18n="db.label1.body">Every claim in the answer is backed by the retrieved excerpts and matches them.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.label2.name">Grounded, incorrect</td>
+              <td data-db-i18n="db.label2.body">The answer cites real content but misapplies it: right document, wrong plan.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.label3.name">Fabrication</td>
+              <td data-db-i18n="db.label3.body">The answer states something specific that appears nowhere in what was retrieved.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.label4.name">Correct refusal</td>
+              <td data-db-i18n="db.label4.body">The excerpts genuinely do not cover it, and the model says so cleanly.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.label5.name">Incorrect refusal</td>
+              <td data-db-i18n="db.label5.body">The model claims not to know, but the answer was right there.</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.label6.name">Declined with fabrication</td>
+              <td data-db-i18n="db.label6.body">A correct refusal at the core, with an unsupported specific claim tacked on anyway.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="driftboard-prose" data-db-i18n="db.judge.validation">The judge runs on a different model family from the generator, so that no model is grading its own homework. It is validated against a hand-labeled gold set using Cohen's kappa rather than raw accuracy, because kappa corrects for how easy the labels were to guess by chance and accuracy does not.</p>
+    </div>
+  </section>
+
+  <!-- ================= FINDINGS ================= -->
+  <section id="findings">
+    <div class="container reveal">
+      <p class="eyebrow" data-db-i18n="db.found.eyebrow">What we found</p>
+      <h2 class="section-title" data-db-i18n="db.found.title">The interesting part was never the headline number.</h2>
+      <p class="driftboard-prose" data-db-i18n-html="db.found.retrieval"><strong>Retrieval hits the right document 97.2% of the time within the top four results</strong>, across every probe with a known correct source.</p>
+
+      <p class="driftboard-table-caption" data-db-i18n="db.retrieval.caption">Retrieval accuracy</p>
+      <div class="driftboard-table-wrap">
+        <table class="driftboard-table driftboard-table--figures">
+          <thead>
+            <tr>
+              <th data-db-i18n="db.retrieval.h1">Metric</th>
+              <th data-db-i18n="db.retrieval.h2">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-db-i18n="db.retrieval.r1">Hit@1 (correct source ranked first)</td>
+              <td>94.4%</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.retrieval.r2">Hit@4 (correct source in top four)</td>
+              <td>97.2%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="driftboard-prose" data-db-i18n="db.found.miss">That is a clean number, easy to publish and move on from. The more useful finding was the 2.8% that missed entirely. One question, on whether two workspaces can be merged, retrieved four chunks about integrations, roles, and permissions, and none of them was the FAQ entry holding the answer. The response was still accurate and closely matched the real policy, almost certainly because “workspace merging is usually unsupported, contact support” is a common enough pattern that Claude Haiku produced it from general knowledge rather than from anything it had been given. Read the output alone and it looks like a clean, grounded answer. Only cross-referencing the retrieval log against the source of truth exposed that nothing in the response was supported by what the system retrieved on that call. This is the failure that matters most: the right answer for the wrong reason, invisible unless someone goes looking for it.</p>
+
+      <p class="driftboard-prose" data-db-i18n-html="db.found.judge"><strong>The judge validation almost lied to us, and the fix is the actual point of this project.</strong> The first validation round scored a real disagreement: six probes where a human labeled correct refusal and the judge said grounded, correct instead. Every one of them was a soft-unanswerable probe, and none was a true gap. That split exposed a flaw in the label taxonomy itself. A knowledge base that states a negative fact explicitly should score as a grounded answer, not as a refusal. The definitions were fixed and the affected probes relabeled.</p>
+
+      <p class="driftboard-prose" data-db-i18n="db.found.circular">Then came the trap. Re-scoring after that fix produced perfect agreement, a kappa of 1.000 across every category. That number is a symptom of circularity, not of judge accuracy: the answer key had just moved toward the judge's own reading, so agreement was guaranteed by construction rather than earned.</p>
+
+      <p class="driftboard-prose" data-db-i18n="db.found.holdout">The fix was a second, disjoint probe set: fourteen new questions aimed at the same category boundary, labeled independently and blind to what the judge would later say. That is what restores an actual independent test, and it is where the honest number comes from.</p>
+
+      <p class="driftboard-table-caption" data-db-i18n="db.heldout.caption">Held-out validation</p>
+      <div class="driftboard-table-wrap">
+        <table class="driftboard-table driftboard-table--figures">
+          <thead>
+            <tr>
+              <th data-db-i18n="db.heldout.h1">Group</th>
+              <th data-db-i18n="db.heldout.h2">n</th>
+              <th data-db-i18n="db.heldout.h3">Agreement</th>
+              <th data-db-i18n="db.heldout.h4">Cohen's kappa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-db-i18n="db.heldout.r1">Real generations</td>
+              <td>10</td>
+              <td>9/10</td>
+              <td>0.778</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.heldout.r2">Synthetic failure cases</td>
+              <td>4</td>
+              <td>3/4</td>
+              <td>0.667</td>
+            </tr>
+            <tr>
+              <td data-db-i18n="db.heldout.r3">All held-out probes</td>
+              <td>14</td>
+              <td>12/14</td>
+              <td>0.794</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="driftboard-callout" data-db-i18n="db.found.disagreements">Two disagreements are recorded in the full report, each with its reasoning attached, rather than zero. A perfect score against a well-aligned answer key looks better on a slide. A held-out score with visible disagreement is the one that means something.</p>
+    </div>
+  </section>
+
+  <!-- ================= WHY IT MATTERS ================= -->
+  <section id="why">
+    <div class="container reveal">
+      <p class="eyebrow" data-db-i18n="db.why.eyebrow">Why this matters</p>
+      <h2 class="section-title" data-db-i18n="db.why.title">This is the differentiator, not the footnote.</h2>
+      <p class="driftboard-prose" data-db-i18n="db.why.body1">Most of what is written above is a story about catching our own mistakes: a labeling taxonomy that conflated two different questions, a circular validation loop, and a case where the right answer turned out to be ungrounded once it was actually checked. None of those surfaced from reading final outputs. They came from deliberately cross-checking retrieval logs against labels, and labels against an untouched holdout set, before trusting any number enough to report it.</p>
+      <p class="driftboard-prose" data-db-i18n="db.why.body2">That is the standard this kind of evaluation work should be held to on a real production system: would the number survive someone trying to poke a hole in it.</p>
+    </div>
+  </section>
+
+  <!-- ================= BUILT WITH ================= -->
+  <section id="stack">
+    <div class="container reveal">
+      <p class="eyebrow" data-db-i18n="db.stack.eyebrow">Built with</p>
+      <p class="driftboard-stack" data-db-i18n="db.stack.value">Python · Claude Haiku 4.5 (generation) · GPT-5.6 Terra (cross-family judge) · Voyage AI embeddings, voyage-3.5-lite · OpenRouter · cosine similarity retrieval, no vector database · Cohen's kappa validation, hand-implemented</p>
+
+      <!-- Both destinations are still being prepared. To publish one, swap its
+           <span class="driftboard-link is-pending"> for an <a href="..."
+           class="driftboard-link"> and delete the tag beside it. -->
+      <div class="driftboard-links">
+        <span class="driftboard-link-item">
+          <span class="driftboard-link is-pending" data-db-i18n="db.link.repo">GitHub repository</span>
+          <span class="driftboard-link-tag" data-db-i18n="db.link.pending">Coming soon</span>
+        </span>
+        <span class="driftboard-link-item">
+          <span class="driftboard-link is-pending" data-db-i18n="db.link.reports">Read the full validation reports</span>
+          <span class="driftboard-link-tag" data-db-i18n="db.link.pending">Coming soon</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <svg class="footer-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#E9E7F5" stroke-width="2"/>
+  </svg>
+  <div class="container footer-row">
+    <span>&copy; <span data-year>2026</span> <span data-i18n="footer.rights">Miloop AI, LLC. All rights reserved.</span></span>
+    <a href="../../privacy.html" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
+    <span class="footer-location">San Jose, CA</span>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+
+<div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
+
+<aside class="lead-panel" id="lead-panel" role="dialog" aria-modal="true" aria-labelledby="lead-panel-title" aria-hidden="true">
+  <header class="lead-panel__header">
+    <div class="lead-panel__mark" aria-hidden="true"><img src="../../assets/icons/miloop-mark-panel.png" alt=""></div>
+    <h2 id="lead-panel-title" class="lead-panel__title">Start a conversation</h2>
+    <button type="button" class="lead-panel__close" id="lead-panel-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="6" y1="18" x2="18" y2="6"></line>
+      </svg>
+    </button>
+  </header>
+
+  <div class="lead-panel__progress" aria-hidden="true">
+    <div class="lead-panel__progress-fill" id="lead-progress-fill"></div>
+  </div>
+
+  <div class="lead-panel__body" id="lead-panel-body"></div>
+
+  <div class="lead-panel__exit-confirm" id="lead-exit-confirm">
+    <p id="lead-exit-message">Are you sure you want to leave? Your answers won't be saved.</p>
+    <div class="lead-panel__exit-confirm-actions">
+      <button type="button" class="lead-panel__exit-cancel" id="lead-exit-cancel">Cancel</button>
+      <button type="button" class="lead-panel__exit-leave" id="lead-exit-leave">Leave</button>
+    </div>
+  </div>
+</aside>
+
+<script src="../../js/lead-intake.js"></script>
+<script src="../../js/driftboard-eval.js"></script>
+</body>
+</html>

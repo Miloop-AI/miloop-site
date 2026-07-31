@@ -562,8 +562,60 @@ section + section { border-top: 1px solid var(--border-soft); }
   padding: var(--space-4);
 }
 
+/* Two cards in a three-column track would leave the last column empty, which
+   reads as a card that failed to load. They take half each until a third
+   arrives and the default rule takes over again. */
+.live-demo-grid:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, 1fr); }
+
+/* Not everything worth linking to has a screen to photograph. This stands in
+   for the screenshot with the figures the project is actually judged on. */
+.live-demo-visual--figures {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background:
+    radial-gradient(ellipse 70% 90% at 10% 0%, rgba(91, 110, 245, 0.20), transparent 65%),
+    radial-gradient(ellipse 70% 90% at 100% 100%, rgba(166, 108, 240, 0.16), transparent 65%),
+    var(--bg-panel-raised);
+}
+/* The scrim exists to settle a bright screenshot into the card. There is no
+   screenshot here, only text that needs its contrast left alone. */
+.live-demo-visual--figures::after { display: none; }
+
+.live-demo-figure + .live-demo-figure {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-soft);
+}
+.live-demo-figure-value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.live-demo-figure-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* The pulsing mint dot is the site's "running right now" signal, so a card
+   that only leads to a write-up drops it rather than borrowing it. */
+.live-demo-badge--study { color: var(--loop-violet); }
+.live-demo-badge--study::before { display: none; }
+
 @media (max-width: 820px) {
   .live-demo-grid { grid-template-columns: 1fr; }
+  /* Restated because the two-card rule above outranks the line before it on
+     specificity, and would otherwise survive into the narrow layout. */
+  .live-demo-grid:has(> :nth-child(2):last-child) { grid-template-columns: 1fr; }
   /* Side by side stops working before the cards do, so the wide single-card
      layout folds back to the stacked one here. */
   .live-demo-grid:has(> :only-child) .live-demo-card { flex-direction: column; }

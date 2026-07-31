@@ -208,17 +208,19 @@
         </article>
       </div>
 
-      <!-- Live demos. Adding one is a copy of this <article> with the next
-           demoN.* keys and its own href. The grid runs three across and folds
-           to a single wide card on its own, neither needing an edit here. -->
+      <!-- Portfolio pages. Adding one is a copy of an <article> with the next
+           demoN.* keys and its own href. The grid handles one, two, or three
+           across on its own, so none of this needs an edit here. The badge
+           says what the reader gets: Live only where something actually runs
+           in the browser. -->
       <div class="live-demo reveal">
-        <h3 class="live-demo-title" data-i18n="livedemo.title">Or see one running right now.</h3>
+        <h3 class="live-demo-title" data-i18n="livedemo.title">Or look at one up close.</h3>
         <div class="live-demo-grid">
 
           <article class="live-demo-card">
             <div class="live-demo-visual">
               <img src="assets/img/factloop-live.jpg" alt="">
-              <span class="live-demo-badge" data-i18n="livedemo.badge">Live</span>
+              <span class="live-demo-badge" data-i18n="demo1.badge">Live</span>
             </div>
             <div class="live-demo-body">
               <span class="live-demo-tag" data-i18n="demo1.tag">Multi-Agent Pipeline</span>
@@ -226,6 +228,30 @@
               <p class="live-demo-tagline" data-i18n="demo1.tagline">Type a topic in any language and watch it research, write, and fact-check a sourced article, live.</p>
               <div class="live-demo-actions">
                 <a href="portfolio/factloop-newsroom/" class="btn btn-primary" data-i18n="demo1.cta">Try it live</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="live-demo-card">
+            <!-- No screenshot: this project's output is a report, not a
+                 screen. The two numbers it is judged on stand in for one. -->
+            <div class="live-demo-visual live-demo-visual--figures">
+              <div class="live-demo-figure">
+                <span class="live-demo-figure-value">0.794</span>
+                <span class="live-demo-figure-label" data-i18n="demo2.stat1.label">Held-out kappa</span>
+              </div>
+              <div class="live-demo-figure">
+                <span class="live-demo-figure-value">97.2%</span>
+                <span class="live-demo-figure-label" data-i18n="demo2.stat2.label">Retrieval Hit@4</span>
+              </div>
+              <span class="live-demo-badge live-demo-badge--study" data-i18n="demo2.badge">Case study</span>
+            </div>
+            <div class="live-demo-body">
+              <span class="live-demo-tag" data-i18n="demo2.tag">RAG Evaluation</span>
+              <h4 class="live-demo-name" data-i18n="demo2.name">Driftboard RAG Eval</h4>
+              <p class="live-demo-tagline" data-i18n="demo2.tagline">An evaluation framework for RAG, stress-tested against a fictional knowledge base to catch what happens when the system does not know the answer, and to catch its own judge's blind spots too.</p>
+              <div class="live-demo-actions">
+                <a href="portfolio/driftboard-rag-eval/" class="btn btn-primary" data-i18n="demo2.cta">Read the case study</a>
               </div>
             </div>
           </article>
