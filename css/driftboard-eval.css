@@ -256,24 +256,3 @@ a.driftboard-link:hover {
   color: var(--ink);
   border-color: var(--loop-indigo);
 }
-
-/* Reads as a link so the reader knows what is coming, but is a span with no
-   href, so nothing about it is clickable and no assistive technology
-   announces a destination that does not exist yet. */
-.driftboard-link.is-pending {
-  color: var(--ink-faint);
-  border-bottom-style: dashed;
-  cursor: default;
-}
-
-.driftboard-link-tag {
-  padding: 0.15rem 0.55rem;
-  border: 1px solid var(--border-soft);
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  white-space: nowrap;
-}

@@ -269,17 +269,15 @@
       <p class="eyebrow" data-db-i18n="db.stack.eyebrow">Built with</p>
       <p class="driftboard-stack" data-db-i18n="db.stack.value">Python · Claude Haiku 4.5 (generation) · GPT-5.6 Terra (cross-family judge) · Voyage AI embeddings, voyage-3.5-lite · OpenRouter · cosine similarity retrieval, no vector database · Cohen's kappa validation, hand-implemented</p>
 
-      <!-- Both destinations are still being prepared. To publish one, swap its
-           <span class="driftboard-link is-pending"> for an <a href="..."
-           class="driftboard-link"> and delete the tag beside it. -->
+      <!-- The reports link points at the eval directory rather than one file:
+           judge_validation_report.md and held_out_judge_validation_report.md
+           are the two rounds this page describes, and the reader picks. -->
       <div class="driftboard-links">
         <span class="driftboard-link-item">
-          <span class="driftboard-link is-pending" data-db-i18n="db.link.repo">GitHub repository</span>
-          <span class="driftboard-link-tag" data-db-i18n="db.link.pending">Coming soon</span>
+          <a href="https://github.com/Miloop-AI/driftboard-rag-eval" class="driftboard-link" target="_blank" rel="noopener" data-db-i18n="db.link.repo">GitHub repository</a>
         </span>
         <span class="driftboard-link-item">
-          <span class="driftboard-link is-pending" data-db-i18n="db.link.reports">Read the full validation reports</span>
-          <span class="driftboard-link-tag" data-db-i18n="db.link.pending">Coming soon</span>
+          <a href="https://github.com/Miloop-AI/driftboard-rag-eval/tree/main/eval" class="driftboard-link" target="_blank" rel="noopener" data-db-i18n="db.link.reports">Read the full validation reports</a>
         </span>
       </div>
     </div>

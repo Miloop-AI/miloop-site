@@ -109,8 +109,7 @@
       "db.stack.eyebrow": "Built with",
       "db.stack.value": "Python · Claude Haiku 4.5 (generation) · GPT-5.6 Terra (cross-family judge) · Voyage AI embeddings, voyage-3.5-lite · OpenRouter · cosine similarity retrieval, no vector database · Cohen's kappa validation, hand-implemented",
       "db.link.repo": "GitHub repository",
-      "db.link.reports": "Read the full validation reports",
-      "db.link.pending": "Coming soon"
+      "db.link.reports": "Read the full validation reports"
     },
 
     "zh-Hans": {
@@ -205,8 +204,7 @@
       "db.stack.eyebrow": "技术组成",
       "db.stack.value": "Python · Claude Haiku 4.5（生成）· GPT-5.6 Terra（跨家族评判）· Voyage AI 向量模型 voyage-3.5-lite · OpenRouter · 余弦相似度检索，不用向量资料库 · Cohen's kappa 验证，自行实作",
       "db.link.repo": "GitHub 程式库",
-      "db.link.reports": "阅读完整验证报告",
-      "db.link.pending": "即将公开"
+      "db.link.reports": "阅读完整验证报告"
     },
 
     "zh-Hant": {
@@ -301,8 +299,7 @@
       "db.stack.eyebrow": "技術組成",
       "db.stack.value": "Python · Claude Haiku 4.5（生成）· GPT-5.6 Terra（跨家族評判）· Voyage AI 向量模型 voyage-3.5-lite · OpenRouter · 餘弦相似度檢索，不用向量資料庫 · Cohen's kappa 驗證，自行實作",
       "db.link.repo": "GitHub 程式庫",
-      "db.link.reports": "閱讀完整驗證報告",
-      "db.link.pending": "即將公開"
+      "db.link.reports": "閱讀完整驗證報告"
     }
   };
 
