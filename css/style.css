@@ -449,6 +449,7 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 
 .live-demo-card {
+  position: relative; /* anchor for the whole-card hit area below */
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
@@ -458,6 +459,22 @@ section + section { border-top: 1px solid var(--border-soft); }
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .live-demo-card:hover { border-color: var(--loop-indigo); transform: translateY(-2px); }
+/* The card lifts and lights up on hover, so the whole thing has to be clickable
+   or it promises a target it does not have. Done by stretching the card's one
+   real anchor over it rather than with a click handler on the card: there is
+   still a single link, it keeps its href, its focus ring and its middle-click
+   and open-in-new-tab behaviour, and no JS is involved. Only correct while a
+   card holds exactly one link. The cost is that text inside the card cannot be
+   selected, which is the accepted trade for this pattern. */
+.live-demo-actions a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* over the badge (1) and the visual's scrim */
+}
+/* Keyboard users tab to the anchor, not the card, so the card has to answer to
+   focus the same way it answers to hover. */
+.live-demo-card:focus-within { border-color: var(--loop-indigo); }
 
 .live-demo-visual {
   position: relative;
