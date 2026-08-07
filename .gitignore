@@ -1,2 +1,5 @@
 .DS_Store
 Thumbs.db
+
+# Local agent guidance. Kept on disk, out of the repository, in every project.
+CLAUDE.md
