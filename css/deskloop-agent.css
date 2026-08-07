@@ -1,0 +1,404 @@
+/* ==========================================================================
+   Miloop AI: deskloop-agent.css
+   Portfolio case study for deskloop-agentic-it-hr.
+   Consumes the tokens defined in style.css and adds no new ones.
+
+   Third page in the series, so the hero, the notice, the prose, the callout,
+   the tables and the links out are the same anatomy and the same measurements
+   as driftboard-eval.css. What is new here is only what neither earlier page
+   needed: a clip player, because this project's evidence is a recording.
+   ========================================================================== */
+
+/* ==========================================================================
+   Case study: hero
+   ========================================================================== */
+.deskloop-hero {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-4);
+}
+
+.deskloop-h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.15;
+  margin-top: var(--space-2);
+  max-width: 20ch;
+}
+.deskloop-h1 em {
+  font-style: normal;
+  background: linear-gradient(120deg, var(--loop-indigo), var(--loop-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.deskloop-lede {
+  margin-top: var(--space-3);
+  color: var(--ink-dim);
+  font-size: 1.08rem;
+  max-width: 60ch;
+}
+.deskloop-lede + .deskloop-lede { margin-top: var(--space-2); }
+
+.deskloop-spec {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.deskloop-spec-item { min-width: 0; }
+.deskloop-spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.deskloop-spec-value {
+  margin: 0.4rem 0 0;
+  color: var(--ink-dim);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .deskloop-spec { grid-template-columns: 1fr; gap: var(--space-2); }
+}
+
+/* ==========================================================================
+   Fictional-scenario notice
+   ==========================================================================
+   Same treatment and same placement as the driftboard page: directly under
+   the hero, above the first claim, in the one dashed border the site uses for
+   nothing else. Quillstone is invented, and a reader has to know that before
+   reading a screen recording of an employee's leave balance.
+   ========================================================================== */
+.deskloop-notice {
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  background: var(--bg-panel-raised);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  max-width: 72ch;
+}
+
+.deskloop-notice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--loop-violet);
+}
+.deskloop-notice-label::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--loop-violet);
+}
+
+.deskloop-notice-body {
+  margin-top: 0.6rem;
+  color: var(--ink-dim);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   Case study: prose
+   ========================================================================== */
+.deskloop-prose {
+  margin-top: var(--space-3);
+  color: var(--ink-dim);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 66ch;
+}
+.deskloop-prose strong { color: var(--ink); font-weight: 600; }
+.deskloop-prose code,
+.deskloop-clip-body code,
+.deskloop-table code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--ink);
+}
+
+.deskloop-callout {
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-left: 2px solid var(--loop-indigo);
+  border-radius: var(--radius-md);
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 72ch;
+}
+.deskloop-callout strong { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   Tables
+   ==========================================================================
+   The component the driftboard page introduced, reused unchanged. Same
+   reasoning: the tier registry is the content, the grid around it is not.
+   ========================================================================== */
+.deskloop-table-caption {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.deskloop-table-wrap {
+  margin-top: var(--space-2);
+  max-width: 72ch;
+  overflow-x: auto;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+}
+
+.deskloop-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.deskloop-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: bottom;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+
+.deskloop-table td {
+  padding: 0.85rem 1rem;
+  vertical-align: top;
+  line-height: 1.65;
+  color: var(--ink-dim);
+  border-top: 1px solid var(--border-soft);
+}
+.deskloop-table tbody tr:first-child td { border-top: none; }
+
+.deskloop-table td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+  min-width: 12ch;
+}
+
+.deskloop-table--figures { min-width: 32rem; }
+.deskloop-table--figures td:not(:first-child) {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+/* The held-out column is the one that counts as a score. The dev column beside
+   it is shape only, and the copy says so, so it is set back a step rather than
+   left to compete with it. */
+.deskloop-table--figures td.deskloop-cell-dev { color: var(--ink-faint); }
+
+@media (max-width: 560px) {
+  .deskloop-table th,
+  .deskloop-table td { padding: 0.7rem 0.8rem; }
+}
+
+/* ==========================================================================
+   Tier key
+   ==========================================================================
+   The badges in the recordings are colour coded, and the colour is the fastest
+   thing to read in a clip that has no narration. The key repeats that coding
+   once, in the same order, so a reader arrives at the videos already knowing
+   what yellow means. Colour is never the only carrier: each row is also
+   labelled in words.
+   ========================================================================== */
+.deskloop-tierkey {
+  /* The one colour on this page that is not a site token, scoped here rather
+     than added to :root. It is not a design choice: it has to match the amber
+     the recorded interface uses for a Tier 1 badge, and the site palette has
+     no amber because nothing else on it needs one. */
+  --deskloop-tier1: #E5B84B;
+  margin-top: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  max-width: 72ch;
+}
+
+.deskloop-tier {
+  padding: var(--space-3);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+}
+
+.deskloop-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.deskloop-tier-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.deskloop-tier--t0 .deskloop-tier-badge { color: var(--signal-mint); }
+.deskloop-tier--t1 .deskloop-tier-badge { color: var(--deskloop-tier1); }
+.deskloop-tier--t2 .deskloop-tier-badge { color: var(--loop-violet); }
+
+.deskloop-tier-name {
+  margin-top: 0.6rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.deskloop-tier-body {
+  margin-top: 0.35rem;
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 820px) {
+  .deskloop-tierkey { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Clips
+   ==========================================================================
+   This project's evidence is a screen recording, so the player is a real
+   component rather than an embed dropped into the prose.
+
+   preload="none" is the whole loading strategy: six clips at roughly half a
+   megabyte each would otherwise be fetched by every visitor who scrolls past
+   them. The poster is a still from late in the take, so a reader who never
+   presses play still sees the panel populated, which is the point of the clip.
+
+   No autoplay and no loop. Every take ends on a state the caption refers to,
+   and a clip that restarts itself takes that state away while it is being read.
+   ========================================================================== */
+.deskloop-clips {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.deskloop-clip {
+  margin: 0;
+  max-width: 1000px;
+}
+
+.deskloop-clip-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.deskloop-clip-index { color: var(--loop-violet); }
+.deskloop-clip-name { color: var(--ink); }
+/* Pushed to the far end so the eye reads name first and cost second. */
+.deskloop-clip-time { margin-left: auto; }
+
+.deskloop-clip-frame {
+  margin-top: var(--space-2);
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* The recordings are a light interface on a dark page. Nothing is done to
+   correct that: dimming a screenshot of a permission panel would be editing
+   the evidence. */
+.deskloop-clip-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.deskloop-clip-caption {
+  margin-top: var(--space-3);
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  max-width: 66ch;
+}
+.deskloop-clip-caption strong { color: var(--ink); font-weight: 600; }
+
+/* A silent clip needs its own note about being silent, once, where the first
+   reader meets it. */
+.deskloop-clips-note {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Built with, and the links out
+   ========================================================================== */
+.deskloop-stack {
+  margin-top: var(--space-2);
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  max-width: 66ch;
+}
+
+.deskloop-links {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  max-width: 66ch;
+}
+
+.deskloop-link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.deskloop-link {
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+  border-bottom: 1px solid var(--border-soft);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+a.deskloop-link:hover {
+  color: var(--ink);
+  border-color: var(--loop-indigo);
+}

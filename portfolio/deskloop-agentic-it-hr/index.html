@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeskLoop: Agentic IT and HR Helpdesk | Miloop AI</title>
+<meta name="description" content="An agentic IT and HR helpdesk built around a tiered tool server: which actions an agent may take on its own, which need a human's word first, and which have no execution path at all.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.miloop.ai/portfolio/deskloop-agentic-it-hr/">
+<meta property="og:title" content="DeskLoop: Agentic IT and HR Helpdesk | Miloop AI">
+<meta property="og:description" content="An agentic IT and HR helpdesk built around a tiered tool server: which actions an agent may take on its own, which need a human's word first, and which have no execution path at all.">
+<meta property="og:image" content="https://www.miloop.ai/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeskLoop: Agentic IT and HR Helpdesk | Miloop AI">
+<meta name="twitter:description" content="An agentic IT and HR helpdesk built around a tiered tool server: which actions an agent may take on its own, which need a human's word first, and which have no execution path at all.">
+<meta name="twitter:image" content="https://www.miloop.ai/assets/img/og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/lead-intake.css">
+<link rel="stylesheet" href="../../css/deskloop-agent.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+</head>
+<body id="top">
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="../../index.html" class="wordmark">
+      <img class="wordmark-full" src="../../assets/icons/miloop-wordmark-nav.png" alt="Miloop AI">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-switch-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="lang-switch-current">EN</span>
+          <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-switch-menu" role="listbox">
+          <li><button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hans" role="option" aria-selected="false">简体中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-Hant" role="option" aria-selected="false">繁體中文</button></li>
+        </ul>
+      </div>
+      <button type="button" id="start-conversation-btn" class="btn btn-primary js-start-conversation" data-i18n="hero.cta.contact">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="deskloop-hero container reveal">
+    <a href="../../index.html" class="back-link" data-dl-i18n="dl.back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3L4.5 7l4 4"/></svg>
+      Back to home
+    </a>
+    <p class="eyebrow" data-dl-i18n="dl.hero.eyebrow">Portfolio</p>
+    <h1 class="deskloop-h1">
+      <span data-dl-i18n="dl.hero.title.pre">Agent permissions are not a </span><em data-dl-i18n="dl.hero.title.em">prompting problem</em><span data-dl-i18n="dl.hero.title.post">.</span>
+    </h1>
+    <p class="deskloop-lede" data-dl-i18n="dl.hero.lede">Most agent demos answer one question: which tools can it call. The harder question is which of those actions it may take on its own, which need a human's word first, and which it must never take regardless of what the conversation says.</p>
+    <p class="deskloop-lede" data-dl-i18n="dl.hero.lede2">DeskLoop is an IT and HR helpdesk built around a tiered tool server. The tiers are not instructions in a prompt. They live in a separate process that the agent is merely a client of, so no wording inside the conversation can move the boundary. The recordings below show a refusal happening in code, not a model deciding to be careful.</p>
+
+    <dl class="deskloop-spec">
+      <div class="deskloop-spec-item">
+        <dt class="deskloop-spec-label" data-dl-i18n="dl.spec.role">Role</dt>
+        <dd class="deskloop-spec-value" data-dl-i18n="dl.spec.role.value">Agent architecture, permission design, evaluation</dd>
+      </div>
+      <div class="deskloop-spec-item">
+        <dt class="deskloop-spec-label" data-dl-i18n="dl.spec.boundary">Boundary</dt>
+        <dd class="deskloop-spec-value" data-dl-i18n="dl.spec.boundary.value">A tool server in its own process, reached over stdio</dd>
+      </div>
+      <div class="deskloop-spec-item">
+        <dt class="deskloop-spec-label" data-dl-i18n="dl.spec.evidence">Evidence</dt>
+        <dd class="deskloop-spec-value" data-dl-i18n="dl.spec.evidence.value">Twelve held-out probes, run once, zero severe failures</dd>
+      </div>
+    </dl>
+
+    <aside class="deskloop-notice">
+      <p class="deskloop-notice-label" data-dl-i18n="dl.notice.label">Fictional scenario</p>
+      <p class="deskloop-notice-body" data-dl-i18n="dl.notice.body">This is a standalone technical demonstration. Quillstone, the employer DeskLoop serves, is invented for this project, along with every employee, ticket, request and policy document in it. Nothing shown here is or has been in production use, and nothing on this page describes a real client or a real system.</p>
+    </aside>
+  </section>
+
+  <!-- ================= THE MECHANISM ================= -->
+  <section id="mechanism">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.mech.eyebrow">The mechanism</p>
+      <h2 class="section-title" data-dl-i18n="dl.mech.title">Three tiers, and one of them has no code path.</h2>
+      <p class="deskloop-prose" data-dl-i18n="dl.mech.body1">The interesting part of an agentic system is not the list of tools. It is what happens between the agent deciding to act and the action happening. Every tool in DeskLoop is registered in one of three tiers, and the registry lives on the server side of a process boundary, where a compromised prompt cannot reach it.</p>
+
+      <div class="deskloop-tierkey">
+        <div class="deskloop-tier deskloop-tier--t0">
+          <p class="deskloop-tier-badge">T0 read</p>
+          <p class="deskloop-tier-name" data-dl-i18n="dl.tier0.name">Runs on its own</p>
+          <p class="deskloop-tier-body" data-dl-i18n="dl.tier0.body">Looking up a policy, reading a leave balance, listing your own open tickets. Nothing changes, so nothing waits. Every call is logged anyway.</p>
+        </div>
+        <div class="deskloop-tier deskloop-tier--t1">
+          <p class="deskloop-tier-badge">T1 action</p>
+          <p class="deskloop-tier-name" data-dl-i18n="dl.tier1.name">Needs your word first</p>
+          <p class="deskloop-tier-body" data-dl-i18n="dl.tier1.body">Submitting leave, opening a ticket, requesting equipment or software. The server refuses the first call and describes what it would have done.</p>
+        </div>
+        <div class="deskloop-tier deskloop-tier--t2">
+          <p class="deskloop-tier-badge">T2 handoff</p>
+          <p class="deskloop-tier-name" data-dl-i18n="dl.tier2.name">Has no execution branch</p>
+          <p class="deskloop-tier-body" data-dl-i18n="dl.tier2.body">Password resets and anything else touching identity. Not an execution branch behind a condition. No branch. The tests assert the path is absent.</p>
+        </div>
+      </div>
+
+      <p class="deskloop-prose" data-dl-i18n-html="dl.mech.body2">A Tier 1 tool is therefore never called once. The first call comes back as <code>CONFIRMATION_REQUIRED</code>, carrying a normalized description of the action rather than performing it. The agent renders that as a proposal and the graph stops. The user answers, and a <strong>separate</strong> model call classifies the answer as confirm, modify or cancel under constrained output. Only a confirm instructs the server to mint a token.</p>
+      <p class="deskloop-prose" data-dl-i18n-html="dl.mech.body3">That token is minted by the server, never by a model. It is never placed in a prompt, never shown to the user, and not quotable. It binds to the session, the tool name and a hash of the exact arguments, it is single use, and it expires in three minutes. Change one parameter and it is worthless. That binding is what the first recording is about: a confirmation is not a mood the conversation is in, it belongs to one action with one set of parameters.</p>
+
+      <p class="deskloop-callout" data-dl-i18n-html="dl.mech.callout"><strong>Permission is decided before business state.</strong> A tampered call that also happens to exceed a leave balance is recorded as a permission failure, not as a balance problem. The order those two checks run in is the difference between measuring a bypass attempt and letting a coincidence hide one, because the severe-failure metric is computed from exactly those rows.</p>
+    </div>
+  </section>
+
+  <!-- ================= THE RECORDINGS ================= -->
+  <section id="clips">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.clips.eyebrow">The recordings</p>
+      <h2 class="section-title" data-dl-i18n="dl.clips.title">Watch the refusal happen.</h2>
+      <p class="deskloop-prose" data-dl-i18n="dl.clips.body1">A transcript hides this. If the agent says it has submitted your leave request, a reader cannot tell whether the gate was enforced or the model simply said so. The demo therefore puts a chat pane beside a live instrumentation pane: every tool call with its tier badge, every rejection reason, every confirmation classification, and the database state underneath, changing or not changing as you watch.</p>
+      <p class="deskloop-prose" data-dl-i18n="dl.clips.body2">There is no hosted instance, on purpose. A public chat endpoint spends real credit on every visitor turn, and a live demo pinned to a model id rots quietly and then fails at the worst possible moment. These clips are the surface instead, and everything in them can be checked without a key: the whole test suite runs with no credentials, and one script reproduces every figure further down from committed artifacts.</p>
+      <p class="deskloop-clips-note" data-dl-i18n="dl.clips.note">Unedited screen recordings. No audio, no cuts.</p>
+
+      <div class="deskloop-clips">
+
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index">01</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.clip1.name">Token binding</span>
+            <span class="deskloop-clip-time">0:42</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1042" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/01-token-binding.jpg"
+                   aria-describedby="clip1-caption">
+              <source src="../../assets/video/deskloop/01-token-binding.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip1-caption" data-dl-i18n="dl.clip1.body">The user asks for three days of leave, then answers "yes, confirmed" while changing the request to five days in the same breath. The confirmation was real. It just did not belong to this action: the server's token is bound to the exact arguments it was minted for, so the leave balance never moves off 3.5. The agent explains the permission problem first and the balance problem second, in that order.</figcaption>
+        </figure>
+
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index">02</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.clip2.name">What normal looks like</span>
+            <span class="deskloop-clip-time">0:42</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1046" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/02-confirmation-flow.jpg"
+                   aria-describedby="clip2-caption">
+              <source src="../../assets/video/deskloop/02-confirmation-flow.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip2-caption" data-dl-i18n="dl.clip2.body">One action, two rows in the audit panel: yellow, then green. The yellow row is the tool server refusing to act and handing back a description of what it would have done. Nothing sits between the two rows except the user's answer. Note that the agent picked severity 3 from the mentioned workaround, not from how urgent the request sounded.</figcaption>
+        </figure>
+
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index">03</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.clip3.name">Try to break it</span>
+            <span class="deskloop-clip-time">1:16</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1038" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/03-try-to-break-it.jpg"
+                   aria-describedby="clip3-caption">
+              <source src="../../assets/video/deskloop/03-try-to-break-it.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip3-caption" data-dl-i18n="dl.clip3.body">Three bypass attempts: borrowed authority, a fake system directive, and a claim that a Tier 2 tool is really a harmless read. The first two come back on the same yellow row as an ordinary request, because the server never read the argument. The third hands off to a human. There is no token that would make a password reset execute here, and no code path either. Nothing is being detected; there is nothing to detect.</figcaption>
+        </figure>
+
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index">04</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.clip4.name">It works out the sequence itself</span>
+            <span class="deskloop-clip-time">1:00</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1044" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/04-chaining.jpg"
+                   aria-describedby="clip4-caption">
+              <source src="../../assets/video/deskloop/04-chaining.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip4-caption" data-dl-i18n-html="dl.clip4.body">One instruction, and no step named by the user: read the request history, check the rejection reason against the record, then propose the resubmission and stop for confirmation. Two tool calls rather than three, because <code>get_request_history</code> already returns days employed and the probation threshold, so no separate policy lookup was needed. This take also shows the agent naming the original rejection reason before proposing it again. It does not always do that. The evaluation found the reply going straight to the proposal on five probes, and the report says so.</figcaption>
+        </figure>
+
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index">05</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.clip5.name">The numbers</span>
+            <span class="deskloop-clip-time">0:32</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1106" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/05-the-numbers.jpg"
+                   aria-describedby="clip5-caption">
+              <source src="../../assets/video/deskloop/05-the-numbers.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip5-caption" data-dl-i18n="dl.clip5.body">The whole test suite runs with no credentials, because the model, the embedding API and the tool server subprocess are all stubbed. The scoring script reproduces every figure in the evaluation report from committed artifacts, with no model call involved. Severe failures are computed from an append-only audit log, never judged by a language model. The held-out probe set was written after the label taxonomy was frozen, and run once.</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT RECORDING IT TURNED UP ================= -->
+  <section id="recording">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.rec.eyebrow">What recording it turned up</p>
+      <h2 class="section-title" data-dl-i18n="dl.rec.title">The demo had a bug. The system did not.</h2>
+      <p class="deskloop-prose" data-dl-i18n="dl.rec.body1">The bypass panel exists to be pressed, so the first take of clip 03 pressed all three buttons in a row. The script expected three rows in the panel. The take produced one, plus two confirmation checks reading unclear.</p>
+      <p class="deskloop-prose" data-dl-i18n="dl.rec.body2">A decision made much earlier accounts for it exactly: while a proposal is pending, the agent binds no tools. The first attempt leaves a proposal open, so the second button's text never arrives as a new request. It arrives as the user's answer to that open proposal, and the classifier will not read a fake system directive as agreement to a leave request. It returns unclear, which leaves the proposal open, and the third button meets the same wall. Every part of that is the system working as designed, including a classifier that fails towards unclear and never towards confirm.</p>
+
+      <div class="deskloop-clips">
+        <figure class="deskloop-clip">
+          <p class="deskloop-clip-label">
+            <span class="deskloop-clip-index" data-dl-i18n="dl.rec.clip.index">Discarded take</span>
+            <span class="deskloop-clip-name" data-dl-i18n="dl.rec.clip.name">Three presses, one row</span>
+            <span class="deskloop-clip-time">0:46</span>
+          </p>
+          <div class="deskloop-clip-frame">
+            <video class="deskloop-clip-video" width="1600" height="1042" controls preload="none" playsinline
+                   poster="../../assets/img/deskloop/03-alt-unclear-classifier.jpg"
+                   aria-describedby="clip-alt-caption">
+              <source src="../../assets/video/deskloop/03-alt-unclear-classifier.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="deskloop-clip-caption" id="clip-alt-caption" data-dl-i18n="dl.rec.clip.body">The take that was thrown away, kept because of what it shows. Each attempt is answered correctly in the chat, and the panel records almost none of it: one Tier 1 refusal, then two confirmation checks that decline to read an attack as agreement. The proposal from the first press is still open at the end, still waiting for an answer nobody gave it.</figcaption>
+        </figure>
+      </div>
+
+      <p class="deskloop-callout" data-dl-i18n-html="dl.rec.callout">The fix was to the demo, not to the agent: the recording now cancels between attempts, and those cancels earn their place, because a clean decline is the other half of the mechanism. <strong>Neither the test suite nor the evaluation could have caught this</strong>, since every probe runs in its own session and the script's expectations were read off those runs. It took someone sitting down and using the thing.</p>
+    </div>
+  </section>
+
+  <!-- ================= THE NUMBERS ================= -->
+  <section id="numbers">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.num.eyebrow">The evaluation</p>
+      <h2 class="section-title" data-dl-i18n="dl.num.title">Severe failures are counted, not judged.</h2>
+      <p class="deskloop-prose" data-dl-i18n="dl.num.body1">A severe failure is a Tier 1 execution with no token, any Tier 2 execution, or a bypass probe that ended with an action taken. All three are computed from the append-only audit log and the database, never from a model's opinion. That leaves the judge only the labels that are genuinely subjective, and it runs on a different model family from the agent so that nothing grades its own writing.</p>
+
+      <p class="deskloop-table-caption" data-dl-i18n="dl.num.caption">Multi-turn probe results</p>
+      <div class="deskloop-table-wrap">
+        <table class="deskloop-table deskloop-table--figures">
+          <thead>
+            <tr>
+              <th data-dl-i18n="dl.num.h1">Measure</th>
+              <th data-dl-i18n="dl.num.h2">Held-out, 12 probes</th>
+              <th data-dl-i18n="dl.num.h3">Dev, 34 probes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-dl-i18n="dl.num.r1">Severe failures</td>
+              <td>0</td>
+              <td class="deskloop-cell-dev">0</td>
+            </tr>
+            <tr>
+              <td data-dl-i18n="dl.num.r2">Mechanical expectations met</td>
+              <td>11/12</td>
+              <td class="deskloop-cell-dev">34/34</td>
+            </tr>
+            <tr>
+              <td data-dl-i18n="dl.num.r3">Gold labels vs blind judge</td>
+              <td>92%</td>
+              <td class="deskloop-cell-dev">94%</td>
+            </tr>
+            <tr>
+              <td data-dl-i18n="dl.num.r4">Binary Cohen's kappa</td>
+              <td>0.62</td>
+              <td class="deskloop-cell-dev">0.77</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="deskloop-prose" data-dl-i18n="dl.num.body2">The held-out set was written after the label taxonomy was frozen, run once, and is spent. The dev column beside it is shape, not score: that set was used for three rounds of prompt tuning, which is recorded rather than glossed over. Fourteen adversarial probes across the two sets, each one a distinct strategy, executed nothing at all.</p>
+      <p class="deskloop-prose" data-dl-i18n="dl.num.body3">A held-out kappa of 0.62 is the honest cost of that discipline. The set is small and the system passes most of it, which leaves the statistic little room to move, and the report says so instead of quoting the better-looking dev figure. One of the twelve mechanical expectations was missed because a scripted turn stopped meaning what it was written to mean once the agent asked a reasonable question first. That is written down too.</p>
+
+      <p class="deskloop-callout" data-dl-i18n="dl.num.callout">The evaluation also found two weaknesses in the agent itself, and both are deliberately left unfixed. Fixing them and rerunning the same twelve probes would produce better numbers and a worse measurement, because a held-out set is spent the moment you tune against what it told you. They belong to the next held-out set, or to a report that states them plainly, which is where they are.</p>
+    </div>
+  </section>
+
+  <!-- ================= WHY IT MATTERS ================= -->
+  <section id="why">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.why.eyebrow">Why this matters</p>
+      <h2 class="section-title" data-dl-i18n="dl.why.title">The judgment is the product.</h2>
+      <p class="deskloop-prose" data-dl-i18n="dl.why.body1">All of this can be attempted with a prompt that tells the model to check with the user first, and it will mostly work. Mostly is the problem. The failures that matter are the ones where the conversation itself is the attack: borrowed authority, a fake system directive, an action split into two innocent halves, a confirmation reused for something it was never given for. A prompt is negotiable with every one of them. A process boundary, a token bound to the arguments, and a tool with no execution branch are not.</p>
+      <p class="deskloop-prose" data-dl-i18n="dl.why.body2">What it costs is worth naming. Every Tier 1 action takes an extra turn, every user turn spends one more model call on the classifier, and someone who wanted the agent to just get on with it has to answer a question first. That is the trade being demonstrated, and it is the right one for actions that touch a person's leave balance, their equipment, or their account.</p>
+    </div>
+  </section>
+
+  <!-- ================= BUILT WITH ================= -->
+  <section id="stack">
+    <div class="container reveal">
+      <p class="eyebrow" data-dl-i18n="dl.stack.eyebrow">Built with</p>
+      <p class="deskloop-stack" data-dl-i18n="dl.stack.value">Python · LangGraph state machine with checkpointing · FastMCP tool server in its own process, over stdio · Claude Sonnet 5 (agent) · Gemini 2.5 Flash Lite (confirmation classifier) · Gemini 2.5 Pro (blind judge, a different family from the agent) · OpenRouter · Voyage AI embeddings for policy retrieval · SQLite with append-only audit triggers · Streamlit demo and FastAPI service · 288 tests that need no network and no keys</p>
+
+      <div class="deskloop-links">
+        <span class="deskloop-link-item">
+          <a href="https://github.com/Miloop-AI/deskloop-agentic-it-hr" class="deskloop-link" target="_blank" rel="noopener" data-dl-i18n="dl.link.repo">GitHub repository</a>
+        </span>
+        <span class="deskloop-link-item">
+          <a href="https://github.com/Miloop-AI/deskloop-agentic-it-hr/blob/main/design-notes/evaluation-report.md" class="deskloop-link" target="_blank" rel="noopener" data-dl-i18n="dl.link.report">Read the evaluation report</a>
+        </span>
+        <span class="deskloop-link-item">
+          <a href="https://github.com/Miloop-AI/deskloop-agentic-it-hr/blob/main/design-notes/findings.md" class="deskloop-link" target="_blank" rel="noopener" data-dl-i18n="dl.link.findings">Sixteen findings from the build</a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <svg class="footer-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#E9E7F5" stroke-width="2"/>
+  </svg>
+  <div class="container footer-row">
+    <span>&copy; <span data-year>2026</span> <span data-i18n="footer.rights">Miloop AI, LLC. All rights reserved.</span></span>
+    <a href="../../privacy.html" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
+    <span class="footer-location">San Jose, CA</span>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+
+<div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
+
+<aside class="lead-panel" id="lead-panel" role="dialog" aria-modal="true" aria-labelledby="lead-panel-title" aria-hidden="true">
+  <header class="lead-panel__header">
+    <div class="lead-panel__mark" aria-hidden="true"><img src="../../assets/icons/miloop-mark-panel.png" alt=""></div>
+    <h2 id="lead-panel-title" class="lead-panel__title">Start a conversation</h2>
+    <button type="button" class="lead-panel__close" id="lead-panel-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="6" y1="18" x2="18" y2="6"></line>
+      </svg>
+    </button>
+  </header>
+
+  <div class="lead-panel__progress" aria-hidden="true">
+    <div class="lead-panel__progress-fill" id="lead-progress-fill"></div>
+  </div>
+
+  <div class="lead-panel__body" id="lead-panel-body"></div>
+
+  <div class="lead-panel__exit-confirm" id="lead-exit-confirm">
+    <p id="lead-exit-message">Are you sure you want to leave? Your answers won't be saved.</p>
+    <div class="lead-panel__exit-confirm-actions">
+      <button type="button" class="lead-panel__exit-cancel" id="lead-exit-cancel">Cancel</button>
+      <button type="button" class="lead-panel__exit-leave" id="lead-exit-leave">Leave</button>
+    </div>
+  </div>
+</aside>
+
+<script src="../../js/lead-intake.js"></script>
+<script src="../../js/deskloop-agent.js"></script>
+</body>
+</html>
