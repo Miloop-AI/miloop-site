@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+
+# This repository is public only because the deployment needs it to be. It is
+# not a project anyone is meant to read, so the documentation that explains
+# how and why the site is built stays on disk and out of it.
+README.md
+CLAUDE.md
+CLAUDE.local.md
