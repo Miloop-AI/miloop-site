@@ -55,6 +55,11 @@
   --loop-indigo: #5B6EF5;
   --loop-violet: #A66CF0;
   --signal-mint: #5EE6C8;
+  /* The palette had no colour for "held back". Mint means verified and clean, and
+     the loop needed a second state for the moment something is stopped and sent
+     to be redone. Warm rather than red on purpose: in this story being caught is
+     the system working, not an error. */
+  --signal-amber: #E0B978;
   --border-soft: rgba(233, 231, 245, 0.09);
   --border-strong: rgba(233, 231, 245, 0.18);
 
@@ -438,15 +443,19 @@ section + section { border-top: 1px solid var(--border-soft); }
 .loop-node.is-caught .loop-stage-label { fill: var(--signal-amber); }
 
 /* The verdict sits on the crossing, so it always lands on track: the void-coloured
-   outline keeps it readable without a plate behind it. */
+   outline keeps it readable without a plate behind it. Both numbers are in user
+   units and the viewBox scales them, so they have to be read against the font size
+   rather than as screen pixels. At 0.9 the outline separates the glyphs from the
+   track; at 3 it was wider than the strokes it was meant to protect and the label
+   rendered as a black smudge. */
 .loop-verdict {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0;
   stroke: var(--bg-void);
-  stroke-width: 3;
+  stroke-width: 0.9;
   paint-order: stroke;
   stroke-linejoin: round;
   transition: opacity 0.3s ease;
