@@ -154,50 +154,160 @@
       <p class="eyebrow" data-i18n="services.eyebrow">What we do</p>
       <h2 class="section-title" data-i18n="services.title">From your first audit to ongoing support.</h2>
 
-      <div class="service-interactive reveal">
-        <div class="service-menu" role="tablist">
-          <button class="service-menu-item active" type="button" data-target="panel-s1" role="tab" aria-selected="true">
-            <span class="service-menu-num">01</span>
-            <span class="service-menu-title" data-i18n="s1.title">AI Readiness Assessment</span>
-          </button>
-          <button class="service-menu-item" type="button" data-target="panel-s2" role="tab" aria-selected="false">
-            <span class="service-menu-num">02</span>
-            <span class="service-menu-title" data-i18n="s2.title">Workflow &amp; Content Automation</span>
-          </button>
-          <button class="service-menu-item" type="button" data-target="panel-s3" role="tab" aria-selected="false">
-            <span class="service-menu-num">03</span>
-            <span class="service-menu-title" data-i18n="s3.title">Generative AI &amp; Knowledge Systems</span>
-          </button>
-          <button class="service-menu-item" type="button" data-target="panel-s4" role="tab" aria-selected="false">
-            <span class="service-menu-num">04</span>
-            <span class="service-menu-title" data-i18n="s4.title">Agentic Systems &amp; Integration</span>
-          </button>
-          <button class="service-menu-item" type="button" data-target="panel-s5" role="tab" aria-selected="false">
-            <span class="service-menu-num">05</span>
-            <span class="service-menu-title" data-i18n="s5.title">Evaluation, Deployment &amp; Ongoing Support</span>
-          </button>
-        </div>
+      <p class="sv-lede" data-i18n="services.lede"></p>
 
-        <div class="service-panel">
-          <div class="service-panel-item active" id="panel-s1">
-            <h3 data-i18n="s1.title">AI Readiness Assessment</h3>
-            <p data-i18n-html="s1.body">Not sure where AI can actually help your business, or if the AI tools you already use are quietly making things up? We audit your current workflows and any AI systems already in place, flag the wasted spend and the hallucination risk (AI stating something false with total confidence), and tell you the one place worth starting. You walk away with <strong>a prioritized, concrete roadmap</strong> you can actually read.</p>
+      <div class="sv-stack" id="services-stack">
+        <div class="sv-spine" aria-hidden="true">
+          <span class="sv-spine-track"></span>
+          <span class="sv-spine-lit"></span>
+          <span class="sv-spine-head"></span>
+        </div>
+        <div class="sv-band">
+          <div class="sv-copy">
+            <p class="sv-stage" data-i18n="sv1.stage">01 / DIAGNOSE</p>
+            <h3 class="sv-title" data-i18n="s1.title"></h3>
+            <p class="sv-pain" data-i18n="sv1.pain"></p>
+            <p class="sv-desc" data-i18n-html="s1.body"></p>
           </div>
-          <div class="service-panel-item" id="panel-s2">
-            <h3 data-i18n="s2.title">Workflow &amp; Content Automation</h3>
-            <p data-i18n-html="s2.body">If your team is retyping the same information into three different tools every day, that's hours (and payroll) you're never getting back. We turn that kind of multi-step manual work (classification, translation, drafting, fact-checking, publishing) into an automated pipeline, <strong>cutting turnaround from hours to minutes</strong>, built on production infrastructure that keeps running long after we hand it off.</p>
+          <div class="sv-visual">
+            <div class="sv-panel">
+              <div class="sv-panel-bar">
+                <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+                <span class="sv-panel-name">assessment-findings</span>
+                <span class="sv-panel-tag" data-i18n="sv.realrun">real run</span>
+              </div>
+              <div class="sv-panel-body">
+            <p class="fi-kick sv-st" data-i18n="sv1.kick">Finding 2 of 16</p>
+            <p class="fi-head sv-st" data-i18n="sv1.head">A write that changes nothing reports success.</p>
+            <p class="fi-row sv-st" data-i18n-html="sv1.r1">The leave request <b>was created</b>. The balance <b>never moved</b>.</p>
+            <p class="fi-row sv-st" data-i18n-html="sv1.r2"><b>No error was raised anywhere.</b> The same three days could then be requested without limit.</p>
+            <p class="fi-row sv-st" data-i18n="sv1.r3">It was reachable the whole time. The tests never crossed a year boundary, so nobody saw it.</p>
+            <p class="fi-fix sv-st" data-i18n="sv1.fix">A write that cannot take effect now fails loudly, rather than reporting success.</p>
+              </div>
+              <p class="sv-panel-foot">16 findings, written during the build, not reconstructed after it. DeskLoop.</p>
+            </div>
           </div>
-          <div class="service-panel-item" id="panel-s3">
-            <h3 data-i18n="s3.title">Generative AI &amp; Knowledge Systems</h3>
-            <p data-i18n-html="s3.body">Ask an AI chatbot about your own company, and it won't know. Worse, it might guess and sound sure about it. We build systems that let your team ask questions and get answers sourced straight from your own documents, plus lightweight custom-trained models that write in your brand's exact voice, at a fraction of what training a model from scratch costs. <strong>Generative AI that's accurate first, impressive second.</strong></p>
+        </div>
+        <div class="sv-band is-rev">
+          <div class="sv-copy">
+            <p class="sv-stage" data-i18n="sv2.stage">02 / BUILD</p>
+            <h3 class="sv-title" data-i18n="s2.title"></h3>
+            <p class="sv-pain" data-i18n="sv2.pain"></p>
+            <p class="sv-desc" data-i18n-html="s2.body"></p>
           </div>
-          <div class="service-panel-item" id="panel-s4">
-            <h3 data-i18n="s4.title">Agentic Systems &amp; Integration</h3>
-            <p data-i18n-html="s4.body">Some tasks take ten steps across five tools, and someone has to do all ten every time. <strong>We build AI that does the whole chain itself: querying your databases, operating your internal tools, and completing multi-step tasks end to end.</strong> Multi-agent systems and tool integrations (using MCP, the standard that lets AI safely talk to your other software), including voice-based assistants for hands-free, conversational use cases.</p>
+          <div class="sv-visual">
+            <div class="sv-panel">
+              <div class="sv-panel-bar">
+                <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+                <span class="sv-panel-name">factloop &middot; pipeline</span>
+                <span class="sv-panel-tag" data-i18n="sv.realrun">real run</span>
+              </div>
+              <div class="sv-panel-body">
+            <div class="pp sv-st">
+              <div class="pp-n is-ok"><span class="pp-t" data-i18n="sv2.n1">Research</span><span class="pp-s">0.3s</span></div>
+              <span class="pp-a">&rsaquo;</span>
+              <div class="pp-n"><span class="pp-t" data-i18n="sv2.n2">Translate</span><span class="pp-s" data-i18n="sv2.skipped">skipped</span></div>
+              <span class="pp-a">&rsaquo;</span>
+              <div class="pp-n is-ok"><span class="pp-t" data-i18n="sv2.n3">Write</span><span class="pp-s">15.0s</span></div>
+              <span class="pp-a">&rsaquo;</span>
+              <div class="pp-n is-rej"><span class="pp-t" data-i18n="sv2.n4">Fact-check</span><span class="pp-s"><span class="pp-s1">67.0s &#10007;</span><span class="pp-s2">41.8s &#10003;</span></span></div>
+              <span class="pp-a">&rsaquo;</span>
+              <div class="pp-n is-pub"><span class="pp-t" data-i18n="sv2.n5">Publish</span><span class="pp-s"><span class="pp-s1">&mdash;</span><span class="pp-s2">4.7s</span></span></div>
+            </div>
+            <p class="pp-call sv-st"><span class="pp-call-l" data-i18n="sv2.sentlabel">Sent back</span><span data-i18n-html="sv2.call">The draft opened with <q>NEW YORK &ndash;</q>. Not one of the five sources says this happened in New York.</span></p>
+            <p class="pp-after sv-st" data-i18n-html="sv2.after">Rewrote 21.5s &rarr; re-checked 41.8s <b>&#10003; passed</b> &rarr; published 4.7s</p>
+            <p class="pp-after is-faint sv-st" data-i18n="sv2.ratio">Writing took 15 seconds. Checking its own writing took 67.</p>
+              </div>
+              <p class="sv-panel-foot">One real run, 2026-09-22. Five sources from the last two days. 150.4s end to end.</p>
+            </div>
           </div>
-          <div class="service-panel-item" id="panel-s5">
-            <h3 data-i18n="s5.title">Evaluation, Deployment &amp; Ongoing Support</h3>
-            <p data-i18n-html="s5.body">Every system we ship comes with its own quality bar and its own guardrails: cross-model evaluation frameworks that catch hallucinations before your users do, plus the governance and oversight controls regulators and enterprise customers increasingly expect. Once live, we handle the cloud infrastructure and ongoing maintenance, so <strong>reliability doesn't become your problem</strong>.</p>
+        </div>
+        <div class="sv-band">
+          <div class="sv-copy">
+            <p class="sv-stage" data-i18n="sv3.stage">03 / BUILD</p>
+            <h3 class="sv-title" data-i18n="s3.title"></h3>
+            <p class="sv-pain" data-i18n="sv3.pain"></p>
+            <p class="sv-desc" data-i18n-html="s3.body"></p>
+          </div>
+          <div class="sv-visual">
+            <div class="sv-panel">
+              <div class="sv-panel-bar">
+                <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+                <span class="sv-panel-name">deskloop &middot; policy lookup</span>
+                <span class="sv-panel-tag" data-i18n="sv.realrun">real run</span>
+              </div>
+              <div class="sv-panel-body">
+            <p class="qa-q sv-st" data-i18n="sv3.q">I want to work from Japan for three weeks. Is that allowed?</p>
+            <p class="qa-p sv-st" data-i18n="sv3.a1">Yes. Three weeks (15 business days) is inside the 20 business-day annual limit for working from another country. No approval needed, just advance notice to your manager.</p>
+            <p class="sv-st"><span class="qa-src" data-i18n-html="sv3.src1">HR Remote Work &middot; "Working from another country"</span></p>
+            <p class="qa-p sv-st" data-i18n-html="sv3.a2">One catch: you are on VPN level 2, which only connects from approved regions. <span class="qa-hl">Japan is not on that list, so your VPN will simply fail to connect there.</span></p>
+            <p class="sv-st"><span class="qa-src is-alt" data-i18n="sv3.src2">IT VPN Access Levels</span></p>
+            <p class="qa-p is-dim sv-st" data-i18n="sv3.offer">Want me to open that travel exception ticket now?</p>
+              </div>
+              <p class="sv-panel-foot">Probe A03. Two documents, one question. Quillstone is a company that does not exist.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sv-band is-rev">
+          <div class="sv-copy">
+            <p class="sv-stage" data-i18n="sv4.stage">04 / BUILD</p>
+            <h3 class="sv-title" data-i18n="s4.title"></h3>
+            <p class="sv-pain" data-i18n="sv4.pain"></p>
+            <p class="sv-desc" data-i18n-html="s4.body"></p>
+          </div>
+          <div class="sv-visual">
+            <div class="sv-panel">
+              <div class="sv-panel-bar">
+                <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+                <span class="sv-panel-name">deskloop &middot; tier 1 action</span>
+                <span class="sv-panel-tag" data-i18n="sv.realrun">real run</span>
+              </div>
+              <div class="sv-panel-body">
+            <div class="cf-prop sv-st">
+              <p class="cf-lb" data-i18n="sv4.ready">Ready to run</p>
+              <dl class="cf-f">
+                <dt data-i18n="sv4.k1">Action</dt><dd data-i18n="sv4.v1">Open an IT ticket</dd>
+                <dt data-i18n="sv4.k2">Subject</dt><dd>External monitor flickering</dd>
+                <dt data-i18n="sv4.k3">Severity</dt><dd>3</dd>
+              </dl>
+            </div>
+            <div class="cf-wait sv-st">
+              <p class="cf-lb is-amber" data-i18n="sv4.wait">Awaiting your confirmation</p>
+              <p class="cf-tx" data-i18n="sv4.waittx">Open a severity 3 IT ticket titled "External monitor flickering".</p>
+            </div>
+            <p class="cf-note sv-st" data-i18n-html="sv4.note"><b>Nothing has been submitted.</b> The server issues a one-time token bound to these exact details, and only after you answer.</p>
+            <div class="cf-btns sv-st"><span class="is-pri" data-i18n="sv4.b1">Confirm</span><span data-i18n="sv4.b2">Change it</span><span data-i18n="sv4.b3">Cancel</span></div>
+              </div>
+              <p class="sv-panel-foot">The tier check lives in the tool server, not in the prompt. A compromised prompt does not move it.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sv-band">
+          <div class="sv-copy">
+            <p class="sv-stage" data-i18n="sv5.stage">05 / VERIFY</p>
+            <h3 class="sv-title" data-i18n="s5.title"></h3>
+            <p class="sv-pain" data-i18n="sv5.pain"></p>
+            <p class="sv-desc" data-i18n-html="s5.body"></p>
+          </div>
+          <div class="sv-visual">
+            <div class="sv-panel">
+              <div class="sv-panel-bar">
+                <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+                <span class="sv-panel-name">driftboard &middot; judge validation</span>
+                <span class="sv-panel-tag" data-i18n="sv.realrun">real run</span>
+              </div>
+              <div class="sv-panel-body">
+            <div class="jd-grid sv-st">
+              <div class="jd-cell"><p class="jd-lb" data-i18n="sv5.l1">Judge vs human</p><p class="jd-nm">0.794</p><p class="jd-sub" data-i18n-html="sv5.s1">Cohen&rsquo;s kappa &middot; 12/14 agreed</p></div>
+              <div class="jd-cell"><p class="jd-lb" data-i18n="sv5.l2">Finds the right document</p><p class="jd-nm">97.2%</p><p class="jd-sub" data-i18n-html="sv5.s2">hit@4 &middot; 35/36</p></div>
+            </div>
+            <div class="jd-kill sv-st">
+              <p class="jd-top"><span class="jd-num">1.000<i></i></span><span class="jd-lab" data-i18n="sv5.kill">Discarded</span></p>
+              <p class="jd-why" data-i18n-html="sv5.why">An earlier validation reached <b>perfect agreement</b>. Its answer key had been revised after reading the judge&rsquo;s own output, so it was no longer measuring the same thing. That run was thrown out and the lower number published.</p>
+            </div>
+              </div>
+              <p class="sv-panel-foot">14 held-out probes and 36 retrieval probes. Small samples: evidence the harness works, not a performance claim.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -349,6 +459,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/hero-loop.js"></script>
+<script src="js/services-spine.js"></script>
 
 <div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
 

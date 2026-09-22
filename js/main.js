@@ -37,10 +37,61 @@
       "loop.passed": "passed",
       "services.eyebrow": "What we do",
       "services.title": "From your first audit to ongoing support.",
+      "services.lede": "No technical background needed. Most people take one of these rather than all five, and start with the first.",
+      "sv1.stage": "01 / DIAGNOSE",
+      "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
+      "sv1.kick": "Finding 2 of 16",
+      "sv1.head": "A write that changes nothing reports success.",
+      "sv1.r1": "The leave request <b>was created</b>. The balance <b>never moved</b>.",
+      "sv1.r2": "<b>No error was raised anywhere.</b> The same three days could then be requested without limit.",
+      "sv1.r3": "It was reachable the whole time. The tests never crossed a year boundary, so nobody saw it.",
+      "sv1.fix": "A write that cannot take effect now fails loudly, rather than reporting success.",
+      "sv2.stage": "02 / BUILD",
+      "sv2.pain": "Someone retyped the same information this morning, for the third time this week. The work is easy. It costs two hours a day, and nobody wants it.",
+      "sv2.n1": "Research",
+      "sv2.n2": "Translate",
+      "sv2.n3": "Write",
+      "sv2.n4": "Fact-check",
+      "sv2.n5": "Publish",
+      "sv2.skipped": "skipped",
+      "sv2.sentlabel": "Sent back",
+      "sv2.call": "The draft opened with <q>NEW YORK &ndash;</q>. Not one of the five sources says this happened in New York.",
+      "sv2.after": "Rewrote 21.5s &rarr; re-checked 41.8s <b>&#10003; passed</b> &rarr; published 4.7s",
+      "sv2.ratio": "Writing took 15 seconds. Checking its own writing took 67.",
+      "sv3.stage": "03 / BUILD",
+      "sv3.pain": "Ask about something only your own documents contain, and the AI starts inventing. It answers fast, it sounds certain, and it cannot tell you where the answer came from.",
+      "sv3.q": "I want to work from Japan for three weeks. Is that allowed?",
+      "sv3.a1": "Yes. Three weeks (15 business days) is inside the 20 business-day annual limit for working from another country. No approval needed, just advance notice to your manager.",
+      "sv3.src1": "HR Remote Work &middot; \"Working from another country\"",
+      "sv3.a2": "One catch: you are on VPN level 2, which only connects from approved regions. <span class=\"qa-hl\">Japan is not on that list, so your VPN will simply fail to connect there.</span>",
+      "sv3.src2": "IT VPN Access Levels",
+      "sv3.offer": "Want me to open that travel exception ticket now?",
+      "sv4.stage": "04 / BUILD",
+      "sv4.pain": "Five tools, five logins, and nothing joins them up. Every task needs a person in the middle: look it up here, paste it there, come back and mark it done.",
+      "sv4.ready": "Ready to run",
+      "sv4.k1": "Action",
+      "sv4.v1": "Open an IT ticket",
+      "sv4.k2": "Subject",
+      "sv4.k3": "Severity",
+      "sv4.wait": "Awaiting your confirmation",
+      "sv4.waittx": "Open a severity 3 IT ticket titled \"External monitor flickering\".",
+      "sv4.note": "<b>Nothing has been submitted.</b> The server issues a one-time token bound to these exact details, and only after you answer.",
+      "sv4.b1": "Confirm",
+      "sv4.b2": "Change it",
+      "sv4.b3": "Cancel",
+      "sv5.stage": "05 / VERIFY",
+      "sv5.pain": "When it goes wrong, your customer usually finds out before you do. An AI system does not crash. It just starts being wrong, in exactly the same confident tone.",
+      "sv5.l1": "Judge vs human",
+      "sv5.s1": "Cohen&rsquo;s kappa &middot; 12/14 agreed",
+      "sv5.l2": "Finds the right document",
+      "sv5.s2": "hit@4 &middot; 35/36",
+      "sv5.kill": "Discarded",
+      "sv5.why": "An earlier validation reached <b>perfect agreement</b>. Its answer key had been revised after reading the judge&rsquo;s own output, so it was no longer measuring the same thing. That run was thrown out and the lower number published.",
+      "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
       "s1.body": "Not sure where AI can actually help your business, or if the AI tools you already use are quietly making things up? We audit your current workflows and any AI systems already in place, flag the wasted spend and the hallucination risk (AI stating something false with total confidence), and tell you the one place worth starting. You walk away with <strong>a prioritized, concrete roadmap</strong> you can actually read.",
       "s2.title": "Workflow & Content Automation",
-      "s2.body": "If your team is retyping the same information into three different tools every day, that's hours (and payroll) you're never getting back. We turn that kind of multi-step manual work (classification, translation, drafting, fact-checking, publishing) into an automated pipeline, <strong>cutting turnaround from hours to minutes</strong>, built on production infrastructure that keeps running long after we hand it off.",
+      "s2.body": "We turn that kind of multi-step manual work into an automated pipeline: information arrives, gets sorted, processed, produced and sent where it needs to go, with nobody in the middle. <strong>The same approach fits quotes, support replies, internal reports or published content</strong>, on production infrastructure that keeps running long after we hand it off.",
       "s3.title": "Generative AI & Knowledge Systems",
       "s3.body": "Ask an AI chatbot about your own company, and it won't know. Worse, it might guess and sound sure about it. We build systems that let your team ask questions and get answers sourced straight from your own documents, plus lightweight custom-trained models that write in your brand's exact voice, at a fraction of what training a model from scratch costs. <strong>Generative AI that's accurate first, impressive second.</strong>",
       "s4.title": "Agentic Systems & Integration",
@@ -147,10 +198,61 @@
       "loop.passed": "通过",
       "services.eyebrow": "我们做什么",
       "services.title": "从您的第一次摸底，到上线之后的长期维护。",
+      "services.lede": "您不必先懂技术。多数人从第一项开始，做完再决定下一步。",
+      "sv1.stage": "01 ／ 诊断",
+      "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
+      "sv1.kick": "第 2 条／共 16 条",
+      "sv1.head": "一个什么都没改的写入，却回报成功。",
+      "sv1.r1": "请假单<b>创建了</b>，余额<b>没有动</b>。",
+      "sv1.r2": "<b>全程没有任何错误。</b>同样那三天可以无限次重复请。",
+      "sv1.r3": "它一直都在，只是测试从来没跨过年度边界，所以看不见。",
+      "sv1.fix": "现在只要写入不可能生效，就会直接报错停下来。",
+      "sv2.stage": "02 ／ 构建",
+      "sv2.pain": "同一份数据，这是这周第三次手动搬了。从这个工具拷贝到那个工具，中间还要改格式、补字段。不难，但每天吃掉两小时，而且谁都不想接这个活。",
+      "sv2.n1": "搜集",
+      "sv2.n2": "翻译",
+      "sv2.n3": "撰写",
+      "sv2.n4": "查核",
+      "sv2.n5": "发布",
+      "sv2.skipped": "跳过",
+      "sv2.sentlabel": "退回重写",
+      "sv2.call": "文章开头写了 <q>NEW YORK &ndash;</q>。五份来源里没有一份说这件事发生在纽约。",
+      "sv2.after": "重写 21.5s &rarr; 再查核 41.8s <b>&#10003; 通过</b> &rarr; 发布 4.7s",
+      "sv2.ratio": "写稿花 15 秒，查核自己写的东西花 67 秒。",
+      "sv3.stage": "03 ／ 构建",
+      "sv3.pain": "问到只有您内部文档里才有的东西，AI 就开始编。条款怎么写、流程该找谁、某个规格到底是多少，它答得飞快、语气笃定，但没有一句讲得出出处。",
+      "sv3.q": "我想去日本工作三周，可以吗？",
+      "sv3.a1": "可以。三周（15 个工作天）在每年 20 个工作天的海外工作上限内，不需要核准，只要事先通知您的主管。",
+      "sv3.src1": "HR 远距办公政策 &middot;「在其他国家工作」",
+      "sv3.a2": "但有一件事：您的 VPN 是 level 2，只在核准地区连得上。<span class=\"qa-hl\">日本不在名单里，您到了那边 VPN 会直接连不上。</span>",
+      "sv3.src2": "IT VPN 权限等级政策",
+      "sv3.offer": "要我现在帮您开旅行例外的单吗？",
+      "sv4.stage": "04 ／ 构建",
+      "sv4.pain": "五个工具、五套接口，没有一个真的连着。每完成一件事，就得有人在中间接手：这边查完、拷贝到那边、再回来更新状态。",
+      "sv4.ready": "准备运行",
+      "sv4.k1": "动作",
+      "sv4.v1": "开立 IT 工单",
+      "sv4.k2": "标题",
+      "sv4.k3": "严重度",
+      "sv4.wait": "等待您的确认",
+      "sv4.waittx": "开一张严重度 3 的 IT 工单，标题「External monitor flickering」。",
+      "sv4.note": "<b>什么都还没送出。</b>服务器只会在您回答之后，才发出一组绑定这些细节的一次性权杖。",
+      "sv4.b1": "确认",
+      "sv4.b2": "改一下",
+      "sv4.b3": "取消",
+      "sv5.stage": "05 ／ 验证",
+      "sv5.pain": "出错的时候，通常是客户先发现，不是您。AI 系统不会当机，它只是慢慢开始答错，而且语气跟答对的时候一模一样。",
+      "sv5.l1": "评审 vs 人工一致度",
+      "sv5.s1": "Cohen&rsquo;s kappa &middot; 12/14 一致",
+      "sv5.l2": "检索找对文档",
+      "sv5.s2": "hit@4 &middot; 35/36",
+      "sv5.kill": "作废",
+      "sv5.why": "更早一次验证拿到<b>完全一致</b>。但那份答案卷是在看过评审的输出之后才修改的，量的已经不是同一件事，所以整笔丢掉，公布这个比较难看的数字。",
+      "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
       "s1.body": "不确定 AI 到底能帮您的业务做什么？或者担心自己已经在用的 AI 工具正悄悄编造答案？我们把您现在的工作流程、还有已经在跑的 AI 系统整个过一遍，找出白花的钱和“幻觉”风险（AI 一本正经说出根本不存在的事），告诉您最该先从哪里下手。您拿到的是一份<strong>排好优先级的具体路线图</strong>，看得懂、用得上。",
       "s2.title": "工作流与内容自动化",
-      "s2.body": "如果您的团队每天都要把同一份信息，手动搬到三个不同的工具里，那些时间（还有人力成本）就再也要不回来了。我们把这类多步骤的手动流程（分类、翻译、起草、查证、发布）接成一条自动化流水线，<strong>交付时间从几小时压到几分钟</strong>，底下是生产级的基础设施，交接完之后还会继续稳定跑。",
+      "s2.body": "如果您的团队每天都要把同一份信息，手动搬到三个不同的工具里，那些时间（还有人力成本）就再也要不回来了。我们把这类多步骤的手动流程接成一条自动化流水线：数据进来、分类、处理、产出、送到该去的地方，中间不需要有人手动接手。<strong>不管是报价单、客服回复、内部报告还是对外内容，同一套做法都适用</strong>，底下是生产级的基础设施，交接完之后还会继续稳定跑。",
       "s3.title": "生成式 AI 与知识系统",
       "s3.body": "问 AI 聊天机器人您自己公司的事，它答不上来，更糟的是，它会瞎猜，还一副很确定的样子。我们做的系统，能让您的团队提问，答案直接从您自己的文件里找出处；还有轻量定制训练的模型，写出来的东西就是您品牌说话的样子，成本只是从零训练一个模型的零头。<strong>生成式 AI，先做到准，再谈惊艳。</strong>",
       "s4.title": "Agent 系统与集成",
@@ -257,10 +359,61 @@
       "loop.passed": "通過",
       "services.eyebrow": "我們做什麼",
       "services.title": "從您的第一次盤點，到上線之後的長期維護。",
+      "services.lede": "您不必先懂技術。多數人從第一項開始，做完再決定下一步。",
+      "sv1.stage": "01 ／ 診斷",
+      "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
+      "sv1.kick": "第 2 條／共 16 條",
+      "sv1.head": "一個什麼都沒改的寫入，卻回報成功。",
+      "sv1.r1": "請假單<b>建立了</b>，餘額<b>沒有動</b>。",
+      "sv1.r2": "<b>全程沒有任何錯誤。</b>同樣那三天可以無限次重複請。",
+      "sv1.r3": "它一直都在，只是測試從來沒跨過年度邊界，所以看不見。",
+      "sv1.fix": "現在只要寫入不可能生效，就會直接報錯停下來。",
+      "sv2.stage": "02 ／ 構建",
+      "sv2.pain": "同一份資料，這是這週第三次手動搬了。從這個工具複製到那個工具，中間還要改格式、補欄位。不難，但每天吃掉兩小時，而且誰都不想接這個活。",
+      "sv2.n1": "搜集",
+      "sv2.n2": "翻譯",
+      "sv2.n3": "撰寫",
+      "sv2.n4": "查核",
+      "sv2.n5": "發佈",
+      "sv2.skipped": "跳過",
+      "sv2.sentlabel": "退回重寫",
+      "sv2.call": "文章開頭寫了 <q>NEW YORK &ndash;</q>。五份來源裡沒有一份說這件事發生在紐約。",
+      "sv2.after": "重寫 21.5s &rarr; 再查核 41.8s <b>&#10003; 通過</b> &rarr; 發佈 4.7s",
+      "sv2.ratio": "寫稿花 15 秒，查核自己寫的東西花 67 秒。",
+      "sv3.stage": "03 ／ 構建",
+      "sv3.pain": "問到只有您內部文件裡才有的東西，AI 就開始編。條款怎麼寫、流程該找誰、某個規格到底是多少，它答得飛快、語氣篤定，但沒有一句講得出出處。",
+      "sv3.q": "我想去日本工作三週，可以嗎？",
+      "sv3.a1": "可以。三週（15 個工作天）在每年 20 個工作天的海外工作上限內，不需要核准，只要事先通知您的主管。",
+      "sv3.src1": "HR 遠距辦公政策 &middot;「在其他國家工作」",
+      "sv3.a2": "但有一件事：您的 VPN 是 level 2，只在核准地區連得上。<span class=\"qa-hl\">日本不在名單裡，您到了那邊 VPN 會直接連不上。</span>",
+      "sv3.src2": "IT VPN 權限等級政策",
+      "sv3.offer": "要我現在幫您開旅行例外的單嗎？",
+      "sv4.stage": "04 ／ 構建",
+      "sv4.pain": "五個工具、五套介面，沒有一個真的連著。每完成一件事，就得有人在中間接手：這邊查完、複製到那邊、再回來更新狀態。",
+      "sv4.ready": "準備執行",
+      "sv4.k1": "動作",
+      "sv4.v1": "開立 IT 工單",
+      "sv4.k2": "標題",
+      "sv4.k3": "嚴重度",
+      "sv4.wait": "等待您的確認",
+      "sv4.waittx": "開一張嚴重度 3 的 IT 工單，標題「External monitor flickering」。",
+      "sv4.note": "<b>什麼都還沒送出。</b>伺服器只會在您回答之後，才發出一組綁定這些細節的一次性權杖。",
+      "sv4.b1": "確認",
+      "sv4.b2": "改一下",
+      "sv4.b3": "取消",
+      "sv5.stage": "05 ／ 驗證",
+      "sv5.pain": "出錯的時候，通常是客戶先發現，不是您。AI 系統不會當機，它只是慢慢開始答錯，而且語氣跟答對的時候一模一樣。",
+      "sv5.l1": "評審 vs 人工一致度",
+      "sv5.s1": "Cohen&rsquo;s kappa &middot; 12/14 一致",
+      "sv5.l2": "檢索找對文件",
+      "sv5.s2": "hit@4 &middot; 35/36",
+      "sv5.kill": "作廢",
+      "sv5.why": "更早一次驗證拿到<b>完全一致</b>。但那份答案卷是在看過評審的輸出之後才修改的，量的已經不是同一件事，所以整筆丟掉，公布這個比較難看的數字。",
+      "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
       "s1.body": "不確定 AI 到底能幫您的業務做什麼？或者擔心自己已經在用的 AI 工具正悄悄編造答案？我們把您現在的工作流程、還有已經在跑的 AI 系統整個過一遍，找出白花的錢和「幻覺」風險（AI 一本正經說出根本不存在的事），告訴您最該先從哪裡下手。您拿到的是一份<strong>排好優先順序的具體路線圖</strong>，看得懂、用得上。",
       "s2.title": "工作流與內容自動化",
-      "s2.body": "如果您的團隊每天都要把同一份資訊，手動搬到三個不同的工具裡，那些時間（還有人力成本）就再也要不回來了。我們把這類多步驟的手動流程（分類、翻譯、起草、查證、發布）接成一條自動化流水線，<strong>交付時間從幾小時壓到幾分鐘</strong>，底下是生產級的基礎設施，交接完之後還會繼續穩定跑。",
+      "s2.body": "如果您的團隊每天都要把同一份資訊，手動搬到三個不同的工具裡，那些時間（還有人力成本）就再也要不回來了。我們把這類多步驟的手動流程接成一條自動化流水線：資料進來、分類、處理、產出、送到該去的地方，中間不需要有人手動接手。<strong>不管是報價單、客服回覆、內部報告還是對外內容，同一套做法都適用</strong>，底下是生產級的基礎設施，交接完之後還會繼續穩定跑。",
       "s3.title": "生成式 AI 與知識系統",
       "s3.body": "問 AI 聊天機器人您自己公司的事，它答不上來，更糟的是，它會瞎猜，還一副很確定的樣子。我們做的系統，能讓您的團隊提問，答案直接從您自己的文件裡找出處；還有輕量客製訓練的模型，寫出來的東西就是您品牌說話的樣子，成本只是從零訓練一個模型的零頭。<strong>生成式 AI，先做到準，再談驚豔。</strong>",
       "s4.title": "Agent 系統與整合",
@@ -423,54 +576,6 @@
           langBtn.setAttribute("aria-expanded", "false");
         }
       });
-    }
-
-    /* --- Interactive services panel --- */
-    var serviceMenuItems = document.querySelectorAll(".service-menu-item");
-    if (serviceMenuItems.length) {
-      var AUTO_ADVANCE_DELAY = 6000;
-      var MANUAL_DWELL_DELAY = 10000;
-      var serviceTimer = null;
-      var currentServiceIndex = 0;
-
-      serviceMenuItems.forEach(function (btn, index) {
-        if (btn.classList.contains("active")) currentServiceIndex = index;
-      });
-
-      function activateService(index) {
-        var btn = serviceMenuItems[index];
-        if (!btn) return;
-        var targetId = btn.getAttribute("data-target");
-        serviceMenuItems.forEach(function (b) {
-          b.classList.remove("active");
-          b.setAttribute("aria-selected", "false");
-        });
-        document.querySelectorAll(".service-panel-item").forEach(function (p) {
-          p.classList.remove("active");
-        });
-        btn.classList.add("active");
-        btn.setAttribute("aria-selected", "true");
-        var target = document.getElementById(targetId);
-        if (target) target.classList.add("active");
-        currentServiceIndex = index;
-      }
-
-      function scheduleNextAdvance(delay) {
-        if (serviceTimer) clearTimeout(serviceTimer);
-        serviceTimer = setTimeout(function () {
-          activateService((currentServiceIndex + 1) % serviceMenuItems.length);
-          scheduleNextAdvance(AUTO_ADVANCE_DELAY);
-        }, delay);
-      }
-
-      serviceMenuItems.forEach(function (btn, index) {
-        btn.addEventListener("click", function () {
-          activateService(index);
-          scheduleNextAdvance(MANUAL_DWELL_DELAY);
-        });
-      });
-
-      scheduleNextAdvance(AUTO_ADVANCE_DELAY);
     }
 
     var yearEl = document.querySelector("[data-year]");
