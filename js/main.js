@@ -119,6 +119,8 @@
       "privacy.choices.body": "To access, correct, or delete the information you've submitted, email info@miloop.ai. We'll respond within a reasonable timeframe.",
       "privacy.changes.title": "Changes to this policy",
       "privacy.changes.body": "We may update this page from time to time. The “last updated” date above reflects the most recent revision.",
+      "privacy.fonts.title": "Typeface",
+      "privacy.fonts.body": "This site's Chinese text is set in MiSans, used under Xiaomi's free commercial license.",
       "privacy.contact.title": "Contact",
       "privacy.contact.body": "Questions about this policy can be sent to info@miloop.ai.",
       "footer.privacy": "Privacy Policy"
@@ -226,6 +228,8 @@
       "privacy.choices.body": "要查阅、更正或删除您提交过的信息，发邮件到 info@miloop.ai 即可，我们会在合理时间内回复。",
       "privacy.changes.title": "政策更新",
       "privacy.changes.body": "本页内容我们可能会不时更新，上方的“最后更新”就是最近一次修订的时间。",
+      "privacy.fonts.title": "字体",
+      "privacy.fonts.body": "本网站的中文内容使用 MiSans 字体，依据小米的免费商用授权使用。",
       "privacy.contact.title": "联系方式",
       "privacy.contact.body": "对本政策有疑问，欢迎发邮件到 info@miloop.ai。"
     },
@@ -332,6 +336,8 @@
       "privacy.choices.body": "要查閱、更正或刪除您提交過的資訊，寄郵件到 info@miloop.ai 即可，我們會在合理時間內回覆。",
       "privacy.changes.title": "政策更新",
       "privacy.changes.body": "本頁內容我們可能會不時更新，上方的「最後更新」就是最近一次修訂的時間。",
+      "privacy.fonts.title": "字型",
+      "privacy.fonts.body": "本網站的中文內容使用 MiSans 字型，依據小米的免費商用授權使用。",
       "privacy.contact.title": "聯繫方式",
       "privacy.contact.body": "對本政策有疑問，歡迎寄郵件到 info@miloop.ai。"
     }

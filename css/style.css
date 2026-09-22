@@ -5,6 +5,45 @@
    decorate the page.
    ========================================================================== */
 
+/* MiSans, self-hosted and subset to exactly the CJK characters (+ ASCII)
+   that appear anywhere on this site (site copy, portfolio-page dictionaries,
+   markup) -- built with fontTools/pyftsubset from Xiaomi's official
+   free-for-commercial-use release, same hand-optimise-then-commit pattern
+   used for images and video. Free commercial use requires crediting MiSans
+   somewhere on the site; see footer.rights/privacy page. Replaces Noto Sans
+   SC / Noto Serif SC as the primary CJK face; Noto Sans SC stays loaded from
+   Google Fonts as a fallback for any glyph outside this subset (chiefly the
+   FactLoop demo's arbitrary runtime-generated Chinese, which this subset was
+   never meant to cover). */
+@font-face {
+  font-family: 'MiSans';
+  src: url('../assets/fonts/MiSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('../assets/fonts/MiSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('../assets/fonts/MiSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('../assets/fonts/MiSans-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* --- Color tokens --- */
   --bg-void: #0A0B14;
@@ -20,15 +59,22 @@
   --border-strong: rgba(233, 231, 245, 0.18);
 
   /* --- Type --- */
-  --font-display: 'Fraunces', 'Noto Serif SC', serif;
-  --font-body: 'IBM Plex Sans', 'Noto Sans SC', -apple-system, sans-serif;
+  /* MiSans (self-hosted, subset -- see the @font-face block above) is the
+     primary CJK face across display, body and mono/label tiers alike: it
+     replaced the old Fraunces/Noto-Serif-SC split because a free, equally
+     distinctive CJK serif to pair with Fraunces does not really exist (the
+     free options are all Source-Han-Serif derivatives, visually the same
+     font as Noto Serif SC under a different name). Noto Sans SC stays as
+     the last fallback in every stack, full (not subset), from Google Fonts. */
+  --font-display: 'Fraunces', 'MiSans', 'Noto Sans SC', serif;
+  --font-body: 'IBM Plex Sans', 'MiSans', 'Noto Sans SC', -apple-system, sans-serif;
   /* Every Latin face in this stack lacks CJK, and so does the generic
      `monospace` it ends in, so Chinese label text used to fall through to
      whatever the OS happened to own the glyph: SimSun on Windows, thin and
      spindly and visibly weaker than the rest of the page at the same size.
-     Noto Sans SC is already loaded for body text; naming it here keeps the
-     label tier on one face in both languages. */
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', 'Noto Sans SC', monospace;
+     MiSans (then Noto Sans SC as a full-coverage fallback) keeps the label
+     tier on one deliberate face in both languages. */
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', 'MiSans', 'Noto Sans SC', monospace;
 
   /* A CJK glyph fills its em box. Latin lowercase only reaches the x-height,
      a little over half of it. Set at the same font-size, a Chinese heading
