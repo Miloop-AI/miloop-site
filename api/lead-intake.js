@@ -140,6 +140,7 @@ function isRateLimited(ip) {
 function formatSummary(payload) {
   const fields = [
     ["Language", payload.lang],
+    ["Intent", payload.intent],
     ["Problem type", Array.isArray(payload.problemType) ? payload.problemType.join(", ") : payload.problemType],
     ["Problem type (other)", payload.problemTypeOtherActive ? payload.problemTypeOther : null],
     ["Segment", payload.segment],
