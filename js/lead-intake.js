@@ -27,6 +27,15 @@ const COPY = {
     otherLabel: "Other (please specify)",
     otherPlaceholder: "Please specify...",
     questions: {
+      intent: {
+        title: "What brings you here?",
+        options: [
+          { value: "business", label: "Talk about a project for my business" },
+          { value: "subscribe", label: "Just want to follow the channel" },
+          { value: "submit", label: "Send in a clip for the channel" },
+          { value: "chat", label: "Something else" },
+        ],
+      },
       problemType: {
         title: "What do you need help with?",
         options: [
@@ -69,6 +78,7 @@ const COPY = {
         title: "How did you hear about Miloop AI?",
         options: [
           { value: "linkedin", label: "LinkedIn" },
+          { value: "youtube", label: "YouTube" },
           { value: "referral", label: "Referral" },
           { value: "search", label: "Search or found the site directly" },
           { value: "github", label: "GitHub or portfolio" },
@@ -108,6 +118,24 @@ const COPY = {
       callOption: "Call",
       phone: "Phone",
     },
+    subscribe: {
+      title: "Good call.",
+      body: "New episodes land on the Miloop AI YouTube channel. Subscribe there and you won't miss one.",
+      cta: "Go to YouTube",
+    },
+    submitClip: {
+      title: "We'd love to see it.",
+      body: "Got a screenshot of an AI tool giving a confidently wrong answer? Send it our way. It might end up in a future episode.",
+      cta: "Email us your clip",
+      mailtoSubject: "Clip submission for Miloop AI",
+      mailtoBody: "Hi Miloop AI,\n\nHere's what I saw:\n[describe what the AI tool got wrong, and attach a screenshot if you have one]\n\nTool/product: \nWhat I asked: \nWhat it answered: \n\n",
+    },
+    chatContact: {
+      prompt: "Tell us a bit about what's on your mind.",
+      name: "Name",
+      email: "Email",
+      message: "What would you like to talk about?",
+    },
     note: { prompt: "Anything else that would help us prepare? (optional)" },
     review: {
       prompt: "Quick check before this goes to Miloop AI.",
@@ -143,6 +171,15 @@ const COPY = {
     otherLabel: "其他（请说明）",
     otherPlaceholder: "请简单说明…",
     questions: {
+      intent: {
+        title: "您来是想做什么？",
+        options: [
+          { value: "business", label: "想聊聊我业务上的一个项目" },
+          { value: "subscribe", label: "只是想关注一下频道" },
+          { value: "submit", label: "想投稿一个片段给频道" },
+          { value: "chat", label: "其他" },
+        ],
+      },
       problemType: {
         title: "您需要哪方面的帮助？",
         options: [
@@ -185,6 +222,7 @@ const COPY = {
         title: "您是从哪里了解到 Miloop AI 的？",
         options: [
           { value: "linkedin", label: "LinkedIn" },
+          { value: "youtube", label: "YouTube" },
           { value: "referral", label: "他人推荐" },
           { value: "search", label: "搜索或直接找到网站" },
           { value: "github", label: "GitHub 或作品集" },
@@ -224,6 +262,24 @@ const COPY = {
       callOption: "电话",
       phone: "电话号码",
     },
+    subscribe: {
+      title: "这个选得好。",
+      body: "新一集会发布在 Miloop AI 的 YouTube 频道上。订阅了就不会错过。",
+      cta: "前往 YouTube",
+    },
+    submitClip: {
+      title: "我们很想看看。",
+      body: "有没有截到过哪个 AI 工具一本正经答错的画面？发给我们，说不定会用进下一集。",
+      cta: "发邮件投稿",
+      mailtoSubject: "给 Miloop AI 的投稿",
+      mailtoBody: "您好 Miloop AI：\n\n我看到的情况是：\n[说说这个 AI 工具哪里答错了，有截图的话也附上]\n\n工具/产品：\n我问的是：\n它答的是：\n\n",
+    },
+    chatContact: {
+      prompt: "跟我们说说您想聊什么。",
+      name: "姓名",
+      email: "电子邮箱",
+      message: "您想聊什么？",
+    },
     note: { prompt: "还有什么需要我们提前了解的吗？（选填）" },
     review: {
       prompt: "提交前请确认以下信息。",
@@ -259,6 +315,15 @@ const COPY = {
     otherLabel: "其他（請說明）",
     otherPlaceholder: "請簡單說明…",
     questions: {
+      intent: {
+        title: "您來是想做什麼？",
+        options: [
+          { value: "business", label: "想聊聊我業務上的一個專案" },
+          { value: "subscribe", label: "只是想關注一下頻道" },
+          { value: "submit", label: "想投稿一個片段給頻道" },
+          { value: "chat", label: "其他" },
+        ],
+      },
       problemType: {
         title: "您需要哪方面的協助？",
         options: [
@@ -301,6 +366,7 @@ const COPY = {
         title: "您是從哪裡了解到 Miloop AI 的？",
         options: [
           { value: "linkedin", label: "LinkedIn" },
+          { value: "youtube", label: "YouTube" },
           { value: "referral", label: "他人推薦" },
           { value: "search", label: "搜尋或直接找到網站" },
           { value: "github", label: "GitHub 或作品集" },
@@ -339,6 +405,24 @@ const COPY = {
       emailOption: "郵件",
       callOption: "電話",
       phone: "電話號碼",
+    },
+    subscribe: {
+      title: "這個選得好。",
+      body: "新一集會發布在 Miloop AI 的 YouTube 頻道上。訂閱了就不會錯過。",
+      cta: "前往 YouTube",
+    },
+    submitClip: {
+      title: "我們很想看看。",
+      body: "有沒有截到過哪個 AI 工具一本正經答錯的畫面？發給我們，說不定會用進下一集。",
+      cta: "寄信投稿",
+      mailtoSubject: "給 Miloop AI 的投稿",
+      mailtoBody: "您好 Miloop AI：\n\n我看到的情況是：\n[說說這個 AI 工具哪裡答錯了，有截圖的話也附上]\n\n工具/產品：\n我問的是：\n它答的是：\n\n",
+    },
+    chatContact: {
+      prompt: "跟我們說說您想聊什麼。",
+      name: "姓名",
+      email: "電子郵件",
+      message: "您想聊什麼？",
     },
     note: { prompt: "還有什麼需要我們提前了解的嗎？（選填）" },
     review: {
