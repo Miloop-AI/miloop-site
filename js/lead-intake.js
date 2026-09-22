@@ -448,12 +448,42 @@ const COPY = {
   },
 };
 
+// QUESTION_KEYS still drives the business flow's single-select steps
+// (renderSingleSelectStep, renderReviewStep, problemTypeLabel, findLabel)
+// exactly as before. The old CONTACT/NOTE/REVIEW/CONFIRMATION_STEP_INDEX
+// constants are gone -- render() now dispatches on a step *key* string
+// looked up from getStepList(), not a fixed numeric offset, because the
+// step sequence now depends on which intent the visitor picked.
 const QUESTION_KEYS = ["problemType", "segment", "budget", "timeline", "source"];
-const CONTACT_STEP_INDEX = QUESTION_KEYS.length + 1;
-const NOTE_STEP_INDEX = QUESTION_KEYS.length + 2;
-const REVIEW_STEP_INDEX = QUESTION_KEYS.length + 3;
-const CONFIRMATION_STEP_INDEX = QUESTION_KEYS.length + 4;
-const TOTAL_STEPS = CONFIRMATION_STEP_INDEX;
+
+// One ordered list of step keys per intent. "language" and "intent" are
+// common to every flow and always come first. Keeping these as flat,
+// explicit arrays (rather than building them programmatically) means the
+// full shape of every flow is readable in one place.
+function getStepList() {
+  var intent = state.answers.intent;
+  if (intent === "subscribe") return ["language", "intent", "subscribe"];
+  if (intent === "submit") return ["language", "intent", "submit"];
+  if (intent === "chat") return ["language", "intent", "chatContact", "chatReview", "confirmation"];
+  if (intent === "business") {
+    return ["language", "intent"].concat(QUESTION_KEYS, ["contact", "note", "review", "confirmation"]);
+  }
+  // No intent chosen yet (still on the language or intent step).
+  return ["language", "intent"];
+}
+
+// How many of the leading steps in each flow count as "answering
+// questions" for the progress bar, matching the number of entries
+// updateProgress() used to divide by before this task (QUESTION_KEYS.length
+// + 1 for the now-first "intent" step). Flows with no further questions
+// after intent (subscribe/submit/chat) just show the bar as done once
+// intent is picked.
+const FLOW_QUESTION_STEP_COUNT = {
+  business: QUESTION_KEYS.length + 1,
+  subscribe: 1,
+  submit: 1,
+  chat: 1,
+};
 
 let state = { step: 0, answers: { lang: "en" } };
 let lastFocusedTrigger = null;
@@ -523,8 +553,12 @@ document.addEventListener("keydown", (event) => {
 });
 
 function updateProgress() {
-  const position = Math.min(Math.max(state.step, 0), QUESTION_KEYS.length);
-  progressFillEl.style.width = `${(position / QUESTION_KEYS.length) * 100}%`;
+  // Before intent is picked, we don't yet know which flow's length to
+  // measure against -- assume the business flow (the longest) so the bar
+  // doesn't overshoot 100% if the visitor ends up choosing it.
+  const denom = FLOW_QUESTION_STEP_COUNT[state.answers.intent] || FLOW_QUESTION_STEP_COUNT.business;
+  const position = Math.min(Math.max(state.step - 1, 0), denom);
+  progressFillEl.style.width = `${(position / denom) * 100}%`;
 }
 
 function updateChrome(t) {
@@ -575,13 +609,20 @@ function render() {
   const t = currentCopy();
   updateChrome(t);
   updateProgress();
-  if (state.step === 0) renderLanguageStep(t);
-  else if (state.step === 1) renderProblemTypeStep(t);
-  else if (state.step >= 2 && state.step <= QUESTION_KEYS.length) renderSingleSelectStep(t, QUESTION_KEYS[state.step - 1]);
-  else if (state.step === CONTACT_STEP_INDEX) renderContactStep(t);
-  else if (state.step === NOTE_STEP_INDEX) renderNoteStep(t);
-  else if (state.step === REVIEW_STEP_INDEX) renderReviewStep(t);
-  else if (state.step === CONFIRMATION_STEP_INDEX) renderConfirmationStep(t);
+  const steps = getStepList();
+  const key = steps[state.step];
+  if (key === "language") renderLanguageStep(t);
+  else if (key === "intent") renderIntentStep(t);
+  else if (key === "problemType") renderProblemTypeStep(t);
+  else if (key === "segment" || key === "budget" || key === "timeline" || key === "source") renderSingleSelectStep(t, key);
+  else if (key === "contact") renderContactStep(t);
+  else if (key === "note") renderNoteStep(t);
+  else if (key === "review") renderReviewStep(t);
+  else if (key === "confirmation") renderConfirmationStep(t);
+  else if (key === "subscribe") renderSubscribeStep(t);
+  else if (key === "submit") renderSubmitStep(t);
+  else if (key === "chatContact") renderChatContactStep(t);
+  else if (key === "chatReview") renderChatReviewStep(t);
 }
 
 function renderLanguageStep(t) {
@@ -608,6 +649,65 @@ function renderLanguageStep(t) {
   });
 
   bodyEl.querySelector('[data-role="continue"]').addEventListener("click", goNext);
+}
+
+/* ==========================================================================
+   Intent step: the first real question, right after language. Determines
+   which of the four flows (business / subscribe / submit / chat) the rest
+   of getStepList() returns. Deliberately its own renderer, not
+   renderSingleSelectStep -- that function always offers a generic "Other"
+   option, and "other" has no branch in getStepList(), which would leave a
+   visitor stuck on this step with no way forward.
+   ========================================================================== */
+function renderIntentStep(t) {
+  const q = t.questions.intent;
+  const selectedValue = state.answers.intent;
+
+  bodyEl.innerHTML = `
+    <p class="lead-panel__prompt">${escapeHtml(q.title)}</p>
+    <div class="lead-panel__options" id="lead-intent-options">
+      ${optionButtonsHtml(q.options, selectedValue)}
+    </div>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <span></span>
+    </div>
+  `;
+
+  document.querySelectorAll('#lead-intent-options [data-value]').forEach((button) => {
+    button.addEventListener("click", () => {
+      const value = button.dataset.value;
+      if (state.answers.intent && state.answers.intent !== value) {
+        // Switching intent after already answering some questions under a
+        // different flow: drop those answers so a visitor who bounces
+        // between flows doesn't submit fields their final flow never asked
+        // about (e.g. leftover problemType/segment from a business-flow
+        // detour before landing on "chat").
+        delete state.answers.problemType;
+        delete state.answers.problemTypeOther;
+        delete state.answers.problemTypeOtherActive;
+        delete state.answers.assistantStarted;
+        delete state.answers.assistantDone;
+        delete state.answers.assistantTranscript;
+        delete state.answers.segment;
+        delete state.answers.segmentOther;
+        delete state.answers.budget;
+        delete state.answers.budgetOther;
+        delete state.answers.timeline;
+        delete state.answers.timelineOther;
+        delete state.answers.source;
+        delete state.answers.sourceOther;
+        delete state.answers.contactMethod;
+        delete state.answers.phone;
+        delete state.answers.company;
+        delete state.answers.note;
+      }
+      state.answers.intent = value;
+      goNext();
+    });
+  });
+
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
 }
 
 /* ==========================================================================
@@ -1082,6 +1182,151 @@ async function submitLead(t) {
     errorEl.hidden = false;
     errorEl.textContent = t.error;
   }
+}
+
+/* ==========================================================================
+   "Subscribe" flow: a dead-end informational screen, not a form. There is
+   nothing to submit -- the visitor just gets a link to the channel.
+   ========================================================================== */
+function renderSubscribeStep(t) {
+  const s = t.subscribe;
+  bodyEl.innerHTML = `
+    <div class="lead-panel__confirmation">
+      <div class="lead-panel__confirmation-dot" aria-hidden="true"></div>
+      <p class="lead-panel__prompt">${escapeHtml(s.title)}</p>
+      <p class="lead-panel__field-label">${escapeHtml(s.body)}</p>
+      <a href="https://www.youtube.com/channel/UCPrsvNKxjenRt8NLZQLx50Q" target="_blank" rel="noopener" class="btn btn-primary">${escapeHtml(s.cta)}</a>
+    </div>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <span></span>
+    </div>
+  `;
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
+}
+
+/* ==========================================================================
+   "Submit a clip" flow: also a dead-end informational screen. The mailto
+   link is built here (not stored as a precomputed URL in COPY) so the
+   subject/body get URL-encoded correctly regardless of language.
+   ========================================================================== */
+function renderSubmitStep(t) {
+  const s = t.submitClip;
+  const mailtoHref = `mailto:info@miloop.ai?subject=${encodeURIComponent(s.mailtoSubject)}&body=${encodeURIComponent(s.mailtoBody)}`;
+  bodyEl.innerHTML = `
+    <div class="lead-panel__confirmation">
+      <div class="lead-panel__confirmation-dot" aria-hidden="true"></div>
+      <p class="lead-panel__prompt">${escapeHtml(s.title)}</p>
+      <p class="lead-panel__field-label">${escapeHtml(s.body)}</p>
+      <a href="${mailtoHref}" class="btn btn-primary">${escapeHtml(s.cta)}</a>
+    </div>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <span></span>
+    </div>
+  `;
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
+}
+
+/* ==========================================================================
+   Light "chat" flow, step 1 of 2: name, email, and a free-text message in
+   one screen -- no company field, no contact-method choice, no phone. This
+   is the "not a business inquiry" path; it should not feel like a sales
+   qualification form.
+   ========================================================================== */
+function renderChatContactStep(t) {
+  const answers = state.answers;
+  const c = t.chatContact;
+
+  bodyEl.innerHTML = `
+    <p class="lead-panel__prompt">${escapeHtml(c.prompt)}</p>
+    <div class="lead-panel__field">
+      <label for="lead-chat-name">${escapeHtml(c.name)}</label>
+      <input type="text" id="lead-chat-name" value="${escapeHtml(answers.name || "")}" required />
+    </div>
+    <div class="lead-panel__field">
+      <label for="lead-chat-email">${escapeHtml(c.email)}</label>
+      <input type="email" id="lead-chat-email" value="${escapeHtml(answers.email || "")}" required />
+    </div>
+    <div class="lead-panel__field">
+      <label for="lead-chat-message">${escapeHtml(c.message)}</label>
+      <textarea id="lead-chat-message">${escapeHtml(answers.note || "")}</textarea>
+    </div>
+    <div class="lead-panel__honeypot" aria-hidden="true">
+      <label for="lead-chat-website">Website</label>
+      <input type="text" id="lead-chat-website" name="website" tabindex="-1" autocomplete="off" value="${escapeHtml(answers.website || "")}" />
+    </div>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <button type="button" class="lead-panel__continue" data-role="continue" disabled>${escapeHtml(t.continue)}</button>
+    </div>
+  `;
+
+  const nameInput = bodyEl.querySelector("#lead-chat-name");
+  const emailInput = bodyEl.querySelector("#lead-chat-email");
+  const messageInput = bodyEl.querySelector("#lead-chat-message");
+  const websiteInput = bodyEl.querySelector("#lead-chat-website");
+  const continueButton = bodyEl.querySelector('[data-role="continue"]');
+
+  function validate() {
+    const nameOk = nameInput.value.trim().length > 0;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    continueButton.disabled = !(nameOk && emailOk);
+  }
+
+  nameInput.addEventListener("input", validate);
+  emailInput.addEventListener("input", validate);
+  validate();
+
+  function persistFields() {
+    answers.name = nameInput.value.trim();
+    answers.email = emailInput.value.trim();
+    answers.note = messageInput.value.trim();
+    answers.website = websiteInput.value.trim();
+  }
+
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", () => {
+    persistFields();
+    goBack();
+  });
+
+  continueButton.addEventListener("click", () => {
+    persistFields();
+    goNext();
+  });
+}
+
+/* ==========================================================================
+   Light "chat" flow, step 2 of 2: a short review before the same
+   submitLead(t) the business flow uses. Reuses r.notProvided from the
+   existing review copy rather than adding a new key.
+   ========================================================================== */
+function renderChatReviewStep(t) {
+  const answers = state.answers;
+  const r = t.review;
+  const cc = t.chatContact;
+
+  const rows = [
+    [r.language, LANGUAGE_NAMES[answers.lang] || answers.lang],
+    [r.name, answers.name],
+    [r.email, answers.email],
+    [cc.message, answers.note || r.notProvided],
+  ];
+
+  bodyEl.innerHTML = `
+    <p class="lead-panel__prompt">${escapeHtml(r.prompt)}</p>
+    <ul class="lead-panel__review-list">
+      ${rows.map(([label, value]) => `<li><span>${escapeHtml(label)}</span><span>${escapeHtml(String(value))}</span></li>`).join("")}
+    </ul>
+    <div class="lead-panel__nav">
+      <button type="button" class="lead-panel__back" data-role="back">${escapeHtml(t.back)}</button>
+      <button type="button" class="lead-panel__continue" data-role="submit">${escapeHtml(t.submit)}</button>
+    </div>
+    <p class="lead-panel__error" data-role="error" hidden></p>
+  `;
+
+  bodyEl.querySelector('[data-role="back"]').addEventListener("click", goBack);
+  bodyEl.querySelector('[data-role="submit"]').addEventListener("click", () => submitLead(t));
 }
 
 function renderConfirmationStep(t) {
