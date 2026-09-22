@@ -93,48 +93,51 @@
       <p class="hero-sub" data-i18n="hero.sub">Manual work costs you hours you don't have. AI you can't trust costs you customers, and money you won't get back. We build AI systems that take the busywork off your plate and check their own work before it reaches your customers, which keeps your costs down. You don't need to already understand AI. You just need a problem worth solving.</p>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
+    <div class="hero-visual" id="hero-loop" aria-hidden="true">
       <svg viewBox="0 0 380.0 186.1" width="100%">
         <use class="loop-track" href="#loopPath"/>
-        <use class="loop-trail" href="#loopPath"/>
-        <use class="loop-glow" href="#loopPath"/>
+        <use class="loop-trail" id="loop-trail" href="#loopPath"/>
+        <use class="loop-glow" id="loop-glow" href="#loopPath"/>
 
-        <!-- Written in the order the light meets them, which is now also the
-             order the process runs in: Diagnose, Build, Verify, Deploy,
-             Support. --t is the moment the light's leading edge reaches this
-             node, derived from its real arc position along the path, so the
-             node fires when the light arrives instead of on a clock of its
-             own. Verify sits on the crossing of the figure eight, which is why
-             it is the one node in --signal-mint. -->
-        <g class="loop-node" style="--t: 8.09s" transform="translate(320.21,133.27)">
+        <!-- Positions come from the real arc length along the path, in the order
+             the light meets them, which is also the order the process runs in:
+             Diagnose, Build, Verify, Deploy, Support. Which node is where is the
+             only thing this markup fixes; when each one lights is decided in
+             hero-loop.js by reading where the head actually is, so redrawing the
+             path cannot silently break the causality. Verify sits on the crossing
+             of the figure eight, the one stretch every pass crosses twice, which
+             is why the send-back is drawn there. -->
+        <g class="loop-node" data-node="build" transform="translate(320.21,133.27)">
           <g class="loop-node-mark">
             <circle class="node-dot" r="14"/>
             <polygon class="loop-node-icon" points="0,-5 4.3,-2.5 4.3,2.5 0,5 -4.3,2.5 -4.3,-2.5" fill="none" stroke-width="1.3"/><circle class="loop-node-icon" cx="0" cy="0" r="1.4" fill="none" stroke-width="1.1"/>
           </g>
           <text class="loop-stage-label" text-anchor="middle" y="30" data-i18n="loop.build">Build</text>
         </g>
-        <g class="loop-node loop-node--verify" style="--t: 0.82s" transform="translate(189.99,93.03)">
+        <g class="loop-node loop-node--verify" data-node="verify" transform="translate(189.99,93.03)">
           <g class="loop-node-mark">
             <circle class="node-dot" r="16"/>
             <path class="loop-node-icon" d="M -4,0 L -1,3.5 L 4.5,-3.5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </g>
           <text class="loop-stage-label" text-anchor="middle" y="-22" data-i18n="loop.verify">Verify</text>
+          <text class="loop-verdict loop-verdict--sent" text-anchor="middle" y="34" data-i18n="loop.sentback">sent back</text>
+          <text class="loop-verdict loop-verdict--ok" text-anchor="middle" y="34" data-i18n="loop.passed">passed</text>
         </g>
-        <g class="loop-node" style="--t: 2.54s" transform="translate(59.76,52.79)">
+        <g class="loop-node" data-node="deploy" transform="translate(59.76,52.79)">
           <g class="loop-node-mark">
             <circle class="node-dot" r="14"/>
             <line class="loop-node-icon" x1="0" y1="5" x2="0" y2="-4.5" stroke-width="1.7" stroke-linecap="round"/><path class="loop-node-icon" d="M -3.5,-1.5 L 0,-5 L 3.5,-1.5" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </g>
           <text class="loop-stage-label" text-anchor="middle" y="-22" data-i18n="loop.deploy">Deploy</text>
         </g>
-        <g class="loop-node" style="--t: 4.52s" transform="translate(136.70,136.14)">
+        <g class="loop-node" data-node="support" transform="translate(136.70,136.14)">
           <g class="loop-node-mark">
             <circle class="node-dot" r="14"/>
             <rect class="loop-node-icon" x="-5" y="-4.3" width="10" height="7" rx="2" fill="none" stroke-width="1.3"/><path class="loop-node-icon" d="M -1.5,2.7 L -3,5.8 L 0.5,3.1" fill="none" stroke-width="1.3" stroke-linejoin="round"/>
           </g>
           <text class="loop-stage-label" text-anchor="middle" y="30" data-i18n="loop.support">Support</text>
         </g>
-        <g class="loop-node" style="--t: 6.09s" transform="translate(243.28,49.92)">
+        <g class="loop-node" data-node="diagnose" transform="translate(243.28,49.92)">
           <g class="loop-node-mark">
             <circle class="node-dot" r="14"/>
             <circle class="loop-node-icon" cx="-2" cy="-2" r="4" fill="none" stroke-width="1.4"/><line class="loop-node-icon" x1="1.2" y1="1.2" x2="4.5" y2="4.5" stroke-width="1.6" stroke-linecap="round"/>
@@ -345,6 +348,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/hero-loop.js"></script>
 
 <div class="lead-panel-overlay" id="lead-panel-overlay" aria-hidden="true"></div>
 

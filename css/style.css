@@ -397,58 +397,68 @@ section + section { border-top: 1px solid var(--border-soft); }
   filter: drop-shadow(0 0 5px rgba(91, 110, 245, 0.55));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .loop-glow  { animation: loop-travel 9s linear infinite; }
-  .loop-trail { animation: loop-trail-travel 9s linear infinite; }
-  /* --t is set per node in the markup: the moment the light reaches it. */
-  .loop-node-mark   { animation: node-fire 9s ease-out infinite; animation-delay: var(--t); }
-  .loop-stage-label { animation: label-fire 9s ease-out infinite; animation-delay: var(--t); }
-  .loop-node--verify .loop-stage-label { animation-name: label-fire-verify; }
-}
-@keyframes loop-travel {
-  to { stroke-dashoffset: -786.59; }
-}
-@keyframes loop-trail-travel {
-  from { stroke-dashoffset: 114.1; }
-  to   { stroke-dashoffset: -672.5; }
-}
-/* 16% is the head's own share of the path, so the hold lasts exactly as long
-   as the light covers the node. The decay after it is the afterglow. */
-@keyframes node-fire {
-  0%   { opacity: 0.45; }
-  3%   { opacity: 1; }
-  16%  { opacity: 1; }
-  40%  { opacity: 0.45; }
-  100% { opacity: 0.45; }
-}
-@keyframes label-fire {
-  0%   { fill: var(--ink-dim); }
-  3%   { fill: var(--ink); }
-  16%  { fill: var(--ink); }
-  40%  { fill: var(--ink-dim); }
-  100% { fill: var(--ink-dim); }
-}
-@keyframes label-fire-verify {
-  0%   { fill: var(--ink-dim); }
-  3%   { fill: var(--signal-mint); }
-  16%  { fill: var(--signal-mint); }
-  40%  { fill: var(--ink-dim); }
-  100% { fill: var(--ink-dim); }
+/* The light and the nodes are driven from hero-loop.js, not from keyframes with
+   per-node delays. The send-back means the head stops and runs backwards, and a
+   schedule cannot follow that: a node has to light because the head reached it.
+   Everything below is the resting look and the three states the script sets. */
+.loop-node-mark,
+.loop-node .node-dot,
+.loop-node .loop-node-icon,
+.loop-stage-label {
+  transition: stroke 0.35s ease, fill 0.35s ease, opacity 0.35s ease;
 }
 
-.loop-node circle.node-dot {
+.loop-node .node-dot {
   fill: var(--bg-panel-raised);
   stroke: var(--border-strong);
   stroke-width: 2;
 }
-.loop-node-icon { stroke: var(--ink); }
+.loop-node .loop-node-icon { stroke: var(--ink-dim); }
+.loop-stage-label { fill: var(--ink-dim); }
+
+/* Reached by the light. */
+.loop-node.is-lit .node-dot { stroke: var(--loop-violet); }
+.loop-node.is-lit .loop-node-icon { stroke: var(--ink); }
+.loop-node.is-lit .loop-stage-label { fill: var(--ink); }
 
 /* Verify sits exactly on the crossing of the figure eight, and self-verifying
    systems are what the headline above it claims. It is the only node given the
-   metric colour, and the only one drawn larger, so the composition has a
+   metric colour at rest, and the only one drawn larger, so the composition has a
    subject instead of five equal dots. */
-.loop-node--verify circle.node-dot { stroke: rgba(94, 230, 200, 0.5); }
+.loop-node--verify .node-dot { stroke: rgba(94, 230, 200, 0.5); }
 .loop-node--verify .loop-node-icon { stroke: var(--signal-mint); }
+.loop-node--verify.is-lit .node-dot,
+.loop-node--verify.is-pass .node-dot { stroke: var(--signal-mint); }
+.loop-node--verify.is-lit .loop-stage-label,
+.loop-node--verify.is-pass .loop-stage-label { fill: var(--signal-mint); }
+
+/* Holding something back. */
+.loop-node.is-caught .node-dot,
+.loop-node.is-caught .loop-node-icon { stroke: var(--signal-amber); }
+.loop-node.is-caught .loop-stage-label { fill: var(--signal-amber); }
+
+/* The verdict sits on the crossing, so it always lands on track: the void-coloured
+   outline keeps it readable without a plate behind it. */
+.loop-verdict {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  stroke: var(--bg-void);
+  stroke-width: 3;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  transition: opacity 0.3s ease;
+}
+.loop-verdict--sent { fill: var(--signal-amber); }
+.loop-verdict--ok { fill: var(--signal-mint); }
+.hero-visual.show-sent .loop-verdict--sent,
+.hero-visual.show-ok .loop-verdict--ok { opacity: 1; }
+
+/* While the head runs backwards the body would appear to lead it, so it is held
+   back to almost nothing and only the head reads. */
+.hero-visual.is-reversing .loop-trail { opacity: 0.08; }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
