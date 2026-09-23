@@ -578,23 +578,28 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 
 /* ---- 02: pipeline ---- */
-.pp { display: flex; gap: 0.28rem; margin-bottom: 1rem; }
+/* The one panel that was already a picture rather than a paragraph, so it gets
+   the room the paragraph gave back. The timings sit on the boxes, which is why
+   the sentence that said "writing took 15 seconds, checking took 67" is gone:
+   the two numbers are a foot apart on screen and make the point faster than a
+   line of prose about them does. */
+.pp { display: flex; gap: 0.3rem; margin-bottom: 1.1rem; }
 .pp-n {
   flex: 1;
   background: var(--bg-panel-raised);
   border: 1px solid var(--border-soft);
-  border-radius: 9px;
-  padding: 0.65rem 0.35rem;
+  border-radius: 10px;
+  padding: 0.9rem 0.4rem;
   text-align: center;
   transition: border-color 0.4s ease, background 0.4s ease;
 }
-.pp-t { display: block; font-size: 0.88rem; color: var(--ink); line-height: 1.3; }
+.pp-t { display: block; font-size: 0.95rem; color: var(--ink); line-height: 1.3; }
 .pp-s {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-size: 1.02rem;
   color: var(--ink-faint);
-  margin-top: 0.28rem;
+  margin-top: 0.4rem;
 }
 .pp-a { align-self: center; color: #3a3f63; font-size: 0.95rem; }
 .pp-s2 { display: none; }
@@ -633,9 +638,6 @@ section + section { border-top: 1px solid var(--border-soft); }
   margin-bottom: 0.3rem;
 }
 .pp-call q { color: var(--signal-amber); }
-.pp-after { margin: 0.75rem 0 0; color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; }
-.pp-after b { color: var(--signal-mint); font-weight: 500; }
-.pp-after.is-faint { color: var(--ink-faint); }
 
 /* ---- 03: cited answer ---- */
 .qa-q {
@@ -955,7 +957,6 @@ section + section { border-top: 1px solid var(--border-soft); }
     padding: 0.5rem 0.75rem;
   }
   .pp-s { margin-top: 0; }
-  .pp-after.is-faint { display: none; }
 
   .cf-f { grid-template-columns: 4.4rem 1fr; }
   .jd-num { font-size: calc(1.9rem * var(--display-scale)); }
