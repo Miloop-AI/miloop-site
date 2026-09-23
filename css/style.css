@@ -408,18 +408,19 @@ section + section { border-top: 1px solid var(--border-soft); }
    do this, you get that. Up here it is a record of something that already
    happened, so it is past tense and names the person it happened to. Same stacking
    as .hp-cap, so the line does not change height as the panel cycles. */
+/* Card header. It carries the reader's question, so it is set apart from the
+   evidence under it by a rule and a lighter ground, the way a header behaves. */
 .hp-lede {
   position: relative;
-  margin: 0 0 0.85rem;
-  min-height: 1.5rem;
+  margin: 0;
+  padding: 1rem 1.4rem;
+  background: var(--bg-panel-raised);
+  border-bottom: 1px solid var(--border-soft);
+  min-height: 3.6rem;
+  display: flex;
+  align-items: center;
 }
-/* Read as the reader's own question, so it has to carry like a heading for the
-   panel rather than sit back like a caption. Two rounds of cutting words did not
-   fix "I cannot follow this": the problem was never length, it was that every
-   panel opened mid-story, from the point of view of whoever built the thing. A
-   question the reader already has cannot be misunderstood. */
 .hp-sit {
-  display: block;
   color: var(--ink);
   font-family: var(--font-display);
   font-weight: 300;
@@ -428,7 +429,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   opacity: 0;
   transition: opacity 0.35s ease;
 }
-.hp-sit:not(:first-child) { position: absolute; left: 0; top: 0; right: 0; }
+.hp-sit:not(:first-of-type) { position: absolute; left: 1.4rem; right: 1.4rem; }
 .hp-sit.is-act { opacity: 1; }
 
 .hp-panel {
@@ -443,9 +444,24 @@ section + section { border-top: 1px solid var(--border-soft); }
    tallest of the five, so four of them are no longer padded out to the worst case;
    the script measures the active one and animates to it. Without the script the
    body is simply as tall as its content. */
-.hp-body { position: relative; overflow: hidden; transition: height 0.4s ease; }
+/* The five scenes are 134px to 367px tall, so a box that simply followed them
+   grew and shrank by a factor of two and a half every cycle, and the shortest sat
+   in a large shadowed frame looking unfinished. A floor a little under the tallest
+   holds it steady, and short scenes centre in it rather than hanging from the top,
+   which reads as deliberate rather than as a box someone forgot to fill. */
+.hp-body {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  transition: height 0.4s ease;
+}
 .hp-scene { display: none; padding: 1.5rem 1.4rem; }
-.hp-scene.is-on { display: block; }
+.hp-scene.is-on {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+}
 
 /* Shown only where the nav drops its own button. */
 .hero-cta-narrow { display: none; }
