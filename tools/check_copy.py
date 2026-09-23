@@ -4,7 +4,7 @@ import re
 import sys
 from pathlib import Path
 
-SITE = Path(r"E:\miloop ai\miloop-site")
+SITE = Path(__file__).resolve().parent.parent
 bad = []
 
 css = (SITE / "css" / "style.css").read_text(encoding="utf-8")
