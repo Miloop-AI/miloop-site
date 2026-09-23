@@ -22,7 +22,6 @@
 
   var scenes = [].slice.call(root.querySelectorAll(".hp-scene"));
   var buttons = [].slice.call(root.querySelectorAll(".hp-dot-btn"));
-  var captions = [].slice.call(root.querySelectorAll(".hp-cap"));
   var situations = [].slice.call(root.querySelectorAll(".hp-sit"));
   if (scenes.length < 2) return;
 
@@ -71,10 +70,10 @@
     if (scene) body.style.height = scene.scrollHeight + "px";
   }
 
-  /* The caption says what the run on screen demonstrates. All five are in the
-     markup so each keeps its own data-i18n; only which one is showing changes. */
+  /* The card's header carries the reader's question for the run on screen. All
+     five are in the markup so each keeps its own data-i18n; only which one is
+     showing changes. */
   function label(i) {
-    captions.forEach(function (c, n) { c.classList.toggle("is-act", n === i); });
     situations.forEach(function (c, n) { c.classList.toggle("is-act", n === i); });
   }
 
