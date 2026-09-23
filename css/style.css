@@ -469,29 +469,15 @@ section + section { border-top: 1px solid var(--border-soft); }
   .hero-cta-narrow { display: inline-block; margin-top: 1.5rem; }
 }
 
-/* Under the panel: what this run demonstrates, and five dots to move between them.
-   The numbers that used to sit here read as an index into nothing, since the hero
-   never says what 01 through 05 are. The sentence does that job instead. */
+/* Under the panel: the five dots, and nothing else. A sentence used to sit here
+   saying what the run demonstrated, which was a third telling of something the
+   card's own header asks and its contents answer. */
 .hp-under {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.2rem;
-  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.9rem;
 }
-.hp-caption { position: relative; margin: 0; flex: 1; min-width: 0; }
-.hp-cap {
-  display: block;
-  color: var(--loop-violet);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-/* Stacked, so the line does not change height as the caption changes. */
-.hp-cap:not(:first-child) { position: absolute; left: 0; top: 0; right: 0; }
-.hp-cap.is-act { opacity: 1; }
-
 .hp-dots { display: flex; gap: 0; flex: none; align-items: center; }
 /* The dot is 7px because that is the right size to look at. The button around it
    is 44px because that is the smallest thing a finger reliably hits, so the mark
@@ -763,6 +749,14 @@ section + section { border-top: 1px solid var(--border-soft); }
    figure anybody recognises, and the lower one alone looks like a poor result.
    Side by side, one struck out and one kept, they say "we had the better number
    and did not use it" before a word has been read. */
+.jd-meas {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.75rem;
+}
 .jd-pair {
   display: flex;
   gap: 0.9rem;
@@ -782,7 +776,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: calc(2.2rem * var(--display-scale));
+  font-size: calc(2.6rem * var(--display-scale));
   line-height: 1.1;
   color: var(--ink-faint);
 }
@@ -985,7 +979,6 @@ section + section { border-top: 1px solid var(--border-soft); }
    here, so the fixed body height has to follow or the tallest one is clipped. */
 @media (max-width: 820px) {
   .hp-scene { padding: 1.1rem 1rem 1rem; }
-  .hp-under { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 
   .pp { flex-direction: column; gap: 0.35rem; }
   .pp-a { display: none; }
