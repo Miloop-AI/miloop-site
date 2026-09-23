@@ -1344,12 +1344,15 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
 .result-card.reveal:nth-child(3) { transition-delay: 0.16s; }
 
 /* --- Footer --- */
+/* Laid out the way .site-nav is at the top of the page: the element itself is
+   the full-width band that carries the rule and the watermark, and the
+   .container inside it is the row. It used to be both at once, which made the
+   .container a flex item, shrink to its contents and ignore its own max-width
+   -- the whole footer ended up as a clump in the middle of the page, 278px off
+   the column every other section lines up with. */
 .site-footer {
   border-top: 1px solid var(--border-soft);
   padding: var(--space-4) 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: var(--ink-dim);
   font-size: 0.9rem;
   position: relative;
@@ -1364,20 +1367,31 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
   opacity: 0.05;
   pointer-events: none;
 }
+/* The bottom-bar arrangement: who owns the page on the left, the utility links
+   right beside it, and where we are pushed to the far right. */
 .footer-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
+  position: relative; /* over the watermark */
 }
+.footer-links { display: flex; align-items: center; gap: 1.5rem; }
 .footer-link {
   color: var(--ink-dim);
   transition: color 0.15s ease;
 }
-.footer-link:hover { color: var(--ink-dim); }
+/* Was declaring a transition to the colour it already had, so hovering a link
+   did nothing at all. */
+.footer-link:hover { color: var(--ink); }
 .footer-location {
   font-family: var(--font-mono);
   font-size: 0.88rem;
   margin-left: auto;
+}
+/* Once the row wraps there is no "far right" to push to, so the location
+   rejoins the links instead of stranding itself on a line of its own. */
+@media (max-width: 620px) {
+  .footer-row { gap: 0.4rem 1.2rem; }
+  .footer-location { margin-left: 0; }
 }
