@@ -413,11 +413,18 @@ section + section { border-top: 1px solid var(--border-soft); }
   margin: 0 0 0.85rem;
   min-height: 1.5rem;
 }
+/* Read as the reader's own question, so it has to carry like a heading for the
+   panel rather than sit back like a caption. Two rounds of cutting words did not
+   fix "I cannot follow this": the problem was never length, it was that every
+   panel opened mid-story, from the point of view of whoever built the thing. A
+   question the reader already has cannot be misunderstood. */
 .hp-sit {
   display: block;
-  color: var(--ink-dim);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: calc(1.1rem * var(--display-scale));
+  line-height: 1.45;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
