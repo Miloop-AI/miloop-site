@@ -405,7 +405,7 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-caption { position: relative; margin: 0; flex: 1; min-width: 0; }
 .hp-cap {
   display: block;
-  color: var(--ink-dim);
+  color: var(--loop-violet);
   font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0;
@@ -424,9 +424,10 @@ section + section { border-top: 1px solid var(--border-soft); }
   border: 1px solid var(--border-strong);
   background: none;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
-.hp-dot-btn:hover { border-color: var(--loop-violet); }
+.hp-dot-btn:hover { border-color: var(--loop-violet); transform: scale(1.25); }
+.hp-dot-btn:focus-visible { outline: 2px solid var(--loop-indigo); outline-offset: 3px; }
 .hp-dot-btn.is-act { background: var(--loop-violet); border-color: var(--loop-violet); }
 
 /* The reveal, only once the script is running. */

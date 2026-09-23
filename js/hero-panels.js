@@ -21,7 +21,7 @@
   if (!root) return;
 
   var scenes = [].slice.call(root.querySelectorAll(".hp-scene"));
-  var buttons = [].slice.call(root.querySelectorAll(".hp-go"));
+  var buttons = [].slice.call(root.querySelectorAll(".hp-dot-btn"));
   var captions = [].slice.call(root.querySelectorAll(".hp-cap"));
   if (scenes.length < 2) return;
 
