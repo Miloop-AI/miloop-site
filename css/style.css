@@ -347,8 +347,12 @@ section + section { border-top: 1px solid var(--border-soft); }
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: var(--space-5);
+  /* The loop is a wide, short shape, so its size is set by the column it sits in.
+     Measured: this ratio and gap make it 608px against the 504px it was, and both
+     headlines keep the line count they had. Taking more breaks the Chinese h1 onto
+     a third line. */
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: var(--space-4);
   align-items: center;
 }
 .hero h1 {
