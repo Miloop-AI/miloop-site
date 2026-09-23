@@ -662,7 +662,8 @@ section + section { border-top: 1px solid var(--border-soft); }
 /* Holds only its label now that the explanation lives under the card, so it is a
    marker on the diagram rather than a box with a paragraph in it. */
 .pp-call {
-  display: inline-block;
+  /* A flex item, so inline-block is ignored and stretch would span the card. */
+  align-self: flex-start;
   border: 1px solid rgba(224, 185, 120, 0.4);
   background: rgba(224, 185, 120, 0.07);
   border-radius: 9px;
