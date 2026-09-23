@@ -66,11 +66,11 @@
       "services.lede": "Most people take one of these rather than all five, and start with the first.",
       "sv1.stage": "01 / DIAGNOSE",
       "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
-      "sv1.kick": "One check, 16 findings. This is the second.",
+      "sv1.kick": "Silent failures &middot; finding 2 of 16",
       "sv1.head": "The leave request went through. The days never came off.",
       "sv1.r1": "<b>Nothing anywhere reported a problem</b>, so nobody knew.",
       "sv1.r2": "The same three days could be requested <b>over and over</b>.",
-      "sv1.fix": "Fixed: it now says plainly when it cannot make the change.",
+      "sv1.fix": "The whole update is now rolled back, and no request is created at all.",
 
 
       "sv2.stage": "02 / BUILD",
@@ -252,11 +252,11 @@
       "services.lede": "多数人从第一项开始，做完再决定下一步。",
       "sv1.stage": "01 ／ 诊断",
       "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
-      "sv1.kick": "一次盘查查出 16 件，这是第 2 件",
+      "sv1.kick": "不会出声的错 &middot; 16 件中的第 2 件",
       "sv1.head": "请假单送出去了，可用的假却一天也没少。",
       "sv1.r1": "<b>没有一个地方报错</b>，所以没有人知道。",
       "sv1.r2": "同样那三天，可以<b>一直重复请</b>。",
-      "sv1.fix": "已经修好了：现在它改不动的时候会老实说。",
+      "sv1.fix": "现在这笔更新会整个退回，假单根本创建不起来。",
 
 
       "sv2.stage": "02 ／ 构建",
@@ -438,11 +438,11 @@
       "services.lede": "多數人從第一項開始，做完再決定下一步。",
       "sv1.stage": "01 ／ 診斷",
       "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
-      "sv1.kick": "一次盤查查出 16 件，這是第 2 件",
+      "sv1.kick": "不會出聲的錯 &middot; 16 件中的第 2 件",
       "sv1.head": "請假單送出去了，可用的假卻一天也沒少。",
       "sv1.r1": "<b>沒有一個地方報錯</b>，所以沒有人知道。",
       "sv1.r2": "同樣那三天，可以<b>一直重複請</b>。",
-      "sv1.fix": "已經修好了：現在它改不動的時候會老實說。",
+      "sv1.fix": "現在這筆更新會整個退回，假單根本建立不起來。",
 
 
       "sv2.stage": "02 ／ 構建",
