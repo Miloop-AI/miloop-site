@@ -466,7 +466,7 @@ section + section { border-top: 1px solid var(--border-soft); }
 /* Shown only where the nav drops its own button. */
 .hero-cta-narrow { display: none; }
 @media (max-width: 900px) {
-  .hero-cta-narrow { display: inline-block; margin-top: 1.5rem; }
+  .hero-cta-narrow { display: inline-block; margin-top: 1.4rem; }
 }
 
 /* Under the panel: the five dots, and nothing else. A sentence used to sit here
@@ -495,8 +495,13 @@ section + section { border-top: 1px solid var(--border-soft); }
   cursor: pointer;
   position: relative;
 }
+/* No negative vertical margin here. It pulled the row down to 16px in layout while
+   each button still rendered and took taps across its full 44px, so the dots reached
+   14px below the row and ate into the gap under it. On a phone that gap is where the
+   call to action sits, and it looked jammed under them. The row is simply 44px tall. */
 @media (pointer: coarse) {
-  .hp-dot-btn { width: 44px; height: 44px; margin: -14px 0; }
+  .hp-dot-btn { width: 44px; height: 44px; margin: 0; }
+  .hp-under { margin-top: 0.2rem; }
 }
 .hp-dot-btn::before {
   content: "";
@@ -757,27 +762,24 @@ section + section { border-top: 1px solid var(--border-soft); }
   color: var(--ink-faint);
   margin: 0 0 0.75rem;
 }
+/* No frames around the numbers. Two bordered rectangles side by side read as a
+   form, and the point here is a comparison, not two fields: a struck figure and
+   the one that was kept, with a hairline between them. */
 .jd-pair {
   display: flex;
-  gap: 0.9rem;
-  margin-bottom: 1.1rem;
+  align-items: flex-start;
+  gap: 1.6rem;
+  margin-bottom: 1rem;
 }
-.jd-col {
-  flex: 1;
-  border: 1px solid var(--border-soft);
-  border-radius: 10px;
-  padding: 1rem 1.1rem;
-  text-align: center;
-}
-.jd-col.is-out { border-color: rgba(224, 185, 120, 0.4); background: rgba(224, 185, 120, 0.07); }
-.jd-col.is-keep { border-color: rgba(94, 230, 200, 0.4); background: rgba(94, 230, 200, 0.05); }
+.jd-col { flex: none; }
+.jd-col.is-keep { padding-left: 1.6rem; border-left: 1px solid var(--border-soft); }
 .jd-n {
   position: relative;
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 300;
   font-size: calc(2.6rem * var(--display-scale));
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--ink-faint);
 }
 .jd-col.is-keep .jd-n { color: var(--ink); }
@@ -794,7 +796,7 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-scene.is-run .jd-n i { width: 112%; transition-delay: 1s; }
 .jd-cap {
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   letter-spacing: 0.05em;
@@ -802,7 +804,8 @@ section + section { border-top: 1px solid var(--border-soft); }
   color: var(--signal-amber);
 }
 .jd-col.is-keep .jd-cap { color: var(--signal-mint); }
-.jd-why { margin: 0; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
+.jd-why { margin: 0 0 0.45rem; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
+.jd-dig { margin: 0; font-size: 0.95rem; color: var(--ink-dim); line-height: 1.6; }
 .jd-why b { color: var(--signal-amber); font-weight: 500; }
 
 /* ==========================================================================
@@ -992,7 +995,8 @@ section + section { border-top: 1px solid var(--border-soft); }
   .pp-s { margin-top: 0; }
 
   .cf-f { grid-template-columns: 4.4rem 1fr; }
-  .jd-pair { flex-direction: column; gap: 0.6rem; }
+  .jd-pair { gap: 1.1rem; }
+  .jd-col.is-keep { padding-left: 1.1rem; }
   .jd-n { font-size: calc(1.8rem * var(--display-scale)); }
 
   /* The deliverable names carry the point; their explanations are the tallest part

@@ -70,7 +70,7 @@
       "sv1.head": "The leave request went through. The days never came off.",
       "sv1.r1": "<b>Nothing anywhere reported a problem</b>, so nobody knew.",
       "sv1.r2": "The same three days could be requested <b>over and over</b>.",
-      "sv1.fix": "Now a change that does not take effect stops and says so.",
+      "sv1.fix": "Fixed: it now says plainly when it cannot make the change.",
 
 
       "sv2.stage": "02 / BUILD",
@@ -110,7 +110,8 @@
       "sv5.kill": "Discarded",
       "sv5.meas": "Agreement with a human reviewer",
       "sv5.keep": "What we published",
-      "sv5.why": "On the perfect run the answer key was written afterwards, so it did not count.",
+      "sv5.why": "A perfect score on a check like this is a warning, not a win.",
+      "sv5.dig": "We looked: that run's answer key had been written after reading its answers, so it was being marked against itself. The whole run was thrown out.",
       "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
       "s1.body": "We walk your current process end to end, including any AI already running, and work out where the time and the money actually go.",
@@ -255,7 +256,7 @@
       "sv1.head": "请假单送出去了，可用的假却一天也没少。",
       "sv1.r1": "<b>没有一个地方报错</b>，所以没有人知道。",
       "sv1.r2": "同样那三天，可以<b>一直重复请</b>。",
-      "sv1.fix": "现在改不成，就会当场停下来报错。",
+      "sv1.fix": "已经修好了：现在它改不动的时候会老实说。",
 
 
       "sv2.stage": "02 ／ 构建",
@@ -295,7 +296,8 @@
       "sv5.kill": "作废",
       "sv5.meas": "跟人工判断的一致度",
       "sv5.keep": "我们公布的",
-      "sv5.why": "满分那次，标准答案是事后才补上的，所以不算。",
+      "sv5.why": "这种比对拿到满分，是警讯，不是好消息。",
+      "sv5.dig": "一查才发现：那次的标准答案，是看过它的答案之后才订的，等于拿它自己当标准。整笔作废。",
       "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
       "s1.body": "我们把您现在的流程从头到尾走一遍，包括已经在跑的 AI，算出时间和钱实际花在哪里。",
@@ -440,7 +442,7 @@
       "sv1.head": "請假單送出去了，可用的假卻一天也沒少。",
       "sv1.r1": "<b>沒有一個地方報錯</b>，所以沒有人知道。",
       "sv1.r2": "同樣那三天，可以<b>一直重複請</b>。",
-      "sv1.fix": "現在改不成，就會當場停下來報錯。",
+      "sv1.fix": "已經修好了：現在它改不動的時候會老實說。",
 
 
       "sv2.stage": "02 ／ 構建",
@@ -480,7 +482,8 @@
       "sv5.kill": "作廢",
       "sv5.meas": "跟人工判斷的一致度",
       "sv5.keep": "我們公布的",
-      "sv5.why": "滿分那次，標準答案是事後才補上的，所以不算。",
+      "sv5.why": "這種比對拿到滿分，是警訊，不是好消息。",
+      "sv5.dig": "一查才發現：那次的標準答案，是看過它的答案之後才訂的，等於拿它自己當標準。整筆作廢。",
       "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
       "s1.body": "我們把您現在的流程從頭到尾走一遍，包括已經在跑的 AI，算出時間和錢實際花在哪裡。",

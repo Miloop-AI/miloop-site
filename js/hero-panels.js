@@ -49,9 +49,14 @@
     tallest = 0;
     scenes.forEach(function (s) {
       var showing = s.classList.contains("is-on");
-      if (!showing) { s.style.display = "block"; s.style.visibility = "hidden"; }
+      /* Measured the way the scene will actually be laid out. This used to force
+         display:block, but a shown scene is a flex column with a minimum height of
+         its own, so the number came from a layout the scene never uses. The held
+         height was therefore wrong, the panel still resized when a scene arrived,
+         and that resize under the thumb is the swipe that feels unstable. */
+      if (!showing) { s.style.visibility = "hidden"; s.classList.add("is-on"); }
       if (s.scrollHeight > tallest) tallest = s.scrollHeight;
-      if (!showing) { s.style.display = ""; s.style.visibility = ""; }
+      if (!showing) { s.classList.remove("is-on"); s.style.visibility = ""; }
     });
   }
 
