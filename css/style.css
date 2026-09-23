@@ -415,20 +415,35 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-cap:not(:first-child) { position: absolute; left: 0; top: 0; right: 0; }
 .hp-cap.is-act { opacity: 1; }
 
-.hp-dots { display: flex; gap: 0.5rem; flex: none; }
+.hp-dots { display: flex; gap: 1.1rem; flex: none; align-items: center; }
+/* The dot is 7px because that is the right size to look at. The button around it
+   is 44px because that is the smallest thing a finger reliably hits, so the mark
+   is drawn with a pseudo-element and the control itself stays large and invisible. */
 .hp-dot-btn {
-  width: 7px;
-  height: 7px;
+  width: 44px;
+  height: 44px;
+  margin: -18px -9px;
   padding: 0;
-  border-radius: 50%;
-  border: 1px solid var(--border-strong);
+  border: none;
   background: none;
   cursor: pointer;
+  position: relative;
+}
+.hp-dot-btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
-.hp-dot-btn:hover { border-color: var(--loop-violet); transform: scale(1.25); }
-.hp-dot-btn:focus-visible { outline: 2px solid var(--loop-indigo); outline-offset: 3px; }
-.hp-dot-btn.is-act { background: var(--loop-violet); border-color: var(--loop-violet); }
+.hp-dot-btn:hover::before { border-color: var(--loop-violet); transform: scale(1.25); }
+.hp-dot-btn:focus-visible::before { outline: 2px solid var(--loop-indigo); outline-offset: 3px; }
+.hp-dot-btn.is-act::before { background: var(--loop-violet); border-color: var(--loop-violet); }
 
 /* The reveal, only once the script is running. */
 .hero-visual.js-on .hp-st {
@@ -573,18 +588,21 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .qa-p { font-size: 0.95rem; line-height: 1.7; color: var(--ink); margin: 0 0 0.6rem; }
 .qa-p.is-dim { color: var(--ink-dim); }
-.qa-hl { position: relative; }
-.qa-hl::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  height: 2px;
-  width: 0;
-  background: var(--signal-amber);
-  transition: width 0.55s ease;
+/* Drawn as a background rather than an absolutely positioned bar. The highlighted
+   sentence wraps, and on a phone it wraps to two lines; an absolute ::after knows
+   only the first fragment, so the rule ran under part of the phrase and stopped.
+   A background sized from 0 to full width is painted on every fragment. */
+.qa-hl {
+  padding-bottom: 2px;
+  background-image: linear-gradient(var(--signal-amber), var(--signal-amber));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.55s ease;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
-.hp-scene.is-run .qa-hl::after { width: 100%; transition-delay: 1.05s; }
+.hp-scene.is-run .qa-hl { background-size: 100% 2px; transition-delay: 1.05s; }
 .qa-src {
   display: inline-block;
   font-family: var(--font-mono);

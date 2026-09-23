@@ -63,9 +63,12 @@
     /* Next frame, so the reveal transitions from the hidden state rather than
        being painted already finished. */
     fit();
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { scene.classList.add("is-run"); });
-    });
+    /* Flush the hidden state to the layout, then reveal, so the transition has
+       something to start from. This used to wait two animation frames, which never
+       arrive while the tab is in the background: the scene would stay invisible and
+       only the second beat, on a timer, would land. */
+    void scene.offsetWidth;
+    scene.classList.add("is-run");
     /* Second beat, for the panel that has one: the rejected draft is rewritten and
        published, so the diagram resolves instead of freezing on the failure. */
     setTimeout(function () { if (current === i) scene.classList.add("is-done"); }, 1800);
@@ -79,6 +82,32 @@
   buttons.forEach(function (b, i) {
     b.addEventListener("click", function () { show(i, true); });
   });
+
+  /* Swipe, because on a phone the panel looks like something you can push and the
+     dots are a poor substitute for that. Only a clearly horizontal drag counts, so
+     scrolling the page through the panel still works. Attached unconditionally:
+     feature-detecting touch excludes laptops with touchscreens and some phones
+     that do not expose ontouchstart on window, and the listeners cost nothing
+     where there is no touch. */
+  var panel = root.querySelector(".hp-panel");
+  if (panel) {
+    var startX = 0, startY = 0, tracking = false;
+    panel.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+    panel.addEventListener("touchend", function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - startX;
+      var dy = t.clientY - startY;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      show((current + (dx < 0 ? 1 : scenes.length - 1)) % scenes.length, true);
+    }, { passive: true });
+  }
 
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   if (still && still.matches) {
