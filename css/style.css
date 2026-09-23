@@ -975,61 +975,75 @@ section + section { border-top: 1px solid var(--border-soft); }
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  padding: var(--space-3);
   display: flex;
   flex-direction: column;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .result-card:hover { border-color: var(--loop-indigo); transform: translateY(-2px); }
 
-/* The card leads with the one thing about it a reader can check, and that line is
-   the visual. The photographs it replaces were stock, carried no information, and
-   were marked decorative in the markup by their own empty alt text. */
-.result-card { padding: var(--space-3); gap: 0.45rem; }
-.result-lead {
+/* A testimonial, so the words somebody said are the card and everything else
+   attributes them. The open quote is set in the display face and hung in the
+   margin, which is the oldest way of marking a quotation and reads as one
+   immediately. */
+.result-quote { position: relative; margin: 0; padding-left: 1.5rem; flex: 1; }
+.result-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.1rem;
+  top: -0.35rem;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--loop-violet);
+  opacity: 0.55;
+}
+.result-quote p {
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: calc(2.1rem * var(--display-scale));
-  line-height: 1.1;
+  font-size: calc(1.18rem * var(--display-scale));
+  line-height: 1.55;
   color: var(--ink);
-  margin: 0;
 }
-.result-leadsub {
+.result-cite {
+  display: block;
+  margin: 0.9rem 0 0 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.88rem;
-  color: var(--signal-mint);
-  margin: 0 0 0.7rem;
+  font-style: normal;
+  color: var(--ink-dim);
 }
+
+/* What the reader can check, kept to a credential under a rule rather than set
+   as a slab of white display type above the quote. The figure carries the
+   brand gradient, so it catches the eye by colour instead of by size. */
+.result-credential {
+  margin-top: var(--space-3);
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-soft);
+}
+.result-project { margin: 0 0 0.35rem; color: var(--ink-dim); font-size: 0.95rem; line-height: 1.5; }
 .result-tag {
-  display: block;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--loop-violet);
+  margin-right: 0.55rem;
 }
-.result-card h3 { font-size: 1.1rem; font-weight: 600; font-family: var(--font-body); }
-.result-body-text { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
-.result-body-text strong { color: var(--ink); font-weight: 600; }
-.result-quote {
-  margin: 0.85rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-soft);
+.result-metric { margin: 0; line-height: 1.5; }
+.result-metric-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: calc(1.3rem * var(--display-scale));
+  background: linear-gradient(120deg, var(--loop-indigo), var(--loop-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-right: 0.5rem;
 }
-.result-quote p {
-  font-style: italic;
-  color: var(--ink);
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-.result-quote cite {
-  display: block;
-  margin-top: 0.4rem;
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--ink-dim);
-}
+.result-metric-note { font-family: var(--font-mono); font-size: 0.88rem; color: var(--ink-dim); }
 
 @media (max-width: 820px) {
   .result-grid { grid-template-columns: 1fr; }
