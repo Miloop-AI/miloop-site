@@ -600,29 +600,15 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-scene.is-done .pp-s1 { display: none; }
 .hp-scene.is-done .pp-s2 { display: inline; }
 
-/* Holds only its label now that the explanation lives under the card, so it is a
-   marker on the diagram rather than a box with a paragraph in it. */
 .pp-call {
-  /* A flex item, so inline-block is ignored and stretch would span the card. */
-  align-self: flex-start;
   border: 1px solid rgba(224, 185, 120, 0.4);
   background: rgba(224, 185, 120, 0.07);
   border-radius: 9px;
-  padding: 0.4rem 0.8rem;
+  padding: 0.75rem 0.95rem;
   color: var(--ink);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
-}
-.pp-call-l {
-  display: block;
-  margin-bottom: 0 !important;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--signal-amber);
-  margin-bottom: 0.3rem;
 }
 .pp-call q { color: var(--signal-amber); }
 
