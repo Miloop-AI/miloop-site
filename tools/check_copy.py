@@ -67,6 +67,19 @@ for cls in sorted(set(re.findall(r"\.((?:result|jd)-[a-z0-9-]+)", css))):
     if cls not in markup and cls not in js_all:
         bad.append("styled but never used: ." + cls)
 
+# A key rendered with data-i18n goes through textContent, so an HTML entity in it
+# shows up on screen as the literal "&middot;". Only data-i18n-html decodes them.
+plain_keys, html_keys = set(), set()
+for f in html_files:
+    h = f.read_text(encoding="utf-8")
+    plain_keys |= set(re.findall(r'data-i18n="([^"]+)"', h))
+    html_keys |= set(re.findall(r'data-i18n-html="([^"]+)"', h))
+for name, d in zip(names, dicts):
+    for m in re.finditer(r'^      "([^"]+)": "(.*)",?$', d, re.M):
+        k, v = m.group(1), m.group(2)
+        if k in plain_keys and k not in html_keys and re.search(r"&[a-zA-Z]+;|&#\d+;", v):
+            bad.append("%s: %s is plain text but contains an HTML entity" % (name, k))
+
 if bad:
     print("\n".join("FAIL  " + b for b in bad))
     sys.exit(1)
