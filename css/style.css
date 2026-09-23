@@ -1035,17 +1035,8 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
 /* --- Live demos ---
    Same card anatomy and weight as .result-card above: the difference is that
    these lead somewhere you can use, so the quote slot becomes a button. */
-.live-demo { margin-top: var(--space-5); }
-
-.live-demo-title {
-  font-weight: 300;
-  font-size: calc(clamp(1.3rem, 2.2vw, 1.7rem) * var(--display-scale));
-  line-height: 1.35;
-  max-width: 36ch;
-}
-
 .live-demo-grid {
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
@@ -1149,7 +1140,6 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
   text-transform: uppercase;
   color: var(--loop-violet);
 }
-/* h4 sits outside the reset's h1-h3 selector, so its UA margin is cleared. */
 .live-demo-name {
   margin: 0;
   font-family: var(--font-body);
@@ -1158,7 +1148,7 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
   line-height: 1.35;
 }
 /* Absorbs the slack so the button lands at the card's foot, level with the
-   quote block on the static cards however long the taglines run. */
+   quote block on the testimonial cards however long the taglines run. */
 .live-demo-tagline {
   flex: 1;
   color: var(--ink-dim);
