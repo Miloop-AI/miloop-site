@@ -423,9 +423,10 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-sit {
   color: var(--ink);
   font-family: var(--font-display);
-  font-weight: 300;
-  font-size: calc(1.1rem * var(--display-scale));
-  line-height: 1.45;
+  font-weight: 600;
+  font-size: calc(1.22rem * var(--display-scale));
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
@@ -475,6 +476,25 @@ section + section { border-top: 1px solid var(--border-soft); }
 @media (max-width: 900px) {
   .hero-cta-narrow { display: inline-block; margin-top: 1.4rem; }
 }
+
+/* The answer to the header's question, which is the whole reason the card is on
+   the page. Stacked like the header so the line does not change height as the
+   panel cycles. */
+.hp-answer {
+  position: relative;
+  margin: 0.95rem 0 0;
+  min-height: 4.9rem;
+}
+.hp-ans {
+  display: block;
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.hp-ans:not(:first-of-type) { position: absolute; left: 0; top: 0; right: 0; }
+.hp-ans.is-act { opacity: 1; }
 
 /* Under the panel: the five dots, and nothing else. A sentence used to sit here
    saying what the run demonstrated, which was a third telling of something the
