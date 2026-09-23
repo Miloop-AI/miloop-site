@@ -58,10 +58,9 @@
       "y5ad": "A second model keeps testing the answers, and what slips through is logged and sent to you.",
       "y5b": "Ongoing operations",
       "y5bd": "Cloud infrastructure and day-to-day maintenance stay with us, so nobody on your team has to learn a new system.",
-      "hp.s2": "Fact-Check: Blocking AI Hallucinations",
-      "hp.s3": "Rules from different departments, joined up, so the employee gets one complete answer that will not go wrong.",
-      "hp.s4": "Complete automation, with complete human control.",
-      "hp.s5": "Quality Control: Rejecting Flawed Tests",
+
+
+
       "services.lede": "Most people take one of these rather than all five, and start with the first.",
 
 
@@ -74,39 +73,32 @@
       "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
       "sv2.stage": "02 / BUILD",
       "sv2.pain": "Someone moved the same information by hand this morning, for the third time this week. Copy it out of one tool, fix the formatting, fill in the missing fields, paste it into the next one. The work is easy. It costs two hours a day, and nobody wants it.",
-      "sv2.n1": "Research",
-      "sv2.n2": "Translate",
-      "sv2.n3": "Write",
-      "sv2.n4": "Fact-check",
-      "sv2.n5": "Publish",
-      "sv2.skipped": "skipped",
-      "sv2.sentlabel": "The AI wrote the draft in 15 seconds and spent 67 checking it, and it caught a fabricated fact. Now it rewrites the draft before anyone else sees it.",
+
+
+
+
+
+
       "sv3.stage": "03 / BUILD",
       "sv3.pain": "Ask about something only your own documents contain, and the AI starts inventing. What the contract says, who signs off on this, what that spec number actually is: it answers fast, it sounds certain, and it cannot tell you where any of it came from.",
-      "sv3.q": "I want to work from Japan for three weeks. Is that allowed?",
-      "sv3.a1": "Yes, that is allowed.",
-      "sv3.src1": "HR Remote Work &middot; \"Working from another country\"",
-      "sv3.a2": "Your VPN only connects from approved regions. <span class=\"qa-hl\">Japan is not on that list.</span>",
-      "sv3.src2": "IT VPN Access Levels",
+
+
+
+
       "sv4.stage": "04 / BUILD",
       "sv4.pain": "Five tools, five logins, and nothing joins them up. Every task needs a person in the middle: look it up here, paste it there, come back and mark it done.",
-      "sv4.ready": "Ready to run",
-      "sv4.k1": "Action",
-      "sv4.v1": "Submit a leave request",
-      "sv4.k2": "Dates",
-      "sv4.k3": "Days",
-      "sv4.wait": "Awaiting your confirmation",
-      "sv4.b1": "Confirm",
-      "sv4.b2": "Change it",
-      "sv4.b3": "Cancel",
+
+
+
+
+
+
+
+
       "sv5.stage": "05 / VERIFY",
       "sv5.pain": "When it goes wrong, your customer usually finds out before you do. An AI system does not crash. It just starts being wrong, in exactly the same confident tone.",
 
 
-
-      "sv5.kill": "Discarded",
-      "sv5.meas": "Agreement with a human reviewer",
-      "sv5.keep": "What we published",
 
       "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
@@ -240,10 +232,9 @@
       "y5ad": "另一个模型持续抽考回答，漏掉的都会记下来并通知您。",
       "y5b": "持续维运",
       "y5bd": "云端环境和日常维护由我们接手，不用您的员工另外学一套。",
-      "hp.s2": "事实查核：挡下 AI 的幻觉",
-      "hp.s3": "把跨部门的规定接起来，给员工一个完整、不会出错的答案。",
-      "hp.s4": "完整的自动化，完整的人为操控。",
-      "hp.s5": "品质控管：不合格的测试就作废",
+
+
+
       "services.lede": "多数人从第一项开始，做完再决定下一步。",
 
 
@@ -256,39 +247,32 @@
       "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
       "sv2.stage": "02 ／ 构建",
       "sv2.pain": "同一份数据，这是这周第三次手动搬了。从这个工具拷贝到那个工具，中间还要改格式、补字段。不难，但每天吃掉两小时，而且谁都不想接这个活。",
-      "sv2.n1": "搜集",
-      "sv2.n2": "翻译",
-      "sv2.n3": "撰写",
-      "sv2.n4": "查核",
-      "sv2.n5": "发布",
-      "sv2.skipped": "跳过",
-      "sv2.sentlabel": "AI 花 15 秒写完稿子，自我核查却花了 67 秒，而且抓到了一个捏造的事实。如今，它会在任何人看到之前把稿子重写一遍。",
+
+
+
+
+
+
       "sv3.stage": "03 ／ 构建",
       "sv3.pain": "问到只有您内部文档里才有的东西，AI 就开始编。条款怎么写、流程该找谁、某个规格到底是多少，它答得飞快、语气笃定，但没有一句讲得出出处。",
-      "sv3.q": "我想去日本工作三周，可以吗？",
-      "sv3.a1": "可以，这是允许的。",
-      "sv3.src1": "HR 远距办公政策 &middot;「在其他国家工作」",
-      "sv3.a2": "但您的 VPN 只在核准地区连得上。<span class=\"qa-hl\">日本不在名单里。</span>",
-      "sv3.src2": "IT VPN 权限等级政策",
+
+
+
+
       "sv4.stage": "04 ／ 构建",
       "sv4.pain": "五个工具、五套接口，没有一个真的连着。每完成一件事，就得有人在中间接手：这边查完、拷贝到那边、再回来更新状态。",
-      "sv4.ready": "准备运行",
-      "sv4.k1": "动作",
-      "sv4.v1": "送出请假单",
-      "sv4.k2": "日期",
-      "sv4.k3": "天数",
-      "sv4.wait": "等待您的确认",
-      "sv4.b1": "确认",
-      "sv4.b2": "改一下",
-      "sv4.b3": "取消",
+
+
+
+
+
+
+
+
       "sv5.stage": "05 ／ 验证",
       "sv5.pain": "出错的时候，通常是客户先发现，不是您。AI 系统不会当机，它只是慢慢开始答错，而且语气跟答对的时候一模一样。",
 
 
-
-      "sv5.kill": "作废",
-      "sv5.meas": "跟人工判断的一致度",
-      "sv5.keep": "我们公布的",
 
       "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
@@ -422,10 +406,9 @@
       "y5ad": "另一個模型持續抽考回答，漏掉的都會記下來並通知您。",
       "y5b": "持續維運",
       "y5bd": "雲端環境和日常維護由我們接手，不用您的員工另外學一套。",
-      "hp.s2": "事實查核：擋下 AI 的幻覺",
-      "hp.s3": "把跨部門的規定接起來，給員工一個完整、不會出錯的答案。",
-      "hp.s4": "完整的自動化，完整的人為操控。",
-      "hp.s5": "品質控管：不合格的測試就作廢",
+
+
+
       "services.lede": "多數人從第一項開始，做完再決定下一步。",
 
 
@@ -438,39 +421,32 @@
       "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
       "sv2.stage": "02 ／ 構建",
       "sv2.pain": "同一份資料，這是這週第三次手動搬了。從這個工具複製到那個工具，中間還要改格式、補欄位。不難，但每天吃掉兩小時，而且誰都不想接這個活。",
-      "sv2.n1": "搜集",
-      "sv2.n2": "翻譯",
-      "sv2.n3": "撰寫",
-      "sv2.n4": "查核",
-      "sv2.n5": "發佈",
-      "sv2.skipped": "跳過",
-      "sv2.sentlabel": "AI 花 15 秒寫完稿子，自我核查卻花了 67 秒，而且抓到了一個捏造的事實。如今，它會在任何人看到之前把稿子重寫一遍。",
+
+
+
+
+
+
       "sv3.stage": "03 ／ 構建",
       "sv3.pain": "問到只有您內部文件裡才有的東西，AI 就開始編。條款怎麼寫、流程該找誰、某個規格到底是多少，它答得飛快、語氣篤定，但沒有一句講得出出處。",
-      "sv3.q": "我想去日本工作三週，可以嗎？",
-      "sv3.a1": "可以，這是允許的。",
-      "sv3.src1": "HR 遠距辦公政策 &middot;「在其他國家工作」",
-      "sv3.a2": "但您的 VPN 只在核准地區連得上。<span class=\"qa-hl\">日本不在名單裡。</span>",
-      "sv3.src2": "IT VPN 權限等級政策",
+
+
+
+
       "sv4.stage": "04 ／ 構建",
       "sv4.pain": "五個工具、五套介面，沒有一個真的連著。每完成一件事，就得有人在中間接手：這邊查完、複製到那邊、再回來更新狀態。",
-      "sv4.ready": "準備執行",
-      "sv4.k1": "動作",
-      "sv4.v1": "送出請假單",
-      "sv4.k2": "日期",
-      "sv4.k3": "天數",
-      "sv4.wait": "等待您的確認",
-      "sv4.b1": "確認",
-      "sv4.b2": "改一下",
-      "sv4.b3": "取消",
+
+
+
+
+
+
+
+
       "sv5.stage": "05 ／ 驗證",
       "sv5.pain": "出錯的時候，通常是客戶先發現，不是您。AI 系統不會當機，它只是慢慢開始答錯，而且語氣跟答對的時候一模一樣。",
 
 
-
-      "sv5.kill": "作廢",
-      "sv5.meas": "跟人工判斷的一致度",
-      "sv5.keep": "我們公布的",
 
       "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
