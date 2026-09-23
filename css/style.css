@@ -315,6 +315,13 @@ section + section { border-top: 1px solid var(--border-soft); }
 .lang-option.active { color: var(--loop-violet); font-weight: 600; }
 
 .nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+/* Two labels, one dictionary entry each, so the narrow bar gets a shorter one
+   without the button text falling outside the translation path. */
+.btn-narrow { display: none; }
+@media (max-width: 820px) {
+  .btn-wide { display: none; }
+  .btn-narrow { display: inline; }
+}
 
 .sr-only {
   position: absolute;
@@ -331,13 +338,13 @@ section + section { border-top: 1px solid var(--border-soft); }
 @media (max-width: 480px) {
   .wordmark-full { height: 26px; }
   .brand-group { gap: 0.55rem; }
-  /* The bar was carrying the wordmark, the channel link, the language switch and
-     the widest thing on it, the call to action. Dropping the button here gives the
-     other three room; the hero carries it instead, under the evidence, and the
-     teaser further down still has one. */
+  /* The bar carries the wordmark, the channel link, the language switch and the
+     call to action, and the last one is the widest. It used to be dropped here and
+     picked up beside the hero, but the hero no longer has anywhere to put it. It
+     stays, smaller, under a shorter label. */
   .brand-youtube-link svg { width: 22px; height: 15px; }
   .nav-actions { gap: 0.5rem; }
-  .nav-actions .btn { display: none; }
+  .nav-actions .btn { padding: 0.5rem 0.9rem; font-size: 0.88rem; }
 }
 
 /* ==========================================================================
