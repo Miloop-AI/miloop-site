@@ -58,25 +58,20 @@
       "y5ad": "A second model keeps testing the answers, and what slips through is logged and sent to you.",
       "y5b": "Ongoing operations",
       "y5bd": "Cloud infrastructure and day-to-day maintenance stay with us, so nobody on your team has to learn a new system.",
-      "hp.s1": "Catching Silent System Errors",
-      "hp.a1": "The HR system confirmed a time-off request, but the days were never deducted and nothing anywhere raised an error. Our assessment caught it before anyone outside would have, and the write now rolls back instead of reporting success.",
-      "hp.s2": "Fact-Check: Blocking AI Hallucinations",
-      "hp.a2": "The AI drafted a report in 15 seconds, but its self-verification layer spent 67 seconds checking the facts. It caught an invented location (&ldquo;New York&rdquo;) and rewrote the draft before anyone else saw it.",
-      "hp.s3": "Cross-Checking: Connecting HR and IT Rules",
-      "hp.a3": "An employee asked to work from Japan. The AI checked the HR handbook (approved) but didn&rsquo;t stop there. It cross-referenced IT security rules, discovered a VPN block for Japan, and provided a complete, safe answer to the employee.",
-      "hp.s4": "Zero Unapproved Actions",
-      "hp.a4": "The AI prepared the leave request exactly as instructed. It can look things up on its own, but anything that changes something waits for your confirmation, and the server enforces that, not the model. You get complete automation, with complete human control.",
+      "hp.s2": "The AI wrote the draft in 15 seconds and spent 67 checking it, and it caught a fabricated fact. Now it rewrites the draft before anyone else sees it.",
+      "hp.s3": "Rules from different departments, joined up, so the employee gets one complete answer that will not go wrong.",
+      "hp.s4": "Complete automation, with complete human control.",
       "hp.s5": "Quality Control: Rejecting Flawed Tests",
-      "hp.a5": "When an internal validation scored a perfect 100%, we flagged it as too good to be true. The answer key had been revised after seeing the results, so we discarded the score and published the lower one from a stricter run.",
       "services.lede": "Most people take one of these rather than all five, and start with the first.",
+
+
+
+
+
+
+
       "sv1.stage": "01 / DIAGNOSE",
       "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
-      "sv1.kick": "Silent failures · finding 2 of 16",
-      "sv1.head": "The leave request went through. The days never came off.",
-
-
-
-
       "sv2.stage": "02 / BUILD",
       "sv2.pain": "Someone moved the same information by hand this morning, for the third time this week. Copy it out of one tool, fix the formatting, fill in the missing fields, paste it into the next one. The work is easy. It costs two hours a day, and nobody wants it.",
       "sv2.n1": "Research",
@@ -245,25 +240,20 @@
       "y5ad": "另一个模型持续抽考回答，漏掉的都会记下来并通知您。",
       "y5b": "持续维运",
       "y5bd": "云端环境和日常维护由我们接手，不用您的员工另外学一套。",
-      "hp.s1": "抓出不会出声的系统错误",
-      "hp.a1": "HR 系统回报请假成功，但可用天数一天也没扣，而且从头到尾没有一个地方报错。这是我们健检时抓出来的，在任何外人发现之前。现在这笔更新会整个退回，不会再回报成功。",
-      "hp.s2": "事实查核：挡下 AI 的幻觉",
-      "hp.a2": "AI 花 15 秒写完稿子，自我查核却花了 67 秒。它抓到一个捏造的地点（「纽约」），并在任何人看到之前把稿子重写了一遍。",
-      "hp.s3": "跨部门比对：把 HR 和 IT 的规定接起来",
-      "hp.a3": "员工问能不能到日本工作。AI 查了 HR 手册（可以），但没有停在那里。它再去比对 IT 的安全规定，发现日本不在 VPN 的许可名单内，于是给了员工一个完整、不会出事的答案。",
-      "hp.s4": "没有一个动作是您没点头的",
-      "hp.a4": "AI 完全照指示把请假单准备好了。它可以自己查数据，但只要是会改动东西的动作，一律等您确认——而且这道关卡是服务器挡的，不是模型自己决定要不要乖。完整的自动化，完整的人为掌控。",
+      "hp.s2": "AI 花 15 秒写完稿子，自我核查却花了 67 秒，而且抓到了一个捏造的事实。如今，它会在任何人看到之前把稿子重写一遍。",
+      "hp.s3": "把跨部门的规定接起来，给员工一个完整、不会出错的答案。",
+      "hp.s4": "完整的自动化，完整的人为操控。",
       "hp.s5": "品质控管：不合格的测试就作废",
-      "hp.a5": "一次内部验证拿到满分时，我们判定这太好了、不像真的。那份标准答案是看过结果之后才修改的，所以我们把这个成绩作废，公布了另一次更严格的、比较难看的分数。",
       "services.lede": "多数人从第一项开始，做完再决定下一步。",
+
+
+
+
+
+
+
       "sv1.stage": "01 ／ 诊断",
       "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
-      "sv1.kick": "不会出声的错 · 16 件中的第 2 件",
-      "sv1.head": "请假单送出去了，可用的假却一天也没少。",
-
-
-
-
       "sv2.stage": "02 ／ 构建",
       "sv2.pain": "同一份数据，这是这周第三次手动搬了。从这个工具拷贝到那个工具，中间还要改格式、补字段。不难，但每天吃掉两小时，而且谁都不想接这个活。",
       "sv2.n1": "搜集",
@@ -432,25 +422,20 @@
       "y5ad": "另一個模型持續抽考回答，漏掉的都會記下來並通知您。",
       "y5b": "持續維運",
       "y5bd": "雲端環境和日常維護由我們接手，不用您的員工另外學一套。",
-      "hp.s1": "抓出不會出聲的系統錯誤",
-      "hp.a1": "HR 系統回報請假成功，但可用天數一天也沒扣，而且從頭到尾沒有一個地方報錯。這是我們健檢時抓出來的，在任何外人發現之前。現在這筆更新會整個退回，不會再回報成功。",
-      "hp.s2": "事實查核：擋下 AI 的幻覺",
-      "hp.a2": "AI 花 15 秒寫完稿子，自我查核卻花了 67 秒。它抓到一個捏造的地點（「紐約」），並在任何人看到之前把稿子重寫了一遍。",
-      "hp.s3": "跨部門比對：把 HR 和 IT 的規定接起來",
-      "hp.a3": "員工問能不能到日本工作。AI 查了 HR 手冊（可以），但沒有停在那裡。它再去比對 IT 的安全規定，發現日本不在 VPN 的許可名單內，於是給了員工一個完整、不會出事的答案。",
-      "hp.s4": "沒有一個動作是您沒點頭的",
-      "hp.a4": "AI 完全照指示把請假單準備好了。它可以自己查資料，但只要是會改動東西的動作，一律等您確認——而且這道關卡是伺服器擋的，不是模型自己決定要不要乖。完整的自動化，完整的人為掌控。",
+      "hp.s2": "AI 花 15 秒寫完稿子，自我核查卻花了 67 秒，而且抓到了一個捏造的事實。如今，它會在任何人看到之前把稿子重寫一遍。",
+      "hp.s3": "把跨部門的規定接起來，給員工一個完整、不會出錯的答案。",
+      "hp.s4": "完整的自動化，完整的人為操控。",
       "hp.s5": "品質控管：不合格的測試就作廢",
-      "hp.a5": "一次內部驗證拿到滿分時，我們判定這太好了、不像真的。那份標準答案是看過結果之後才修改的，所以我們把這個成績作廢，公布了另一次更嚴格的、比較難看的分數。",
       "services.lede": "多數人從第一項開始，做完再決定下一步。",
+
+
+
+
+
+
+
       "sv1.stage": "01 ／ 診斷",
       "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
-      "sv1.kick": "不會出聲的錯 · 16 件中的第 2 件",
-      "sv1.head": "請假單送出去了，可用的假卻一天也沒少。",
-
-
-
-
       "sv2.stage": "02 ／ 構建",
       "sv2.pain": "同一份資料，這是這週第三次手動搬了。從這個工具複製到那個工具，中間還要改格式、補欄位。不難，但每天吃掉兩小時，而且誰都不想接這個活。",
       "sv2.n1": "搜集",
