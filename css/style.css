@@ -982,27 +982,24 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .result-card:hover { border-color: var(--loop-indigo); transform: translateY(-2px); }
 
-.result-visual {
-  aspect-ratio: 16 / 10;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg-panel-raised);
+/* The card leads with the one thing about it a reader can check, and that line is
+   the visual. The photographs it replaces were stock, carried no information, and
+   were marked decorative in the markup by their own empty alt text. */
+.result-card { padding: var(--space-3); gap: 0.45rem; }
+.result-lead {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: calc(2.1rem * var(--display-scale));
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
 }
-.result-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.result-leadsub {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--signal-mint);
+  margin: 0 0 0.7rem;
 }
-.result-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10, 11, 20, 0.18) 0%, rgba(10, 11, 20, 0.28) 55%, rgba(20, 22, 37, 0.96) 100%);
-  pointer-events: none;
-}
-
-.result-body { padding: var(--space-3); display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
 .result-tag {
   display: block;
   font-family: var(--font-mono);
@@ -1011,11 +1008,11 @@ section + section { border-top: 1px solid var(--border-soft); }
   text-transform: uppercase;
   color: var(--loop-violet);
 }
-.result-body h3 { font-size: 1.1rem; font-weight: 600; font-family: var(--font-body); }
-.result-body p { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; }
-.result-body p strong { color: var(--signal-mint); font-weight: 600; }
+.result-card h3 { font-size: 1.1rem; font-weight: 600; font-family: var(--font-body); }
+.result-body-text { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.result-body-text strong { color: var(--ink); font-weight: 600; }
 .result-quote {
-  margin: 0.75rem 0 0;
+  margin: 0.85rem 0 0;
   padding-top: 0.75rem;
   border-top: 1px solid var(--border-soft);
 }
@@ -1097,9 +1094,10 @@ section + section { border-top: 1px solid var(--border-soft); }
   object-fit: cover;
   display: block;
 }
-/* Much lighter than .result-visual's scrim. That one blends a photograph into
-   the card body; this one only has to keep a bright screenshot from clashing
-   with the text below, so the screenshot itself stays readable. */
+/* Light on purpose: this only has to keep a bright screenshot from clashing with
+   the text below, so the screenshot itself stays readable. (It used to be
+   described against the result cards' scrim, which went when those cards lost
+   their stock photographs.) */
 .live-demo-visual::after {
   content: "";
   position: absolute;
