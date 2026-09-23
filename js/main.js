@@ -20,7 +20,7 @@
     "en": {
       "meta.title": "Miloop AI: Applied AI Engineering Consultancy",
       "meta.description": "Miloop AI designs and ships production AI systems, from content automation to voice agents, each with an independent evaluation layer built in from day one.",
-      "hero.eyebrow": "Applied AI Engineering Practice",
+      "hero.eyebrow": "Reliable AI for real business problems",
       "hero.heading.pre": "AI systems engineered to ",
       "hero.heading.em": "verify themselves",
       "hero.heading.post": ".",
@@ -203,7 +203,7 @@
     "zh-Hans": {
       "meta.title": "Miloop AI：应用型 AI 工程咨询",
       "meta.description": "Miloop AI 做的是真正跑在生产环境里的 AI 系统，从内容自动化到语音助理，每一套都从第一天起就内置一层独立的评估。",
-      "hero.eyebrow": "应用型 AI 工程实践",
+      "hero.eyebrow": "可靠的 AI，解决真实的业务问题",
       "hero.heading.pre": "从设计上就能",
       "hero.heading.em": "自我验证",
       "hero.heading.post": "的 AI 系统。",
@@ -386,7 +386,7 @@
     "zh-Hant": {
       "meta.title": "Miloop AI：應用型 AI 工程顧問",
       "meta.description": "Miloop AI 做的是真正跑在生產環境裡的 AI 系統，從內容自動化到語音助理，每一套都從第一天起就內建一層獨立的評估。",
-      "hero.eyebrow": "應用型 AI 工程實踐",
+      "hero.eyebrow": "可靠的 AI，解決真實的業務問題",
       "hero.heading.pre": "從設計上就能",
       "hero.heading.em": "自我驗證",
       "hero.heading.post": "的 AI 系統。",
