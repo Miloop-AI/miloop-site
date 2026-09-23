@@ -22,9 +22,8 @@
 
   var scenes = [].slice.call(root.querySelectorAll(".hp-scene"));
   var buttons = [].slice.call(root.querySelectorAll(".hp-go"));
-  var name = root.querySelector(".hp-name");
-  var foot = root.querySelector(".hp-foot");
-  if (scenes.length < 2 || !name || !foot) return;
+  var captions = [].slice.call(root.querySelectorAll(".hp-cap"));
+  if (scenes.length < 2) return;
 
   var DWELL = 8000;          /* long enough to read a scene */
   var DWELL_AFTER_CLICK = 14000;   /* someone who chose a scene wants to finish it */
@@ -34,25 +33,20 @@
 
   var body = root.querySelector(".hp-body");
 
-  /* The panel holds a fixed height so it does not jump as the scenes cycle, but the
-     right height is not a number anyone can write down: the scenes differ, the three
-     languages differ, and text reflows once the webfont lands. So it is measured. A
-     stylesheet value would clip whichever scene happened to be longest that day. */
+  /* The panel takes the height of the scene on screen, animated, rather than the
+     height of the tallest of the five. Holding the worst case meant four scenes out
+     of five sat in a box with empty space under them. The number cannot come from
+     the stylesheet either: the scenes differ, the three languages differ, and text
+     reflows once the webfont lands, so it is measured each time. */
   function fit() {
-    if (!body) return;
-    var tallest = 0;
-    scenes.forEach(function (s) {
-      var showing = s.classList.contains("is-on");
-      if (!showing) { s.style.display = "block"; s.style.visibility = "hidden"; }
-      if (s.scrollHeight > tallest) tallest = s.scrollHeight;
-      if (!showing) { s.style.display = ""; s.style.visibility = ""; }
-    });
-    if (tallest) body.style.height = tallest + "px";
+    var scene = scenes[current] || scenes[0];
+    if (body && scene) body.style.height = scene.scrollHeight + "px";
   }
 
+  /* The caption says what the run on screen demonstrates. All five are in the
+     markup so each keeps its own data-i18n; only which one is showing changes. */
   function label(i) {
-    name.innerHTML = scenes[i].getAttribute("data-name") || "";
-    foot.textContent = scenes[i].getAttribute("data-foot") || "";
+    captions.forEach(function (c, n) { c.classList.toggle("is-act", n === i); });
   }
 
   function show(i, chosen) {
@@ -68,6 +62,7 @@
     var scene = scenes[i];
     /* Next frame, so the reveal transitions from the hidden state rather than
        being painted already finished. */
+    fit();
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { scene.classList.add("is-run"); });
     });

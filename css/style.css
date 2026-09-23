@@ -384,71 +384,50 @@ section + section { border-top: 1px solid var(--border-soft); }
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
   min-width: 0;
 }
-.hp-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.7rem 1.1rem;
-  border-bottom: 1px solid var(--border-soft);
-  background: var(--bg-panel-raised);
-  min-width: 0;
-}
-.hp-dot { width: 8px; height: 8px; border-radius: 50%; background: #2c3050; flex: none; }
-.hp-name {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--ink-dim);
-  margin-left: 0.5rem;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.hp-tag {
-  margin-left: auto;
-  flex: none;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--signal-mint);
-  border: 1px solid rgba(94, 230, 200, 0.3);
-  border-radius: 999px;
-  padding: 0.1rem 0.6rem;
-}
-/* A floor for the case where the script never runs; when it does, it measures the
-   tallest scene and sets the real height, because that number changes with the
-   language and with whether the webfont has landed. */
-.hp-body { position: relative; min-height: 340px; overflow: hidden; }
-.hp-scene { display: none; padding: 1.3rem 1.3rem 1.1rem; }
+/* One scene at a time. The height follows the scene on screen rather than the
+   tallest of the five, so four of them are no longer padded out to the worst case;
+   the script measures the active one and animates to it. Without the script the
+   body is simply as tall as its content. */
+.hp-body { position: relative; overflow: hidden; transition: height 0.4s ease; }
+.hp-scene { display: none; padding: 1.5rem 1.4rem; }
 .hp-scene.is-on { display: block; }
-.hp-foot {
-  border-top: 1px solid var(--border-soft);
-  padding: 0.7rem 1.3rem;
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--ink-faint);
-  line-height: 1.55;
-}
 
-.hp-rail { display: flex; gap: 0.4rem; margin-top: 1rem; }
-.hp-go {
-  flex: 1;
-  background: none;
-  border: none;
-  border-top: 2px solid var(--border-soft);
-  padding: 0.7rem 0 0;
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--font-mono);
-  color: inherit;
+/* Under the panel: what this run demonstrates, and five dots to move between them.
+   The numbers that used to sit here read as an index into nothing, since the hero
+   never says what 01 through 05 are. The sentence does that job instead. */
+.hp-under {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
-.hp-rn { display: block; font-size: 0.88rem; color: var(--ink-faint); }
-.hp-rl { display: block; font-size: 0.88rem; color: var(--ink-faint); margin-top: 0.18rem; line-height: 1.35; }
-.hp-go.is-act { border-top-color: var(--loop-violet); }
-.hp-go.is-act .hp-rn { color: var(--loop-violet); }
-.hp-go.is-act .hp-rl { color: var(--ink); }
-.hp-go:hover .hp-rl { color: var(--ink-dim); }
+.hp-caption { position: relative; margin: 0; flex: 1; min-width: 0; }
+.hp-cap {
+  display: block;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+/* Stacked, so the line does not change height as the caption changes. */
+.hp-cap:not(:first-child) { position: absolute; left: 0; top: 0; right: 0; }
+.hp-cap.is-act { opacity: 1; }
+
+.hp-dots { display: flex; gap: 0.5rem; flex: none; }
+.hp-dot-btn {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: none;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.hp-dot-btn:hover { border-color: var(--loop-violet); }
+.hp-dot-btn.is-act { background: var(--loop-violet); border-color: var(--loop-violet); }
 
 /* The reveal, only once the script is running. */
 .hero-visual.js-on .hp-st {
@@ -911,12 +890,8 @@ section + section { border-top: 1px solid var(--border-soft); }
    70px each wrapped to four lines and read as noise. The scenes also run taller
    here, so the fixed body height has to follow or the tallest one is clipped. */
 @media (max-width: 820px) {
-  .hp-body { min-height: 420px; }
   .hp-scene { padding: 1.1rem 1rem 1rem; }
-  .hp-foot { display: none; }
-  .hp-rl { display: none; }
-  .hp-rn { font-size: 0.95rem; }
-  .hp-go { text-align: center; padding-top: 0.6rem; }
+  .hp-under { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 
   .pp { flex-direction: column; gap: 0.35rem; }
   .pp-a { display: none; }
@@ -938,6 +913,12 @@ section + section { border-top: 1px solid var(--border-soft); }
      of a band on a phone and the least likely to be read there. */
   .sv-y-d { display: none; }
   .sv-y { padding: 0.5rem 0; }
+
+  /* Monospace is wide, and a long sentence set in it on a 366px column runs to six
+     lines. The violet keeps the line recognisable; the face does not have to. */
+  .sv-pain { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; }
+  .sv-yield-s { line-height: 1.55; }
+  .sv-desc { line-height: 1.65; }
 }
 
 /* ==========================================================================

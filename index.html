@@ -78,22 +78,16 @@
 
     <div class="hero-visual" id="hero-panels">
       <div class="hp-panel">
-        <div class="hp-bar">
-          <span class="hp-dot"></span><span class="hp-dot"></span><span class="hp-dot"></span>
-          <span class="hp-name"></span>
-          <span class="hp-tag" data-i18n="sv.realrun">real run</span>
-        </div>
         <div class="hp-body">
-          <div class="hp-scene is-on" data-name="assessment-findings" data-foot="16 findings, written during the build, not reconstructed after it. DeskLoop.">
+          <div class="hp-scene is-on">
 
             <p class="fi-kick hp-st" data-i18n="sv1.kick">Finding 2 of 16</p>
             <p class="fi-head hp-st" data-i18n="sv1.head">A write that changes nothing reports success.</p>
             <p class="fi-row hp-st" data-i18n-html="sv1.r1">The leave request <b>was created</b>. The balance <b>never moved</b>.</p>
             <p class="fi-row hp-st" data-i18n-html="sv1.r2"><b>No error was raised anywhere.</b> The same three days could then be requested without limit.</p>
-            <p class="fi-row hp-st" data-i18n="sv1.r3">It was reachable the whole time. The tests never crossed a year boundary, so nobody saw it.</p>
             <p class="fi-fix hp-st" data-i18n="sv1.fix">A write that cannot take effect now fails loudly, rather than reporting success.</p>
           </div>
-          <div class="hp-scene" data-name="factloop &middot; pipeline" data-foot="One real run, 2026-09-22. Five sources from the last two days. 150.4s end to end.">
+          <div class="hp-scene">
 
             <div class="pp hp-st">
               <div class="pp-n is-ok"><span class="pp-t" data-i18n="sv2.n1">Research</span><span class="pp-s">0.3s</span></div>
@@ -107,19 +101,17 @@
               <div class="pp-n is-pub"><span class="pp-t" data-i18n="sv2.n5">Publish</span><span class="pp-s"><span class="pp-s1">&mdash;</span><span class="pp-s2">4.7s</span></span></div>
             </div>
             <p class="pp-call hp-st"><span class="pp-call-l" data-i18n="sv2.sentlabel">Sent back</span><span data-i18n-html="sv2.call">The draft opened with <q>NEW YORK &ndash;</q>. Not one of the five sources says this happened in New York.</span></p>
-            <p class="pp-after hp-st" data-i18n-html="sv2.after">Rewrote 21.5s &rarr; re-checked 41.8s <b>&#10003; passed</b> &rarr; published 4.7s</p>
             <p class="pp-after is-faint hp-st" data-i18n="sv2.ratio">Writing took 15 seconds. Checking its own writing took 67.</p>
           </div>
-          <div class="hp-scene" data-name="deskloop &middot; policy lookup" data-foot="Probe A03. Two documents, one question. Quillstone is a company that does not exist.">
+          <div class="hp-scene">
 
             <p class="qa-q hp-st" data-i18n="sv3.q">I want to work from Japan for three weeks. Is that allowed?</p>
             <p class="qa-p hp-st" data-i18n="sv3.a1">Yes. Three weeks (15 business days) is inside the 20 business-day annual limit for working from another country. No approval needed, just advance notice to your manager.</p>
             <p class="hp-st"><span class="qa-src" data-i18n-html="sv3.src1">HR Remote Work &middot; "Working from another country"</span></p>
             <p class="qa-p hp-st" data-i18n-html="sv3.a2">One catch: you are on VPN level 2, which only connects from approved regions. <span class="qa-hl">Japan is not on that list, so your VPN will simply fail to connect there.</span></p>
             <p class="hp-st"><span class="qa-src is-alt" data-i18n="sv3.src2">IT VPN Access Levels</span></p>
-            <p class="qa-p is-dim hp-st" data-i18n="sv3.offer">Want me to open that travel exception ticket now?</p>
           </div>
-          <div class="hp-scene" data-name="deskloop &middot; tier 1 action" data-foot="The tier check lives in the tool server, not in the prompt. A compromised prompt does not move it.">
+          <div class="hp-scene">
 
             <div class="cf-prop hp-st">
               <p class="cf-lb" data-i18n="sv4.ready">Ready to run</p>
@@ -136,7 +128,7 @@
             <p class="cf-note hp-st" data-i18n-html="sv4.note"><b>Nothing has been submitted.</b> The server issues a one-time token bound to these exact details, and only after you answer.</p>
             <div class="cf-btns hp-st"><span class="is-pri" data-i18n="sv4.b1">Confirm</span><span data-i18n="sv4.b2">Change it</span><span data-i18n="sv4.b3">Cancel</span></div>
           </div>
-          <div class="hp-scene" data-name="driftboard &middot; judge validation" data-foot="14 held-out probes and 36 retrieval probes. Small samples: evidence the harness works, not a performance claim.">
+          <div class="hp-scene">
 
             <div class="jd-grid hp-st">
               <div class="jd-cell"><p class="jd-lb" data-i18n="sv5.l1">Judge vs human</p><p class="jd-nm">0.794</p><p class="jd-sub" data-i18n-html="sv5.s1">Cohen&rsquo;s kappa &middot; 12/14 agreed</p></div>
@@ -148,14 +140,22 @@
             </div>
           </div>
         </div>
-        <p class="hp-foot"></p>
       </div>
-      <div class="hp-rail">
-        <button type="button" class="hp-go is-act" data-go="0"><span class="hp-rn">01</span><span class="hp-rl" data-i18n="hp.r1">Finds the fault nobody reported</span></button>
-        <button type="button" class="hp-go" data-go="1"><span class="hp-rn">02</span><span class="hp-rl" data-i18n="hp.r2">Catches what it made up</span></button>
-        <button type="button" class="hp-go" data-go="2"><span class="hp-rn">03</span><span class="hp-rl" data-i18n="hp.r3">Shows the receipt</span></button>
-        <button type="button" class="hp-go" data-go="3"><span class="hp-rn">04</span><span class="hp-rl" data-i18n="hp.r4">Will not act without you</span></button>
-        <button type="button" class="hp-go" data-go="4"><span class="hp-rn">05</span><span class="hp-rl" data-i18n="hp.r5">Grades the grader</span></button>
+      <div class="hp-under">
+        <p class="hp-caption">
+          <span class="hp-cap is-act" data-i18n="hp.r1"></span>
+          <span class="hp-cap" data-i18n="hp.r2"></span>
+          <span class="hp-cap" data-i18n="hp.r3"></span>
+          <span class="hp-cap" data-i18n="hp.r4"></span>
+          <span class="hp-cap" data-i18n="hp.r5"></span>
+        </p>
+        <div class="hp-dots">
+          <button type="button" class="hp-dot-btn is-act" data-go="0" aria-label="1"></button>
+          <button type="button" class="hp-dot-btn" data-go="1" aria-label="2"></button>
+          <button type="button" class="hp-dot-btn" data-go="2" aria-label="3"></button>
+          <button type="button" class="hp-dot-btn" data-go="3" aria-label="4"></button>
+          <button type="button" class="hp-dot-btn" data-go="4" aria-label="5"></button>
+        </div>
       </div>
     </div>
   </section>
