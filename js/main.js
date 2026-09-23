@@ -110,7 +110,7 @@
 
 
       "sv5.kill": "Discarded",
-      "sv5.why": "A perfect score, marked with an answer key written after the results were in. The whole run was thrown out.",
+      "sv5.why": "A system of ours scored full marks. The answer key had been written after the results were in, so the run did not count.",
       "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
       "s1.body": "We walk your current process end to end, including any AI already running, and work out where the time and the money actually go.",
@@ -295,7 +295,7 @@
 
 
       "sv5.kill": "作废",
-      "sv5.why": "满分。但标准答案是看过结果之后才订的，整份作废。",
+      "sv5.why": "我们自己的系统考了满分。但那份标准答案是看过结果之后才订的，所以整笔不算。",
       "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
       "s1.body": "我们把您现在的流程从头到尾走一遍，包括已经在跑的 AI，算出时间和钱实际花在哪里。",
@@ -480,7 +480,7 @@
 
 
       "sv5.kill": "作廢",
-      "sv5.why": "滿分。但標準答案是看過結果之後才訂的，整份作廢。",
+      "sv5.why": "我們自己的系統考了滿分。但那份標準答案是看過結果之後才訂的，所以整筆不算。",
       "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
       "s1.body": "我們把您現在的流程從頭到尾走一遍，包括已經在跑的 AI，算出時間和錢實際花在哪裡。",
