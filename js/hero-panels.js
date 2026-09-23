@@ -29,7 +29,8 @@
   var DWELL_AFTER_CLICK = 14000;   /* someone who chose a scene wants to finish it */
   var current = -1;
   var timer = null;
-  var running = false;
+  var running = false;   /* the hero is on screen, so there is somebody to cycle for */
+  var held = false;      /* somebody is reading this one, so wait */
 
   var body = root.querySelector(".hp-body");
 
@@ -100,7 +101,7 @@
     setTimeout(function () { if (current === i) scene.classList.add("is-done"); }, 1800);
 
     if (timer) clearTimeout(timer);
-    if (running) timer = setTimeout(next, chosen ? DWELL_AFTER_CLICK : DWELL);
+    if (running && !held) timer = setTimeout(next, chosen ? DWELL_AFTER_CLICK : DWELL);
   }
 
   function next() { show((current + 1) % scenes.length, false); }
@@ -164,6 +165,35 @@
     running = false;
     if (timer) { clearTimeout(timer); timer = null; }
   }
+
+  /* Eight seconds is a guess about how fast somebody reads, and it is wrong for
+     anybody who stopped to look properly. Pointing at a panel is that person
+     saying so, so it waits; moving away starts a fresh beat rather than
+     resuming a part-spent one, because they stopped reading by choosing to.
+     Focus counts the same way, for anyone arriving at the dots by keyboard.
+
+     Bound only where a pointer can actually hover. On a touchscreen mouseenter
+     fires on tap and the matching mouseleave may never come, which would leave
+     the panel frozen on whichever scene was tapped. */
+  function holdHere() {
+    held = true;
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+  function releaseHere() {
+    if (!held) return;
+    held = false;
+    if (running && !timer) timer = setTimeout(next, DWELL);
+  }
+
+  var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  if (canHover) {
+    root.addEventListener("mouseenter", holdHere);
+    root.addEventListener("mouseleave", releaseHere);
+  }
+  root.addEventListener("focusin", holdHere);
+  root.addEventListener("focusout", function (e) {
+    if (!root.contains(e.relatedTarget)) releaseHere();
+  });
 
   if (typeof IntersectionObserver === "function") {
     new IntersectionObserver(function (entries) {
