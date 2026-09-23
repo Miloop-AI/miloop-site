@@ -1,5 +1,6 @@
 """Pre-push checks: CSS vars, braces, div balance, i18n coverage, orphan classes."""
 
+import io
 import re
 import sys
 from pathlib import Path
@@ -81,6 +82,11 @@ for name, d in zip(names, dicts):
             bad.append("%s: %s is plain text but contains an HTML entity" % (name, k))
 
 if bad:
-    print("\n".join("FAIL  " + b for b in bad))
+    # Through a UTF-8 wrapper: a failure naming a Chinese term would otherwise die
+    # in the print on a cp1252 console, and the run would report a crash instead of
+    # the thing it caught.
+    out = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    out.write("\n".join("FAIL  " + b for b in bad) + "\n")
+    out.flush()
     sys.exit(1)
 print("all checks pass: braces, vars, divs, i18n x3, orphan classes")
