@@ -22,6 +22,15 @@
   var head = stack.querySelector(".sv-spine-head");
   if (!bands.length || !spine || !lit || !head) return;
 
+  /* Read from the stylesheet rather than repeated here, so moving the dot moves
+     the trigger with it. Narrow screens drop the spine and lay the dot inline, so
+     there is no offset to apply there. */
+  function nodeOffset(band) {
+    if (!spine.offsetParent) return 0;
+    var t = parseFloat(window.getComputedStyle(band, "::before").top);
+    return isNaN(t) ? 0 : t;
+  }
+
   function openBand(band) {
     band.classList.add("is-in");
   }
@@ -47,7 +56,12 @@
     bands.forEach(function (band) {
       if (band.classList.contains("is-in")) return;
       var r = band.getBoundingClientRect();
-      if (r.top + r.height / 2 <= line) openBand(band);
+      /* The node on the spine, not the band's middle. That dot is what the light
+         arrives at and it sits 2.4rem below the band's top, so opening on the
+         middle meant waiting for the light to travel half the band's height
+         first: measured, 380 to 400px of scrolling after the band's top had
+         already come into view, and worse the taller the band. */
+      if (r.top + nodeOffset(band) <= line) openBand(band);
     });
   }
 
