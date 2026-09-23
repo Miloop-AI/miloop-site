@@ -158,8 +158,11 @@
   function start() {
     if (running) return;
     running = true;
+    /* held matters here too: the hero can scroll back into view with the pointer
+       already resting on it, and starting the clock then would move the panel out
+       from under somebody who is looking at it. show() makes the same check. */
     if (current < 0) show(0, false);
-    else timer = setTimeout(next, DWELL);
+    else if (!held) timer = setTimeout(next, DWELL);
   }
   function stop() {
     running = false;
