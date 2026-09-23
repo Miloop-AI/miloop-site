@@ -361,256 +361,53 @@ section + section { border-top: 1px solid var(--border-soft); }
   max-width: 46ch;
 }
 
-/* ==========================================================================
-   Hero loop
-   ==========================================================================
-   The path is 786.6 units long and the light takes 9s to travel it, so one
-   second is 87.4 units. Everything else here is derived from those two
-   numbers rather than picked: the light and the five nodes run on one clock,
-   and a node fires because the light reached it, not on a schedule of its
-   own. If the geometry is ever redrawn, the --t values in the markup have to
-   be recomputed from the new arc lengths or the causality breaks silently.
-   ========================================================================== */
-.loop-stage-label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  fill: var(--ink-dim);
-}
-
-.loop-track { fill: none; stroke: url(#heroTrack); stroke-width: 2; }
-
-/* Two dashes on one path make a comet: a long dim body and, aligned to its
-   leading edge, a short bright head. 240 - 125.9 = 114.1 is how far the body
-   trails behind the head, and is why the trail keyframes start there. */
-.loop-trail {
-  fill: none;
-  stroke: url(#heroGrad);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-dasharray: 240 546.6;
-  opacity: 0.3;
-}
-.loop-glow {
-  fill: none;
-  stroke: url(#heroGrad);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-dasharray: 125.9 660.7;
-  /* Reads as light rather than as a painted line. Cheap on a dark ground. */
-  filter: drop-shadow(0 0 5px rgba(91, 110, 245, 0.55));
-}
-
-/* The light and the nodes are driven from hero-loop.js, not from keyframes with
-   per-node delays. The send-back means the head stops and runs backwards, and a
-   schedule cannot follow that: a node has to light because the head reached it.
-   Everything below is the resting look and the three states the script sets. */
-.loop-node-mark,
-.loop-node .node-dot,
-.loop-node .loop-node-icon,
-.loop-stage-label {
-  transition: stroke 0.35s ease, fill 0.35s ease, opacity 0.35s ease;
-}
-
-.loop-node .node-dot {
-  fill: var(--bg-panel-raised);
-  stroke: var(--border-strong);
-  stroke-width: 2;
-}
-.loop-node .loop-node-icon { stroke: var(--ink-dim); }
-.loop-stage-label { fill: var(--ink-dim); }
-
-/* Reached by the light. */
-.loop-node.is-lit .node-dot { stroke: var(--loop-violet); }
-.loop-node.is-lit .loop-node-icon { stroke: var(--ink); }
-.loop-node.is-lit .loop-stage-label { fill: var(--ink); }
-
-/* Verify sits exactly on the crossing of the figure eight, and self-verifying
-   systems are what the headline above it claims. It is the only node given the
-   metric colour at rest, and the only one drawn larger, so the composition has a
-   subject instead of five equal dots. */
-.loop-node--verify .node-dot { stroke: rgba(94, 230, 200, 0.5); }
-.loop-node--verify .loop-node-icon { stroke: var(--signal-mint); }
-.loop-node--verify.is-lit .node-dot,
-.loop-node--verify.is-pass .node-dot { stroke: var(--signal-mint); }
-.loop-node--verify.is-lit .loop-stage-label,
-.loop-node--verify.is-pass .loop-stage-label { fill: var(--signal-mint); }
-
-/* Holding something back. */
-.loop-node.is-caught .node-dot,
-.loop-node.is-caught .loop-node-icon { stroke: var(--signal-amber); }
-.loop-node.is-caught .loop-stage-label { fill: var(--signal-amber); }
-
-/* The verdict sits on the crossing, so it always lands on track: the void-coloured
-   outline keeps it readable without a plate behind it. Both numbers are in user
-   units and the viewBox scales them, so they have to be read against the font size
-   rather than as screen pixels. At 0.9 the outline separates the glyphs from the
-   track; at 3 it was wider than the strokes it was meant to protect and the label
-   rendered as a black smudge. */
-.loop-verdict {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0;
-  stroke: var(--bg-void);
-  stroke-width: 0.9;
-  paint-order: stroke;
-  stroke-linejoin: round;
-  transition: opacity 0.3s ease;
-}
-.loop-verdict--sent { fill: var(--signal-amber); }
-.loop-verdict--ok { fill: var(--signal-mint); }
-.hero-visual.show-sent .loop-verdict--sent,
-.hero-visual.show-ok .loop-verdict--ok { opacity: 1; }
-
-/* While the head runs backwards the body would appear to lead it, so it is held
-   back to almost nothing and only the head reads. */
-.hero-visual.is-reversing .loop-trail { opacity: 0.08; }
-
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================
-   Services (five bands on a spine)
+   Hero panels
    ==========================================================================
-   The hero's loop, unrolled. The spine carries the same gradient as the loop's
-   track, and a light walks down it as the page is read, opening each service as
-   it arrives. That is the connective tissue the old tabbed panel had none of:
-   these five are one path in order, not five items in a list.
+   Five real runs, one at a time, beside the headline. The claim above them is
+   that the systems check their own work; these are the occasions on which they
+   did. Nothing here is illustrative, which is why the tag says so.
 
-   Progressive enhancement matters here. A band that is waiting to be revealed
-   must not be an empty frame, so the whole band fades in, border and all, and
-   the hidden state is applied only under .js-on, which the script adds. Without
-   the script, or if it throws, every band is simply present and readable.
+   The first scene and its contents are visible by default and the staged reveal
+   applies only under .js-on, added by the script. A hero that fails to a frame
+   with nothing in it is worse than a hero that never animates.
    ========================================================================== */
-.sv-lede {
-  margin-top: var(--space-2);
-  color: var(--ink-dim);
-  font-size: 1.08rem;
-  line-height: 1.7;
-  max-width: 62ch;
-}
-
-.sv-stack {
-  position: relative;
-  margin-top: var(--space-4);
-  padding-left: 3.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
-
-.sv-spine { position: absolute; left: 0.6rem; top: 2.4rem; bottom: 3.6rem; width: 1px; }
-.sv-spine-track,
-.sv-spine-lit { position: absolute; left: 0; width: 1px; }
-.sv-spine-track {
-  top: 0;
-  bottom: 0;
-  background: linear-gradient(180deg,
-    rgba(91, 110, 245, 0.34), rgba(166, 108, 240, 0.28) 50%, rgba(91, 110, 245, 0.34));
-}
-.sv-spine-lit {
-  top: 0;
-  height: 0;
-  background: linear-gradient(180deg, var(--loop-indigo), var(--loop-violet));
-  box-shadow: 0 0 9px rgba(91, 110, 245, 0.55);
-}
-/* The head, so the tip reads as arriving rather than as a line growing. */
-.sv-spine-head {
-  position: absolute;
-  left: 50%;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--loop-violet);
-  box-shadow: 0 0 10px 2px rgba(166, 108, 240, 0.55);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.sv-stack.is-moving .sv-spine-head { opacity: 1; }
-
-.sv-band {
-  position: relative;
-  background: #0d0e1a;
-  border: 1px solid #1e2036;
-  border-radius: 14px;
-  padding: 2rem 2.2rem;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 2.6rem;
-  align-items: center;
-}
-.sv-band.is-rev .sv-copy { order: 2; }
-.sv-band::before {
-  content: "";
-  position: absolute;
-  left: -3rem;
-  top: 50%;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--bg-void);
-  border: 1.5px solid rgba(233, 231, 245, 0.2);
-  transition: border-color 0.45s ease, box-shadow 0.45s ease;
-}
-.sv-band.is-in::before {
-  border-color: var(--loop-violet);
-  box-shadow: 0 0 0 4px rgba(166, 108, 240, 0.1);
-}
-
-.sv-stage {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  letter-spacing: 0.08em;
-  color: var(--loop-indigo);
-  margin-bottom: 0.85rem;
-}
-.sv-title {
-  font-size: calc(1.85rem * var(--display-scale));
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0 0 0.9rem;
-}
-.sv-pain {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--loop-violet);
-  line-height: 1.7;
-  margin-bottom: 0.9rem;
-}
-.sv-desc { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.75; }
-.sv-desc strong { color: var(--ink); font-weight: 500; }
-
-/* ---- the artifact panel ---- */
-.sv-panel {
+.hp-panel {
   background: var(--bg-panel);
   border: 1px solid var(--border-strong);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  min-width: 0;
 }
-.sv-panel-bar {
+.hp-bar {
   display: flex;
   align-items: center;
   gap: 0.45rem;
   padding: 0.7rem 1.1rem;
   border-bottom: 1px solid var(--border-soft);
   background: var(--bg-panel-raised);
+  min-width: 0;
 }
-.sv-dot { width: 8px; height: 8px; border-radius: 50%; background: #2c3050; }
-.sv-panel-name {
+.hp-dot { width: 8px; height: 8px; border-radius: 50%; background: #2c3050; flex: none; }
+.hp-name {
   font-family: var(--font-mono);
   font-size: 0.88rem;
   color: var(--ink-dim);
   margin-left: 0.5rem;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.sv-panel-tag {
+.hp-tag {
   margin-left: auto;
+  flex: none;
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   color: var(--signal-mint);
@@ -618,15 +415,68 @@ section + section { border-top: 1px solid var(--border-soft); }
   border-radius: 999px;
   padding: 0.1rem 0.6rem;
 }
-.sv-panel-body { padding: 1.4rem 1.4rem 1.2rem; }
-.sv-panel-foot {
+/* A floor for the case where the script never runs; when it does, it measures the
+   tallest scene and sets the real height, because that number changes with the
+   language and with whether the webfont has landed. */
+.hp-body { position: relative; min-height: 340px; overflow: hidden; }
+.hp-scene { display: none; padding: 1.3rem 1.3rem 1.1rem; }
+.hp-scene.is-on { display: block; }
+.hp-foot {
   border-top: 1px solid var(--border-soft);
-  padding: 0.75rem 1.4rem;
+  padding: 0.7rem 1.3rem;
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   color: var(--ink-faint);
   line-height: 1.55;
-  margin: 0;
+}
+
+.hp-rail { display: flex; gap: 0.4rem; margin-top: 1rem; }
+.hp-go {
+  flex: 1;
+  background: none;
+  border: none;
+  border-top: 2px solid var(--border-soft);
+  padding: 0.7rem 0 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-mono);
+  color: inherit;
+}
+.hp-rn { display: block; font-size: 0.88rem; color: var(--ink-faint); }
+.hp-rl { display: block; font-size: 0.88rem; color: var(--ink-faint); margin-top: 0.18rem; line-height: 1.35; }
+.hp-go.is-act { border-top-color: var(--loop-violet); }
+.hp-go.is-act .hp-rn { color: var(--loop-violet); }
+.hp-go.is-act .hp-rl { color: var(--ink); }
+.hp-go:hover .hp-rl { color: var(--ink-dim); }
+
+/* The reveal, only once the script is running. */
+.hero-visual.js-on .hp-st {
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.hero-visual.js-on .hp-scene.is-run .hp-st { opacity: 1; transform: none; }
+.hero-visual.js-on .is-run .hp-st:nth-child(1) { transition-delay: 0s; }
+.hero-visual.js-on .is-run .hp-st:nth-child(2) { transition-delay: 0.12s; }
+.hero-visual.js-on .is-run .hp-st:nth-child(3) { transition-delay: 0.28s; }
+.hero-visual.js-on .is-run .hp-st:nth-child(4) { transition-delay: 0.44s; }
+.hero-visual.js-on .is-run .hp-st:nth-child(5) { transition-delay: 0.6s; }
+.hero-visual.js-on .is-run .hp-st:nth-child(6) { transition-delay: 0.76s; }
+.hero-visual.js-on .pp > * { opacity: 0; transition: opacity 0.3s ease; }
+.hero-visual.js-on .is-run .pp > * { opacity: 1; }
+.hero-visual.js-on .is-run .pp > *:nth-child(2) { transition-delay: 0.07s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(3) { transition-delay: 0.14s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(4) { transition-delay: 0.21s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(5) { transition-delay: 0.28s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(6) { transition-delay: 0.35s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(7) { transition-delay: 0.42s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(8) { transition-delay: 0.49s; }
+.hero-visual.js-on .is-run .pp > *:nth-child(9) { transition-delay: 0.56s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual.js-on .hp-st,
+  .hero-visual.js-on .pp > * { opacity: 1; transform: none; transition: none; }
 }
 
 /* ---- 01: findings ---- */
@@ -693,20 +543,20 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .pp-a { align-self: center; color: #3a3f63; font-size: 0.95rem; }
 .pp-s2 { display: none; }
-.sv-panel-body.is-run .pp-n.is-ok { border-color: rgba(94, 230, 200, 0.45); }
-.sv-panel-body.is-run .pp-n.is-ok .pp-s { color: var(--signal-mint); }
-.sv-panel-body.is-run .pp-n.is-rej {
+.hp-scene.is-run .pp-n.is-ok { border-color: rgba(94, 230, 200, 0.45); }
+.hp-scene.is-run .pp-n.is-ok .pp-s { color: var(--signal-mint); }
+.hp-scene.is-run .pp-n.is-rej {
   border-color: rgba(224, 185, 120, 0.6);
   background: rgba(224, 185, 120, 0.08);
 }
-.sv-panel-body.is-run .pp-n.is-rej .pp-s { color: var(--signal-amber); }
+.hp-scene.is-run .pp-n.is-rej .pp-s { color: var(--signal-amber); }
 /* Second beat: the diagram resolves, so nobody is left thinking it never published. */
-.sv-panel-body.is-done .pp-n.is-rej { border-color: rgba(94, 230, 200, 0.45); background: none; }
-.sv-panel-body.is-done .pp-n.is-rej .pp-s,
-.sv-panel-body.is-done .pp-n.is-pub .pp-s { color: var(--signal-mint); }
-.sv-panel-body.is-done .pp-n.is-pub { border-color: rgba(94, 230, 200, 0.45); }
-.sv-panel-body.is-done .pp-s1 { display: none; }
-.sv-panel-body.is-done .pp-s2 { display: inline; }
+.hp-scene.is-done .pp-n.is-rej { border-color: rgba(94, 230, 200, 0.45); background: none; }
+.hp-scene.is-done .pp-n.is-rej .pp-s,
+.hp-scene.is-done .pp-n.is-pub .pp-s { color: var(--signal-mint); }
+.hp-scene.is-done .pp-n.is-pub { border-color: rgba(94, 230, 200, 0.45); }
+.hp-scene.is-done .pp-s1 { display: none; }
+.hp-scene.is-done .pp-s2 { display: inline; }
 
 .pp-call {
   border: 1px solid rgba(224, 185, 120, 0.4);
@@ -754,7 +604,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   background: var(--signal-amber);
   transition: width 0.55s ease;
 }
-.sv-panel-body.is-run .qa-hl::after { width: 100%; transition-delay: 1.05s; }
+.hp-scene.is-run .qa-hl::after { width: 100%; transition-delay: 1.05s; }
 .qa-src {
   display: inline-block;
   font-family: var(--font-mono);
@@ -823,7 +673,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   0%, 100% { box-shadow: 0 0 0 0 rgba(224, 185, 120, 0); }
   50% { box-shadow: 0 0 0 7px rgba(224, 185, 120, 0.09); }
 }
-.sv-panel-body.is-run .cf-wait { animation: sv-wait-pulse 1.7s ease-out 0.95s 2; }
+.hp-scene.is-run .cf-wait { animation: sv-wait-pulse 1.7s ease-out 0.95s 2; }
 
 /* ---- 05: judge validation ---- */
 .jd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 1.1rem; }
@@ -878,7 +728,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   background: var(--signal-amber);
   transition: width 0.5s ease;
 }
-.sv-panel-body.is-run .jd-num i { width: 106%; transition-delay: 1s; }
+.hp-scene.is-run .jd-num i { width: 106%; transition-delay: 1s; }
 .jd-lab {
   font-family: var(--font-mono);
   font-size: 0.88rem;
@@ -889,53 +739,205 @@ section + section { border-top: 1px solid var(--border-soft); }
 .jd-why { margin: 0; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
 .jd-why b { color: var(--signal-amber); font-weight: 500; }
 
-/* ---- reveal, applied only once the script is running ---- */
+/* ==========================================================================
+   Services (five bands on a spine)
+   ==========================================================================
+   Five steps of one path, Diagnose to Support, not five items in a list. The
+   spine carries the same accent as the hero and a light walks down it as the
+   page is read, opening each band as it arrives.
+
+   The copy says what we do in two lines, because the line above it states the
+   problem and the block beside it says what you walk away with. It used to do
+   all three, which is why it ran six lines and the section ran three screens.
+   ========================================================================== */
+.sv-lede {
+  margin-top: var(--space-2);
+  color: var(--ink-dim);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 62ch;
+}
+.sv-stack {
+  position: relative;
+  margin-top: var(--space-4);
+  padding-left: 3.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.sv-spine { position: absolute; left: 0.6rem; top: 2.2rem; bottom: 3rem; width: 1px; }
+.sv-spine-track,
+.sv-spine-lit { position: absolute; left: 0; width: 1px; }
+.sv-spine-track {
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,
+    rgba(91, 110, 245, 0.34), rgba(166, 108, 240, 0.28) 50%, rgba(91, 110, 245, 0.34));
+}
+.sv-spine-lit {
+  top: 0;
+  height: 0;
+  background: linear-gradient(180deg, var(--loop-indigo), var(--loop-violet));
+  box-shadow: 0 0 9px rgba(91, 110, 245, 0.55);
+}
+.sv-spine-head {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--loop-violet);
+  box-shadow: 0 0 10px 2px rgba(166, 108, 240, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sv-stack.is-moving .sv-spine-head { opacity: 1; }
+
+.sv-band {
+  position: relative;
+  background: #0d0e1a;
+  border: 1px solid #1e2036;
+  border-radius: 14px;
+  padding: 1.7rem 1.9rem;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.4rem;
+  align-items: start;
+  min-width: 0;
+}
+.sv-copy, .sv-visual { min-width: 0; }
+.sv-band::before {
+  content: "";
+  position: absolute;
+  left: -3rem;
+  top: 2.4rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-void);
+  border: 1.5px solid rgba(233, 231, 245, 0.2);
+  transition: border-color 0.45s ease, box-shadow 0.45s ease;
+}
+.sv-band.is-in::before {
+  border-color: var(--loop-violet);
+  box-shadow: 0 0 0 4px rgba(166, 108, 240, 0.1);
+}
+
+.sv-stage {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  color: var(--loop-indigo);
+  margin-bottom: 0.7rem;
+}
+.sv-title {
+  font-size: calc(1.6rem * var(--display-scale));
+  font-weight: 600;
+  line-height: 1.22;
+  margin: 0 0 0.7rem;
+}
+.sv-pain {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--loop-violet);
+  line-height: 1.7;
+  margin-bottom: 0.7rem;
+}
+.sv-desc { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.75; margin: 0; }
+.sv-desc strong { color: var(--ink); font-weight: 500; }
+
+/* No card here. The band is already the box; a second box inside it reads as a
+   frame within a frame. One hairline rule does the separating. */
+.sv-yield { position: relative; padding-left: 1.7rem; }
+.sv-yield::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 1px;
+  background: linear-gradient(180deg, var(--loop-indigo), var(--loop-violet) 55%, rgba(166, 108, 240, 0.12));
+}
+.sv-yield-lb {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.9rem;
+}
+.sv-y { padding: 0.7rem 0; border-bottom: 1px solid var(--border-soft); }
+.sv-y:last-of-type { border-bottom: none; }
+.sv-y-n { font-size: 1.02rem; color: var(--ink); line-height: 1.35; margin: 0 0 0.25rem; }
+.sv-y-d { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.sv-yield-s {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--signal-mint);
+  line-height: 1.6;
+}
+
+/* Reveal, only once the script is running: a band waiting its turn must never be
+   an empty frame, so the whole band fades in, border and all. */
 .sv-stack.js-on .sv-band {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 .sv-stack.js-on .sv-band.is-in { opacity: 1; transform: none; }
-.sv-stack.js-on .sv-st {
-  opacity: 0;
-  transform: translateY(5px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-.sv-stack.js-on .sv-panel-body.is-run .sv-st { opacity: 1; transform: none; }
-.sv-stack.js-on .is-run .sv-st:nth-child(1) { transition-delay: 0s; }
-.sv-stack.js-on .is-run .sv-st:nth-child(2) { transition-delay: 0.12s; }
-.sv-stack.js-on .is-run .sv-st:nth-child(3) { transition-delay: 0.28s; }
-.sv-stack.js-on .is-run .sv-st:nth-child(4) { transition-delay: 0.44s; }
-.sv-stack.js-on .is-run .sv-st:nth-child(5) { transition-delay: 0.6s; }
-.sv-stack.js-on .is-run .sv-st:nth-child(6) { transition-delay: 0.76s; }
-/* The pipeline runs left to right instead of appearing all at once. */
-.sv-stack.js-on .pp > * { opacity: 0; transition: opacity 0.3s ease; }
-.sv-stack.js-on .is-run .pp > * { opacity: 1; }
-.sv-stack.js-on .is-run .pp > *:nth-child(2) { transition-delay: 0.07s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(3) { transition-delay: 0.14s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(4) { transition-delay: 0.21s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(5) { transition-delay: 0.28s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(6) { transition-delay: 0.35s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(7) { transition-delay: 0.42s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(8) { transition-delay: 0.49s; }
-.sv-stack.js-on .is-run .pp > *:nth-child(9) { transition-delay: 0.56s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .sv-stack.js-on .sv-band,
-  .sv-stack.js-on .sv-st { opacity: 1; transform: none; transition: none; }
+  .sv-stack.js-on .sv-band { opacity: 1; transform: none; transition: none; }
   .sv-spine-lit { height: 100% !important; }
   .sv-spine-head { display: none; }
 }
 
 @media (max-width: 820px) {
-  .sv-stack { padding-left: 2.4rem; }
-  .sv-spine { left: 0.4rem; }
-  .sv-band { grid-template-columns: 1fr; gap: 1.6rem; padding: 1.6rem 1.4rem; }
-  .sv-band.is-rev .sv-copy { order: 0; }
-  .sv-band::before { left: -2rem; top: 2.2rem; }
-  .pp { flex-wrap: wrap; }
+  .sv-stack { padding-left: 0; }
+  .sv-spine { display: none; }
+  .sv-band { grid-template-columns: 1fr; gap: 1.3rem; padding: 1.5rem 1.2rem; }
+  .sv-band::before { position: static; display: inline-block; margin: 0 0.5rem 0.1rem 0; transform: none; }
+  .sv-title { font-size: calc(1.4rem * var(--display-scale)); }
+}
+
+
+/* ---- narrow screens ----
+   The panels are drawn against a 500px column. Stacked into a phone they get about
+   360px, so the pipeline gets a row per stage instead of five boxes side by side,
+   the metric pair stacks, and the rail keeps only its numbers: five sentences at
+   70px each wrapped to four lines and read as noise. The scenes also run taller
+   here, so the fixed body height has to follow or the tallest one is clipped. */
+@media (max-width: 820px) {
+  .hp-body { min-height: 420px; }
+  .hp-scene { padding: 1.1rem 1rem 1rem; }
+  .hp-foot { display: none; }
+  .hp-rl { display: none; }
+  .hp-rn { font-size: 0.95rem; }
+  .hp-go { text-align: center; padding-top: 0.6rem; }
+
+  .pp { flex-direction: column; gap: 0.35rem; }
   .pp-a { display: none; }
-  .pp-n { flex: 1 1 30%; }
+  .pp-n {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+  }
+  .pp-s { margin-top: 0; }
+  .pp-after.is-faint { display: none; }
+
+  .cf-f { grid-template-columns: 4.4rem 1fr; }
+  .jd-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+  .jd-nm { font-size: calc(1.9rem * var(--display-scale)); }
+
+  /* The deliverable names carry the point; their explanations are the tallest part
+     of a band on a phone and the least likely to be read there. */
+  .sv-y-d { display: none; }
+  .sv-y { padding: 0.5rem 0; }
 }
 
 /* ==========================================================================

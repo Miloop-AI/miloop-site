@@ -23,26 +23,12 @@
   if (!bands.length || !spine || !lit || !head) return;
 
   function openBand(band) {
-    if (band.classList.contains("is-in")) return;
     band.classList.add("is-in");
-    var body = band.querySelector(".sv-panel-body");
-    if (!body) return;
-    /* The copy lands first and the panel plays its own beat just behind it. Short
-       on purpose: while this is pending the panel is a frame with nothing in it,
-       and an empty frame is worse than no stagger at all. */
-    setTimeout(function () { body.classList.add("is-run"); }, 180);
-    /* Second beat, for the one panel that has one: the rejected draft is rewritten
-       and published, so the diagram resolves instead of freezing on the failure. */
-    setTimeout(function () { body.classList.add("is-done"); }, 2300);
   }
 
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   if ((still && still.matches) || typeof IntersectionObserver !== "function") {
-    bands.forEach(function (band) {
-      band.classList.add("is-in");
-      var body = band.querySelector(".sv-panel-body");
-      if (body) { body.classList.add("is-run"); body.classList.add("is-done"); }
-    });
+    bands.forEach(function (band) { band.classList.add("is-in"); });
     return;
   }
 
