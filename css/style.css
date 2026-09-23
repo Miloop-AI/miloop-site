@@ -870,13 +870,6 @@ section + section { border-top: 1px solid var(--border-soft); }
 .sv-y:last-of-type { border-bottom: none; }
 .sv-y-n { font-size: 1.02rem; color: var(--ink); line-height: 1.35; margin: 0 0 0.25rem; }
 .sv-y-d { color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
-.sv-yield-s {
-  margin: 0.8rem 0 0;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--signal-mint);
-  line-height: 1.6;
-}
 
 /* Reveal, only once the script is running: a band waiting its turn must never be
    an empty frame, so the whole band fades in, border and all. */
@@ -936,8 +929,7 @@ section + section { border-top: 1px solid var(--border-soft); }
   /* Monospace is wide, and a long sentence set in it on a 366px column runs to six
      lines. The violet keeps the line recognisable; the face does not have to. */
   .sv-pain { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; }
-  .sv-yield-s { line-height: 1.55; }
-  .sv-desc { line-height: 1.65; }
+    .sv-desc { line-height: 1.65; }
 }
 
 /* ==========================================================================
