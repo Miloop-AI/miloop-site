@@ -23,6 +23,7 @@
   var scenes = [].slice.call(root.querySelectorAll(".hp-scene"));
   var buttons = [].slice.call(root.querySelectorAll(".hp-dot-btn"));
   var captions = [].slice.call(root.querySelectorAll(".hp-cap"));
+  var situations = [].slice.call(root.querySelectorAll(".hp-sit"));
   if (scenes.length < 2) return;
 
   var DWELL = 8000;          /* long enough to read a scene */
@@ -74,6 +75,7 @@
      markup so each keeps its own data-i18n; only which one is showing changes. */
   function label(i) {
     captions.forEach(function (c, n) { c.classList.toggle("is-act", n === i); });
+    situations.forEach(function (c, n) { c.classList.toggle("is-act", n === i); });
   }
 
   function show(i, chosen) {

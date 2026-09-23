@@ -403,6 +403,27 @@ section + section { border-top: 1px solid var(--border-soft); }
    applies only under .js-on, added by the script. A hero that fails to a frame
    with nothing in it is worse than a hero that never animates.
    ========================================================================== */
+/* The situation above the artifact, and the thing that separates this zone from
+   the services section below. Down there the copy is an offer, in the present: we
+   do this, you get that. Up here it is a record of something that already
+   happened, so it is past tense and names the person it happened to. Same stacking
+   as .hp-cap, so the line does not change height as the panel cycles. */
+.hp-lede {
+  position: relative;
+  margin: 0 0 0.85rem;
+  min-height: 1.5rem;
+}
+.hp-sit {
+  display: block;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.hp-sit:not(:first-child) { position: absolute; left: 0; top: 0; right: 0; }
+.hp-sit.is-act { opacity: 1; }
+
 .hp-panel {
   background: var(--bg-panel);
   border: 1px solid var(--border-strong);
