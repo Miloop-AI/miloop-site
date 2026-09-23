@@ -350,15 +350,16 @@ section + section { border-top: 1px solid var(--border-soft); }
   /* Set from the text side, not the loop. Growing the loop had taken the column
      below .hero-sub's own 46ch measure, so the paragraph was wrapping tighter than
      it was drawn for and sat hard against the left margin. At this width it has
-     about 120px of slack, which is what stops a column of text reading as crammed,
-     and the English headline settles onto two lines like the Chinese one. The loop
-     takes what is left and is smaller for it, which is the right way round. */
-  grid-template-columns: 1.18fr 0.82fr;
+     slack, which is what stops a column of text reading as crammed, and the English
+     headline settles onto two lines like the Chinese one. The headline cap came down
+     from 3.6rem to 3.2rem to buy the loop some of that width back: measured, both
+     headlines still hold two lines at 584px and the paragraph keeps 77px of slack. */
+  grid-template-columns: 1.1fr 0.9fr;
   gap: var(--space-5);
   align-items: center;
 }
 .hero h1 {
-  font-size: calc(clamp(2.3rem, 4.4vw, 3.6rem) * var(--display-scale));
+  font-size: calc(clamp(2.3rem, 4.4vw, 3.2rem) * var(--display-scale));
   font-weight: 300;
   line-height: 1.12;
   margin-top: var(--space-2);
