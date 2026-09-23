@@ -67,7 +67,7 @@
       "hp.s4": "Will it do things without asking me first?",
       "hp.r4": "It stopped here. It gets permission only after you say yes",
       "hp.s5": "How would I know if it was fooling me?",
-      "hp.r5": "We published the worse number from the redo",
+      "hp.r5": "We kept the worse one",
       "services.lede": "Most people take one of these rather than all five, and start with the first.",
       "sv1.stage": "01 / DIAGNOSE",
       "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
@@ -110,7 +110,8 @@
 
 
       "sv5.kill": "Discarded",
-      "sv5.why": "A system of ours scored full marks. The answer key had been written after the results were in, so the run did not count.",
+      "sv5.keep": "What we published",
+      "sv5.why": "On the perfect run, the answer key had been written after seeing the results.",
       "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
       "s1.body": "We walk your current process end to end, including any AI already running, and work out where the time and the money actually go.",
@@ -252,7 +253,7 @@
       "hp.s4": "它会不会没问过我就动手？",
       "hp.r4": "它停在这里，等人点头才拿得到权限",
       "hp.s5": "我怎么知道它没在唬我？",
-      "hp.r5": "我们公布的是重做之后那个比较难看的分数",
+      "hp.r5": "我们留下的是比较难看的那个",
       "services.lede": "多数人从第一项开始，做完再决定下一步。",
       "sv1.stage": "01 ／ 诊断",
       "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
@@ -295,7 +296,8 @@
 
 
       "sv5.kill": "作废",
-      "sv5.why": "我们自己的系统考了满分。但那份标准答案是看过结果之后才订的，所以整笔不算。",
+      "sv5.keep": "我们公布的",
+      "sv5.why": "满分那次，考卷的答案是看过结果之后才订的。",
       "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
       "s1.body": "我们把您现在的流程从头到尾走一遍，包括已经在跑的 AI，算出时间和钱实际花在哪里。",
@@ -437,7 +439,7 @@
       "hp.s4": "它會不會沒問過我就動手？",
       "hp.r4": "它停在這裡，等人點頭才拿得到權限",
       "hp.s5": "我怎麼知道它沒在唬我？",
-      "hp.r5": "我們公布的是重做之後那個比較難看的分數",
+      "hp.r5": "我們留下的是比較難看的那個",
       "services.lede": "多數人從第一項開始，做完再決定下一步。",
       "sv1.stage": "01 ／ 診斷",
       "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
@@ -480,7 +482,8 @@
 
 
       "sv5.kill": "作廢",
-      "sv5.why": "我們自己的系統考了滿分。但那份標準答案是看過結果之後才訂的，所以整筆不算。",
+      "sv5.keep": "我們公布的",
+      "sv5.why": "滿分那次，考卷的答案是看過結果之後才訂的。",
       "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
       "s1.body": "我們把您現在的流程從頭到尾走一遍，包括已經在跑的 AI，算出時間和錢實際花在哪裡。",

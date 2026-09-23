@@ -135,10 +135,20 @@
             <div class="cf-btns hp-st"><span class="is-pri" data-i18n="sv4.b1">Confirm</span><span data-i18n="sv4.b2">Change it</span><span data-i18n="sv4.b3">Cancel</span></div>
           </div>
           <div class="hp-scene">
-            <div class="jd-kill hp-st">
-              <p class="jd-top"><span class="jd-num">1.000<i></i></span><span class="jd-lab" data-i18n="sv5.kill">Discarded</span></p>
-              <p class="jd-why" data-i18n-html="sv5.why">A system of ours scored full marks. The answer key had been written after the results were in, so the run did not count.</p>
+            <!-- Both numbers, because neither means anything on its own. 1.000 is not
+                 a figure a reader recognises; 1.000 crossed out beside a lower number
+                 that was kept says the whole thing without being read. -->
+            <div class="jd-pair hp-st">
+              <div class="jd-col is-out">
+                <span class="jd-n">1.000<i></i></span>
+                <span class="jd-cap" data-i18n="sv5.kill">Discarded</span>
+              </div>
+              <div class="jd-col is-keep">
+                <span class="jd-n">0.794</span>
+                <span class="jd-cap" data-i18n="sv5.keep">What we published</span>
+              </div>
             </div>
+            <p class="jd-why hp-st" data-i18n="sv5.why">On the perfect run, the answer key had been written after seeing the results.</p>
           </div>
         </div>
       </div>

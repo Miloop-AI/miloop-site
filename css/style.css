@@ -759,38 +759,55 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-scene.is-run .cf-wait { animation: sv-wait-pulse 1.7s ease-out 0.95s 2; }
 
 /* ---- 05: judge validation ---- */
-.jd-kill {
-  border: 1px solid rgba(224, 185, 120, 0.4);
-  background: rgba(224, 185, 120, 0.07);
-  border-radius: 9px;
-  padding: 1.15rem 1.2rem;
+/* The two numbers together, because neither carries on its own: 1.000 is not a
+   figure anybody recognises, and the lower one alone looks like a poor result.
+   Side by side, one struck out and one kept, they say "we had the better number
+   and did not use it" before a word has been read. */
+.jd-pair {
+  display: flex;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
 }
-.jd-top { display: flex; align-items: baseline; gap: 0.75rem; margin: 0 0 0.4rem; }
-.jd-num {
+.jd-col {
+  flex: 1;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+.jd-col.is-out { border-color: rgba(224, 185, 120, 0.4); background: rgba(224, 185, 120, 0.07); }
+.jd-col.is-keep { border-color: rgba(94, 230, 200, 0.4); background: rgba(94, 230, 200, 0.05); }
+.jd-n {
   position: relative;
+  display: inline-block;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: calc(2.4rem * var(--display-scale));
+  font-size: calc(2.2rem * var(--display-scale));
+  line-height: 1.1;
   color: var(--ink-faint);
 }
+.jd-col.is-keep .jd-n { color: var(--ink); }
 /* Struck out in front of you, rather than arriving already crossed. */
-.jd-num i {
+.jd-n i {
   position: absolute;
-  left: -3%;
+  left: -6%;
   top: 52%;
   height: 2px;
   width: 0;
   background: var(--signal-amber);
   transition: width 0.5s ease;
 }
-.hp-scene.is-run .jd-num i { width: 106%; transition-delay: 1s; }
-.jd-lab {
+.hp-scene.is-run .jd-n i { width: 112%; transition-delay: 1s; }
+.jd-cap {
+  display: block;
+  margin-top: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--signal-amber);
 }
+.jd-col.is-keep .jd-cap { color: var(--signal-mint); }
 .jd-why { margin: 0; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
 .jd-why b { color: var(--signal-amber); font-weight: 500; }
 
@@ -982,7 +999,8 @@ section + section { border-top: 1px solid var(--border-soft); }
   .pp-s { margin-top: 0; }
 
   .cf-f { grid-template-columns: 4.4rem 1fr; }
-  .jd-num { font-size: calc(1.9rem * var(--display-scale)); }
+  .jd-pair { flex-direction: column; gap: 0.6rem; }
+  .jd-n { font-size: calc(1.8rem * var(--display-scale)); }
 
   /* The deliverable names carry the point; their explanations are the tallest part
      of a band on a phone and the least likely to be read there. */
