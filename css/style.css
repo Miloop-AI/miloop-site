@@ -251,10 +251,16 @@ section + section { border-top: 1px solid var(--border-soft); }
   background: var(--border-strong);
   display: inline-block;
 }
+/* The mark is 24px because that is the size it should be read at. The link around
+   it is 44px because that is the smallest thing a finger reliably hits, and the
+   negative margin keeps the header laid out as though it were still icon-sized. */
 .brand-youtube-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -14px -10px;
   transition: opacity 0.15s ease;
 }
 .brand-youtube-link:hover { opacity: 0.8; }
@@ -325,9 +331,13 @@ section + section { border-top: 1px solid var(--border-soft); }
 @media (max-width: 480px) {
   .wordmark-full { height: 26px; }
   .brand-group { gap: 0.55rem; }
-  .brand-youtube-link svg { width: 20px; height: 14px; }
+  /* The bar was carrying the wordmark, the channel link, the language switch and
+     the widest thing on it, the call to action. Dropping the button here gives the
+     other three room; the hero carries it instead, under the evidence, and the
+     teaser further down still has one. */
+  .brand-youtube-link svg { width: 22px; height: 15px; }
   .nav-actions { gap: 0.5rem; }
-  .nav-actions .btn { padding: 0.55rem 0.9rem; font-size: 0.9rem; }
+  .nav-actions .btn { display: none; }
 }
 
 /* ==========================================================================
@@ -391,6 +401,12 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-body { position: relative; overflow: hidden; transition: height 0.4s ease; }
 .hp-scene { display: none; padding: 1.5rem 1.4rem; }
 .hp-scene.is-on { display: block; }
+
+/* Shown only where the nav drops its own button. */
+.hero-cta-narrow { display: none; }
+@media (max-width: 900px) {
+  .hero-cta-narrow { display: inline-block; margin-top: 1.5rem; }
+}
 
 /* Under the panel: what this run demonstrates, and five dots to move between them.
    The numbers that used to sit here read as an index into nothing, since the hero

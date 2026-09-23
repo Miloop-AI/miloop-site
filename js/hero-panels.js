@@ -38,9 +38,35 @@
      of five sat in a box with empty space under them. The number cannot come from
      the stylesheet either: the scenes differ, the three languages differ, and text
      reflows once the webfont lands, so it is measured each time. */
-  function fit() {
+  /* Wide: the panel sits beside the copy, which is taller, so nothing below it
+     moves and each scene can be its own height. Narrow: the panel is in the flow
+     with the whole page under it, and a height that changes per scene drags that
+     page up and down under the reader's thumb mid-swipe. There it holds the
+     tallest scene and stays put. */
+  var tallest = 0;
+  function measureTallest() {
+    tallest = 0;
+    scenes.forEach(function (s) {
+      var showing = s.classList.contains("is-on");
+      if (!showing) { s.style.display = "block"; s.style.visibility = "hidden"; }
+      if (s.scrollHeight > tallest) tallest = s.scrollHeight;
+      if (!showing) { s.style.display = ""; s.style.visibility = ""; }
+    });
+  }
+
+  function narrow() {
+    return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+  }
+
+  function fit(remeasure) {
+    if (!body) return;
+    if (narrow()) {
+      if (remeasure || !tallest) measureTallest();
+      if (tallest) body.style.height = tallest + "px";
+      return;
+    }
     var scene = scenes[current] || scenes[0];
-    if (body && scene) body.style.height = scene.scrollHeight + "px";
+    if (scene) body.style.height = scene.scrollHeight + "px";
   }
 
   /* The caption says what the run on screen demonstrates. All five are in the
@@ -119,12 +145,12 @@
 
   root.classList.add("js-on");
   label(0);
-  fit();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit(true);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(true); });
   var refit = null;
   window.addEventListener("resize", function () {
     clearTimeout(refit);
-    refit = setTimeout(fit, 150);
+    refit = setTimeout(function () { fit(true); }, 150);
   });
 
   /* Idle while the hero is off screen rather than cycling to nobody. */
