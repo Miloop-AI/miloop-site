@@ -1329,6 +1329,25 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
   margin: var(--space-5) 0;
 }
 .about-content .eyebrow { margin-bottom: var(--space-2); }
+/* Links inside running text. The global reset takes colour and underline off
+   every <a>, which is right for nav items and whole-card links, where the thing
+   itself is obviously a control. Inside a paragraph it left these with no mark
+   at all: not merely a subtle link, but one set in the same colour as the
+   sentence around it. A link in a block of text that is distinguished by colour
+   alone already fails WCAG 1.4.1, and this one did not even have the colour.
+   Underlined and set brighter than the body copy, so it is marked twice. */
+.about-content p > a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--loop-violet);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.about-content p > a:hover {
+  color: var(--loop-violet);
+  text-decoration-color: var(--loop-violet);
+}
 .about-aside {
   font-style: italic;
   color: var(--ink-dim);
