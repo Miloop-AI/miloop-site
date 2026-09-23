@@ -371,6 +371,23 @@ section + section { border-top: 1px solid var(--border-soft); }
   max-width: 46ch;
 }
 
+/* The one line in the hero addressed to somebody who does not know AI, and the
+   only one that says what is actually being asked of them. Sitting at the tail
+   of the paragraph it was the least likely sentence on the page to be read. The
+   rule at its left is the device .about-pullquote and .result-metric already use
+   for the sentence that carries the point, rather than another box. */
+.hero-promise {
+  margin-top: 1.4rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--loop-violet);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: calc(1.15rem * var(--display-scale));
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 34ch;
+}
+
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
 }
