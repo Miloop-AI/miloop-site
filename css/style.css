@@ -1061,6 +1061,23 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
 }
 /* Once the row wraps there is no "far right" to push to, so the location
    rejoins the links instead of stranding itself on a line of its own. */
+/* Measured at 360px, the narrow end of phones still in use: the bar's two groups
+   want 315px and only 308 is on offer, so they would wrap. The gutter comes off
+   the container rather than the nav alone, so the bar stays aligned with the
+   content under it, and the button gives up a little more of its padding. */
+@media (max-width: 400px) {
+  .container { padding-left: 1.15rem; padding-right: 1.15rem; }
+  .nav-actions .btn { padding: 0.5rem 0.7rem; }
+}
+/* 320px is the old small iPhone. The bar wants 308 and has 280, so rather than
+   let it push a horizontal scrollbar onto the whole page, the wordmark gives up
+   the difference and the groups are allowed to compress. */
+@media (max-width: 340px) {
+  .wordmark-full { height: 20px; }
+  .brand-group { gap: 0.4rem; min-width: 0; }
+  .nav-actions { gap: 0.35rem; }
+}
+
 @media (max-width: 620px) {
   .footer-row { gap: 0.4rem 1.2rem; }
   .footer-location { margin-left: 0; }
