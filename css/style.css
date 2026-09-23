@@ -659,11 +659,14 @@ section + section { border-top: 1px solid var(--border-soft); }
 .hp-scene.is-done .pp-s1 { display: none; }
 .hp-scene.is-done .pp-s2 { display: inline; }
 
+/* Holds only its label now that the explanation lives under the card, so it is a
+   marker on the diagram rather than a box with a paragraph in it. */
 .pp-call {
+  display: inline-block;
   border: 1px solid rgba(224, 185, 120, 0.4);
   background: rgba(224, 185, 120, 0.07);
   border-radius: 9px;
-  padding: 0.75rem 0.95rem;
+  padding: 0.4rem 0.8rem;
   color: var(--ink);
   font-size: 0.95rem;
   line-height: 1.6;
@@ -671,6 +674,7 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .pp-call-l {
   display: block;
+  margin-bottom: 0 !important;
   font-family: var(--font-mono);
   font-size: 0.88rem;
   letter-spacing: 0.05em;
@@ -796,7 +800,6 @@ section + section { border-top: 1px solid var(--border-soft); }
   display: flex;
   align-items: flex-start;
   gap: 1.6rem;
-  margin-bottom: 1rem;
 }
 .jd-col { flex: none; }
 .jd-col.is-keep { padding-left: 1.6rem; border-left: 1px solid var(--border-soft); }
@@ -831,9 +834,6 @@ section + section { border-top: 1px solid var(--border-soft); }
   color: var(--signal-amber);
 }
 .jd-col.is-keep .jd-cap { color: var(--signal-mint); }
-.jd-why { margin: 0 0 0.45rem; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
-.jd-dig { margin: 0; font-size: 0.95rem; color: var(--ink-dim); line-height: 1.6; }
-.jd-why b { color: var(--signal-amber); font-weight: 500; }
 
 /* ==========================================================================
    Services (five bands on a spine)

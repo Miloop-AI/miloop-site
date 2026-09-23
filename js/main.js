@@ -73,9 +73,8 @@
       "sv1.pain": "Everyone says to use AI. You have tried a few tools. Nobody can tell you which part of the work to fix first, or what fixing it would be worth.",
       "sv1.kick": "Silent failures · finding 2 of 16",
       "sv1.head": "The leave request went through. The days never came off.",
-      "sv1.r1": "<b>Nothing anywhere reported a problem</b>, so nobody knew.",
-      "sv1.r2": "The same three days could be requested <b>over and over</b>.",
-      "sv1.fix": "The whole update is now rolled back, and no request is created at all.",
+
+
 
 
       "sv2.stage": "02 / BUILD",
@@ -87,7 +86,6 @@
       "sv2.n5": "Publish",
       "sv2.skipped": "skipped",
       "sv2.sentlabel": "Sent back",
-      "sv2.call": "It opened with <q>NEW YORK &ndash;</q>. Not one of the five sources says so.",
       "sv3.stage": "03 / BUILD",
       "sv3.pain": "Ask about something only your own documents contain, and the AI starts inventing. What the contract says, who signs off on this, what that spec number actually is: it answers fast, it sounds certain, and it cannot tell you where any of it came from.",
       "sv3.q": "I want to work from Japan for three weeks. Is that allowed?",
@@ -103,7 +101,6 @@
       "sv4.k2": "Dates",
       "sv4.k3": "Days",
       "sv4.wait": "Awaiting your confirmation",
-      "sv4.note": "<b>Nothing has been submitted.</b> It waits for your answer.",
       "sv4.b1": "Confirm",
       "sv4.b2": "Change it",
       "sv4.b3": "Cancel",
@@ -115,8 +112,7 @@
       "sv5.kill": "Discarded",
       "sv5.meas": "Agreement with a human reviewer",
       "sv5.keep": "What we published",
-      "sv5.why": "A perfect score on a check like this is a warning, not a win.",
-      "sv5.dig": "We looked: that run's answer key had been written after reading its answers, so it was being marked against itself. The whole run was thrown out.",
+
       "sv.realrun": "real run",
       "s1.title": "AI Readiness Assessment",
       "s1.body": "We walk your current process end to end, including any AI already running, and work out where the time and the money actually go.",
@@ -264,9 +260,8 @@
       "sv1.pain": "上面说要用 AI，工具也试了几个。但没有人说得清楚，哪个环节最该先动、动了到底能省多少。",
       "sv1.kick": "不会出声的错 · 16 件中的第 2 件",
       "sv1.head": "请假单送出去了，可用的假却一天也没少。",
-      "sv1.r1": "<b>没有一个地方报错</b>，所以没有人知道。",
-      "sv1.r2": "同样那三天，可以<b>一直重复请</b>。",
-      "sv1.fix": "现在这笔更新会整个退回，假单根本创建不起来。",
+
+
 
 
       "sv2.stage": "02 ／ 构建",
@@ -278,7 +273,6 @@
       "sv2.n5": "发布",
       "sv2.skipped": "跳过",
       "sv2.sentlabel": "退回重写",
-      "sv2.call": "开头写了 <q>NEW YORK &ndash;</q>，五份来源没有一份提到纽约。",
       "sv3.stage": "03 ／ 构建",
       "sv3.pain": "问到只有您内部文档里才有的东西，AI 就开始编。条款怎么写、流程该找谁、某个规格到底是多少，它答得飞快、语气笃定，但没有一句讲得出出处。",
       "sv3.q": "我想去日本工作三周，可以吗？",
@@ -294,7 +288,6 @@
       "sv4.k2": "日期",
       "sv4.k3": "天数",
       "sv4.wait": "等待您的确认",
-      "sv4.note": "<b>什么都还没送出。</b>它在等您回答。",
       "sv4.b1": "确认",
       "sv4.b2": "改一下",
       "sv4.b3": "取消",
@@ -306,8 +299,7 @@
       "sv5.kill": "作废",
       "sv5.meas": "跟人工判断的一致度",
       "sv5.keep": "我们公布的",
-      "sv5.why": "这种比对拿到满分，是警讯，不是好消息。",
-      "sv5.dig": "一查才发现：那次的标准答案，是看过它的答案之后才订的，等于拿它自己当标准。整笔作废。",
+
       "sv.realrun": "实际运行",
       "s1.title": "AI 就绪度评估",
       "s1.body": "我们把您现在的流程从头到尾走一遍，包括已经在跑的 AI，算出时间和钱实际花在哪里。",
@@ -455,9 +447,8 @@
       "sv1.pain": "上面說要用 AI，工具也試了幾個。但沒有人說得清楚，哪個環節最該先動、動了到底能省多少。",
       "sv1.kick": "不會出聲的錯 · 16 件中的第 2 件",
       "sv1.head": "請假單送出去了，可用的假卻一天也沒少。",
-      "sv1.r1": "<b>沒有一個地方報錯</b>，所以沒有人知道。",
-      "sv1.r2": "同樣那三天，可以<b>一直重複請</b>。",
-      "sv1.fix": "現在這筆更新會整個退回，假單根本建立不起來。",
+
+
 
 
       "sv2.stage": "02 ／ 構建",
@@ -469,7 +460,6 @@
       "sv2.n5": "發佈",
       "sv2.skipped": "跳過",
       "sv2.sentlabel": "退回重寫",
-      "sv2.call": "開頭寫了 <q>NEW YORK &ndash;</q>，五份來源沒有一份提到紐約。",
       "sv3.stage": "03 ／ 構建",
       "sv3.pain": "問到只有您內部文件裡才有的東西，AI 就開始編。條款怎麼寫、流程該找誰、某個規格到底是多少，它答得飛快、語氣篤定，但沒有一句講得出出處。",
       "sv3.q": "我想去日本工作三週，可以嗎？",
@@ -485,7 +475,6 @@
       "sv4.k2": "日期",
       "sv4.k3": "天數",
       "sv4.wait": "等待您的確認",
-      "sv4.note": "<b>什麼都還沒送出。</b>它在等您回答。",
       "sv4.b1": "確認",
       "sv4.b2": "改一下",
       "sv4.b3": "取消",
@@ -497,8 +486,7 @@
       "sv5.kill": "作廢",
       "sv5.meas": "跟人工判斷的一致度",
       "sv5.keep": "我們公布的",
-      "sv5.why": "這種比對拿到滿分，是警訊，不是好消息。",
-      "sv5.dig": "一查才發現：那次的標準答案，是看過它的答案之後才訂的，等於拿它自己當標準。整筆作廢。",
+
       "sv.realrun": "實際執行",
       "s1.title": "AI 就緒度評估",
       "s1.body": "我們把您現在的流程從頭到尾走一遍，包括已經在跑的 AI，算出時間和錢實際花在哪裡。",
