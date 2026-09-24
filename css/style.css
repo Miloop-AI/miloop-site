@@ -993,12 +993,30 @@ html[lang^="zh"] .result-cite::before { content: "\2014\2014\00a0"; }
   margin: 0 auto;
 }
 .teaser-panel .eyebrow { display: block; margin-bottom: var(--space-2); }
+/* Two beats, not one paragraph. The first three sentences are the setup and now
+   sit back in --ink-dim at a size the longer copy can carry; the closing pair is
+   the argument this panel exists to make, so it is the brightest and largest
+   thing in the box. Emphasis by size, weight and colour only: the site's usual
+   "this line carries the point" device is a violet rule down the left, which has
+   nothing to align to in a centred panel. */
 .teaser-statement {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: calc(clamp(1.4rem, 2.6vw, 1.9rem) * var(--display-scale));
-  line-height: 1.4;
+  font-size: calc(clamp(1.1rem, 1.9vw, 1.35rem) * var(--display-scale));
+  line-height: 1.55;
+  color: var(--ink-dim);
+  max-width: 62ch;
+  margin-inline: auto;
+}
+.teaser-close {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(clamp(1.25rem, 2.1vw, 1.55rem) * var(--display-scale));
+  line-height: 1.45;
   color: var(--ink);
+  max-width: 44ch;
+  margin: var(--space-3) auto 0;
+  text-wrap: balance;
 }
 .teaser-actions {
   display: flex;
