@@ -68,7 +68,7 @@
 
 
 
-      "services.lede": "Most people take one of these rather than all five, and start with the first.",
+      "services.lede": "Start with the first. It tells you which of the other four are worth doing, and what each one would be worth.",
 
 
 
@@ -130,7 +130,7 @@
       "result3.tag": "Model Fine-Tuning",
       "result3.title": "A Bilingual News Publisher",
       "livedemo.eyebrow": "Portfolio",
-      "livedemo.title": "Three systems you can try, read, or watch for yourself.",
+      "livedemo.title": "Three systems you can check for yourself, before you ever talk to us.",
       "demo1.badge": "Live",
       "demo1.tag": "Multi-Agent Pipeline",
       "demo1.name": "FactLoop Newsroom",
@@ -139,7 +139,7 @@
       "demo2.badge": "Case study",
       "demo2.tag": "RAG Evaluation",
       "demo2.name": "Driftboard RAG Eval",
-      "demo2.tagline": "An evaluation framework for RAG, stress-tested against a fictional knowledge base. It measures what the system does when it has no answer, and checks its own judge for blind spots.",
+      "demo2.tagline": "An evaluation framework for RAG. It measures what a system does when it has no answer, and audits its own judge for blind spots, stress-tested end to end against a fictional knowledge base.",
       "demo2.stat1.label": "Held-out kappa",
       "demo2.stat2.label": "Retrieval Hit@4",
       "demo2.cta": "Read the case study",
@@ -249,7 +249,7 @@
 
 
 
-      "services.lede": "多数客户从第一项开始，完成后再决定下一步。",
+      "services.lede": "从第一项开始。它会告诉您其余四项里哪几项值得做，以及各自值多少。",
 
 
 
@@ -311,7 +311,7 @@
       "result3.tag": "模型微调",
       "result3.title": "一家双语新闻机构",
       "livedemo.eyebrow": "作品集",
-      "livedemo.title": "三套您可以自己试、自己读、自己看的系统。",
+      "livedemo.title": "三套系统，在与我们接洽之前即可自行查证。",
       "demo1.badge": "实时",
       "demo1.tag": "多 Agent 流水线",
       "demo1.name": "FactLoop Newsroom",
@@ -320,7 +320,7 @@
       "demo2.badge": "案例研究",
       "demo2.tag": "RAG 评估",
       "demo2.name": "Driftboard RAG Eval",
-      "demo2.tagline": "一套 RAG 评估框架，以虚构知识库进行压力测试。它衡量的是系统在无法作答时的行为，并一并检验评判模型自身的盲点。",
+      "demo2.tagline": "一套 RAG 评估框架。它衡量的是系统在无法作答时的行为，并一并检验评判模型自身的盲点；整套以虚构知识库做过端到端的压力测试。",
       "demo2.stat1.label": "保留题 kappa 值",
       "demo2.stat2.label": "检索 Hit@4",
       "demo2.cta": "阅读案例",
@@ -430,7 +430,7 @@
 
 
 
-      "services.lede": "多數客戶從第一項開始，完成後再決定下一步。",
+      "services.lede": "從第一項開始。它會告訴您其餘四項裡哪幾項值得做，以及各自值多少。",
 
 
 
@@ -492,7 +492,7 @@
       "result3.tag": "模型微調",
       "result3.title": "一家雙語新聞機構",
       "livedemo.eyebrow": "作品集",
-      "livedemo.title": "三套您可以自己試、自己讀、自己看的系統。",
+      "livedemo.title": "三套系統，在與我們接洽之前即可自行查證。",
       "demo1.badge": "即時",
       "demo1.tag": "多 Agent 流水線",
       "demo1.name": "FactLoop Newsroom",
@@ -501,7 +501,7 @@
       "demo2.badge": "案例研究",
       "demo2.tag": "RAG 評估",
       "demo2.name": "Driftboard RAG Eval",
-      "demo2.tagline": "一套 RAG 評估框架，以虛構知識庫進行壓力測試。它衡量的是系統在無法作答時的行為，並一併檢驗評判模型自身的盲點。",
+      "demo2.tagline": "一套 RAG 評估框架。它衡量的是系統在無法作答時的行為，並一併檢驗評判模型自身的盲點；整套以虛構知識庫做過端到端的壓力測試。",
       "demo2.stat1.label": "保留題 kappa 值",
       "demo2.stat2.label": "檢索 Hit@4",
       "demo2.cta": "閱讀案例",
