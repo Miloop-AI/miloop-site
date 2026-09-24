@@ -205,7 +205,17 @@
 
     <div class="hero-side">
       <div class="hero-visual" id="hero-loop" aria-hidden="true">
-      <svg viewBox="0 0 380.0 186.1" width="100%">
+      <!-- viewBox x is offset by 25.5 user units, not 0. The path is drawn from
+           x=40 to x=340 inside a 380-wide box, so it sat 50px in from the column
+           edge while the promise line below starts at its 1rem padding, 18px in,
+           and the loop read as pushed right of the text under it. The offset
+           aligns the curve, not the outermost ink: the stage labels are wider in
+           English than in Chinese, so anchoring on them would put the loop in a
+           different place in each language. Aligned on the path, all three match,
+           and DEPLOY overhangs by 5px in English only. Nothing clips, the drawing
+           is not resized, and hero-loop.js works in path arc length rather than
+           screen coordinates, so none of this reaches the animation. -->
+      <svg viewBox="25.5 0 380.0 186.1" width="100%">
         <use class="loop-track" href="#loopPath"/>
         <use class="loop-trail" id="loop-trail" href="#loopPath"/>
         <use class="loop-glow" id="loop-glow" href="#loopPath"/>
