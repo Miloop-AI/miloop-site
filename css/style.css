@@ -454,8 +454,15 @@ section + section { border-top: 1px solid var(--border-soft); }
   border-left: 2px solid var(--loop-violet);
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: calc(1.15rem * var(--display-scale));
-  line-height: 1.55;
+  /* Sized up to the largest value both languages survive at this column width,
+     measured: English holds one sentence per line to 24px and only breaks into
+     three at 26px, but Chinese leaves a single line at 21px, and balancing a
+     two-line Chinese sentence gives two 238px lines in a 477px box, filling
+     half of it. The root is 17px, not 16px, so the cliff sits between 1.3 and
+     1.35rem: at 1.3 Chinese is 20.3px on one line at 452px, 95% of the column,
+     and English is 22.1px still one sentence per line. */
+  font-size: calc(1.3rem * var(--display-scale));
+  line-height: 1.5;
   color: var(--ink);
   /* No measure of its own: in the side column it takes the loop's width, so the
      two line up as one block however long the sentence gets. The 34ch it used to
