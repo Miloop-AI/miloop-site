@@ -201,7 +201,7 @@
     "zh-Hans": {
       "meta.title": "Miloop AI：应用型 AI 工程咨询",
       "meta.description": "Miloop AI 搭建真正运行于生产环境的 AI 系统，涵盖内容自动化至语音助理，每一套自第一天起即内置独立的评估层。",
-      "hero.eyebrow": "可靠的 AI，解决真实的业务问题",
+      "hero.eyebrow": "用可靠的 AI，解决真实的商业挑战",
       "hero.heading.pre": "将重复的人工作业交给会",
       "hero.heading.em": "自我验证",
       "hero.heading.post": "的 AI 系统",
@@ -382,7 +382,7 @@
     "zh-Hant": {
       "meta.title": "Miloop AI：應用型 AI 工程顧問",
       "meta.description": "Miloop AI 建置真正運行於生產環境的 AI 系統，涵蓋內容自動化至語音助理，每一套自第一天起即內建獨立的評估層。",
-      "hero.eyebrow": "可靠的 AI，解決真實的業務問題",
+      "hero.eyebrow": "用可靠的 AI，解決真實的商業挑戰",
       "hero.heading.pre": "將重複的人工作業交給會",
       "hero.heading.em": "自我驗證",
       "hero.heading.post": "的 AI 系統",
