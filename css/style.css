@@ -385,6 +385,52 @@ section + section { border-top: 1px solid var(--border-soft); }
   max-width: 46ch;
 }
 
+/* The three concrete things we make, named in the hero because until you scroll
+   the page never says one. The h1 and the loop are both abstractions: "busywork"
+   and a process diagram. This list is the first noun a visitor can picture. It
+   holds .hero-sub's own 46ch measure so the whole copy column shares one edge,
+   and it deliberately stops at three when the services section below has five:
+   it is a sample, not a contents page, which is what "including:" above says. */
+.hero-offers {
+  margin-top: var(--space-3);
+  /* 46ch resolved against .hero-sub's own 1.08rem, so the list ends on the same
+     right edge as the paragraph above it instead of 65px short of it. The
+     children set their own sizes back. */
+  font-size: 1.08rem;
+  max-width: 46ch;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+}
+.hero-offers li {
+  position: relative;
+  padding-left: 1.2rem;
+}
+.hero-offers li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-mint);
+}
+.hero-offers strong {
+  display: block;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.hero-offers span {
+  display: block;
+  font-size: 0.97rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
 /* The one line in the hero addressed to somebody who does not know AI, and the
    only one that says what is actually being asked of them. Sitting at the tail
    of the paragraph it was the least likely sentence on the page to be read. The
