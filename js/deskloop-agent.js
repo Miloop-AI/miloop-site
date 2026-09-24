@@ -28,7 +28,7 @@
       "dl.hero.eyebrow": "Portfolio",
       "dl.hero.title.pre": "Agent permissions are not a ",
       "dl.hero.title.em": "prompting problem",
-      "dl.hero.title.post": ".",
+      "dl.hero.title.post": "",
       "dl.hero.lede": "Most agent demos answer one question: which tools can it call. The harder question is which of those actions it may take on its own, which need a human's word first, and which it must never take regardless of what the conversation says.",
       "dl.hero.lede2": "DeskLoop is an IT and HR helpdesk built around a tiered tool server. The tiers are not instructions in a prompt. They live in a separate process that the agent is merely a client of, so no wording inside the conversation can move the boundary. The recordings below show a refusal happening in code, not a model deciding to be careful.",
 
@@ -119,7 +119,7 @@
       "dl.hero.eyebrow": "作品案例",
       "dl.hero.title.pre": "Agent 的权限，",
       "dl.hero.title.em": "不是提示词能解决的问题",
-      "dl.hero.title.post": "。",
+      "dl.hero.title.post": "",
       "dl.hero.lede": "多数 Agent 演示回答的是同一个问题：它能调用哪些工具。更难的问题是，这些动作里哪些它可以自己做，哪些必须先拿到人的一句同意，哪些无论对话里怎么说都绝不能做。",
       "dl.hero.lede2": "DeskLoop 是一套 IT 与 HR 助手，核心是一个分级的工具服务器。这些层级不是写在提示词里的指令，它们跑在另一个进程里，Agent 只是这个进程的客户端，所以对话里的任何措辞都挪不动这条边界。下面的录屏拍到的是代码在拒绝，不是模型决定要谨慎。",
 
@@ -210,7 +210,7 @@
       "dl.hero.eyebrow": "作品案例",
       "dl.hero.title.pre": "Agent 的權限，",
       "dl.hero.title.em": "不是提示詞能解決的問題",
-      "dl.hero.title.post": "。",
+      "dl.hero.title.post": "",
       "dl.hero.lede": "多數 Agent 示範回答的是同一個問題：它能呼叫哪些工具。更難的問題是，這些動作裡哪些它可以自己做，哪些必須先拿到人的一句同意，哪些無論對話裡怎麼說都絕不能做。",
       "dl.hero.lede2": "DeskLoop 是一套 IT 與 HR 助手，核心是一個分級的工具伺服器。這些層級不是寫在提示詞裡的指令，它們跑在另一個行程裡，Agent 只是這個行程的客戶端，所以對話裡的任何措辭都挪不動這條邊界。下面的錄影拍到的是程式碼在拒絕，不是模型決定要謹慎。",
 
