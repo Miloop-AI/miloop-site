@@ -457,7 +457,20 @@ section + section { border-top: 1px solid var(--border-soft); }
   font-size: calc(1.15rem * var(--display-scale));
   line-height: 1.55;
   color: var(--ink);
-  max-width: 34ch;
+  /* No measure of its own: in the side column it takes the loop's width, so the
+     two line up as one block however long the sentence gets. The 34ch it used to
+     carry was drawn for the copy column and now just made it 65px narrower than
+     the thing above it. Capped again below 900px, where the column goes full
+     width and 46ch is as far as this size should run. */
+  max-width: none;
+  /* At the loop's full width the default break put "You just" alone at the end
+     of line one. Balancing lands the break on the full stop instead, one
+     sentence per line, and leaves the box itself the full 477px. Browsers
+     without it just wrap normally. */
+  text-wrap: balance;
+}
+@media (max-width: 900px) {
+  .hero-promise { max-width: 46ch; }
 }
 
 @media (max-width: 900px) {
