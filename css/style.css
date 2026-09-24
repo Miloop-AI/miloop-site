@@ -436,8 +436,20 @@ section + section { border-top: 1px solid var(--border-soft); }
    of the paragraph it was the least likely sentence on the page to be read. The
    rule at its left is the device .about-pullquote and .result-metric already use
    for the sentence that carries the point, rather than another box. */
+/* The loop and the promise share the right column. The promise is a sibling of
+   .hero-visual rather than a child of it, because .hero-visual carries
+   aria-hidden and would take the one sentence addressed to a non-technical
+   reader out of the accessibility tree with it. Putting it here also fills the
+   dead space under a 234px-tall loop in a much taller column, and takes its
+   height off the copy column, which is what was making the hero long. */
+.hero-side {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+}
+
 .hero-promise {
-  margin-top: 1.4rem;
+  margin-top: 0;
   padding-left: 1rem;
   border-left: 2px solid var(--loop-violet);
   font-family: var(--font-display);
