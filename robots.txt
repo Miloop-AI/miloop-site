@@ -4,4 +4,4 @@ Allow: /
 # The contact panel posts here; there is nothing to index and nothing to crawl.
 Disallow: /api/
 
-Sitemap: https://www.miloop.ai/sitemap.xml
+Sitemap: https://miloop.ai/sitemap.xml

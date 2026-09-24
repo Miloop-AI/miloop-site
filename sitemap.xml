@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.miloop.ai/</loc>
+    <loc>https://miloop.ai/</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.miloop.ai/about.html</loc>
+    <loc>https://miloop.ai/about.html</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.miloop.ai/privacy.html</loc>
+    <loc>https://miloop.ai/privacy.html</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.miloop.ai/portfolio/factloop-newsroom/</loc>
+    <loc>https://miloop.ai/portfolio/factloop-newsroom/</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.miloop.ai/portfolio/driftboard-rag-eval/</loc>
+    <loc>https://miloop.ai/portfolio/driftboard-rag-eval/</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.miloop.ai/portfolio/deskloop-agentic-it-hr/</loc>
+    <loc>https://miloop.ai/portfolio/deskloop-agentic-it-hr/</loc>
     <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
